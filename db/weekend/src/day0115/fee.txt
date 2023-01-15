@@ -1,0 +1,4 @@
+Single	11.0	NO
+Sweet	16.0	YES
+Double	25.0	YES
+Triple	30.0	YES
