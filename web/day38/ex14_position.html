@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+      }
+
+      div>div {
+        background-color: red;
+        width: 50px;
+        height: 50px;
+      }
+
+      #target1 {
+        position: relative;
+        left: 300px;
+        top: 200px;
+      }
+
+      #target2 {
+        /* fixed의 기본 위치는 parent, 별도 설정을 줄 경우 viewpoint가 기준 */
+        /* position: fixed; */
+        /* position: relative;
+        left: 0px;
+        top: 0px;
+        */
+        /* position: absolute;
+        top: 0px; */
+        /* position: fixed; */
+        left: 0px;
+        top: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>box</div>
+    <div id="target1">
+      outter box
+      <div id="target2">inner box</div>
+    </div>
+  </body>
+
+</html>
