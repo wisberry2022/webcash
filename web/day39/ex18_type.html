@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      var a = 1111;
+      var b = new Number(1111);
+      var c = new Number(1111);
+      var d = '1111';
+      var e = "1111";
+      var f = new String("1111");
+      var g = new String('aaaa');
+      // console.log(a, typeof a);
+      // console.log(b + 1, typeof b);
+
+      console.log(a == b, b == c);
+      console.log(a === b, b === c);
+      console.log(a == d, a === d);
+
+      var h = true;
+      var j = new Boolean(true);
+      var x = [5];
+      var y = new Array(5);
+      x[5] = 1;
+      console.log(x.length, y.length);
+
+      console.log(x.pop());
+      x.push('item2');
+      x.push('item3');
+      x.push('item3');
+
+      // while (x.length) {
+      //   console.log(x.pop()) ;
+      // }
+
+      console.log("오브젝트부터 시작해서 아직 할말이 많죠".split(" ").reduce((acc, cur) => acc += cur[0]));
+
+      console.log(x);
+      x.reverse();
+      console.log(x);
+
+      for (z in x) {
+        console.log(z);
+      }
+
+      for (z2 in x) {
+
+      }
+
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>

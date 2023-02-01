@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      var obj = { 'key1': 'va11', 'key2': 2222 };
+      obj['key1'] = 'val1';
+      obj['key2'] = 2222;
+      obj[1234] = 'val4';
+      obj[true] = 'val5';
+
+      var b = 4321;
+      obj[b] = 'val5';
+      console.log(obj['key1']);
+      console.log(obj['key2']);
+      console.log(obj[1234]);
+      console.log(obj);
+
+      // obj의 key는 반드시 문자열로 설정
+      console.log(obj[b], obj[4321]);
+      // undefined
+      // console.log(obj['key3']);
+
+      // object key 호출
+      // 에러
+      // console.log(obj.4321);
+
+      c = 4444;
+      console.log(c);
+
+      console.log(window.c);
+
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      div {
+        border: 1px solid red;
+        width: 100px;
+        height: 100px;
+      }
+
+      div:nth-child(3) {
+        display: none;
+      }
+
+      div:nth-child(5) {
+        visibility: hidden;
+      }
+
+      div:nth-child(7) {
+        opacity: 0;
+      }
+
+      div:nth-child(9) {
+        margin-left: -999px;
+      }
+
+      div:nth-child(2) {
+        border-radius: 50px 0px 20px 10px;
+        background-image: url("imgs/logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        /* 배경사진의 크기가 아닌, 요소의 크기 */
+        background-size: 100px 100px;
+      }
+
+      body {
+        background-image: url("imgs/logo.png");
+        background-repeat: no-repeat;
+        background-position: 50% 100%;
+        background-attachment: fixed;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>숨기기</h1>
+    <div>box1</div>
+    <div>box2</div>
+    <div>box3</div>
+    <div>box4</div>
+    <div>box5</div>
+    <div>box6</div>
+    <div>box7</div>
+    <div>box8</div>
+    <div>box9</div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+
+</html>

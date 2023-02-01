@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+      // "", 0, undefined -> false
+      if ("") {
+        console.log('참입니다');
+      } else {
+        console.log('거짓입니다');
+      }
+
+      var arr = new Object();
+      if (arr) {
+        console.log("참입니다");
+      } else {
+        console.log("거짓입니다");
+      }
+
+      var arr2;
+      if (arr2) {
+        console.log("참입니다");
+      } else {
+        console.log("거짓입니다");
+      }
+
+      var a = 1;
+      switch (a) {
+        case 1 > 0: console.log(a + '입니다'); break;
+        case 1 - 1: console.log(a + '입니다'); break;
+        case 0 + 1: console.log(a + '입니다'); break;
+        case -1: console.log(a + '입니다'); break;
+        case '음수': console.log(a + '입니다'); break;
+        default: console.log("몰라"); break;
+      }
+    </script>
+    <title>Document</title>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>
