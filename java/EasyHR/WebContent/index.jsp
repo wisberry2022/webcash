@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/basic.css">
     <link rel="stylesheet" type="text/css" href="assets/css/index.css">
     <link rel="stylesheet" type="text/css" href="assets/css/first.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/login/login.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/login/signup.css">
   </head>
 
   <body>
@@ -23,8 +25,8 @@
     <div id="topHeader">
       <ul>
         <li><a href="#">사이트맵</a></li>
-        <li><a href="#">회원가입</a></li>
-        <li><a href="?page=login/login.jsp">로그인</a></li>
+        <li><a href="?page=login/signup">회원가입</a></li>
+        <li><a href="?page=login/login">로그인</a></li>
       </ul>
     </div>
     <header>

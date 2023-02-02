@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      // Interval 쓰지 않고 Interval 구현
+      var a;
+      function callback() {
+        // 재귀함수를 통해 무한정 callback 함수 호출
+        console.log("call...");
+        a = setTimeout(callback, 3000);
+      }
+
+      callback();
+
+      setTimeout(function () {
+        clearInterval(a);
+      }, 10000)
+
+      // setInterval 사용 지양 -> 컴퓨터 성능 떨어진다
+      // var a = setInterval(callback, 3000);
+
+      // setTimeout(function () {
+      //   clearInterval(a);
+      // }, 10000)
+
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>

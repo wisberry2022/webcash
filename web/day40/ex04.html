@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      function func01() {
+        console.log('callback');
+      }
+
+      var f = func01;
+
+      function func02(a) {
+        a();
+      }
+
+      func02(f);
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>

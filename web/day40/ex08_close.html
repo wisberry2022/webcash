@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      // closer -> 전역변수를 지역화하여 정보를 은닉할 수 있다
+      var a = {};
+      function func01() {
+        var a = { "key1": "val1" };
+
+        var c = function (val) {
+          if (val) a.key1 = val;
+          else return a.key1;
+        }
+
+
+        return c;
+      }
+
+      var b = func01();
+      b(4321);
+      console.log(a, b(), b);
+
+
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>

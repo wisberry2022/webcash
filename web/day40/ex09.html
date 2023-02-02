@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      // bind 메소드
+      // var person = {
+      //   fullName: function () {
+      //     return this.firstName + " " + this.lastName;
+      //   }
+      // }
+
+      var person = {
+        fullName: function (a, b) {
+          return a + " " + b;
+        }
+      }
+
+      var member = {
+        firstName: "임",
+        lastName: "꺽정",
+      }
+
+      // this의 바인딩 -> 함수 실행
+      // var fullName = person.fullName.bind(member);
+      // console.log(fullName());
+
+      // call => 매개 변수를 여러개 전달 가능
+      var fullName = person.fullName.call(member, "aaa", "bbb");
+      console.log(fullName);
+
+      // apply => 매개 변수 하나로 전달 가능(배열로 묶어줘야 함)
+      var fullName = person.fullName.apply(member, ["aaa", "ccc"]);
+      console.log(fullName);
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>

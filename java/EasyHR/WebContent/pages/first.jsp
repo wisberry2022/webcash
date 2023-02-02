@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
             <div id="wrapper">
         <section id="first" class="bg_set">
           <div class="container">
@@ -110,5 +104,3 @@
           </div>
         </section>
       </div>
-</body>
-</html>

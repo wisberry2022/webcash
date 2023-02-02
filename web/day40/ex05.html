@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      // callback function
+      var arr1 = [4444, 2222, 1111, 3333];
+      console.log(arr1);
+      // var f = function () {
+      // if (arguments.length == 0) {
+      //   return function (a, b) { return a - b };
+      // } else {
+      //   return arguments();
+      // }
+      // return arguments[0] - arguments[1];
+      // return -1;
+      // }
+      // arr1.sort(f);
+      // console.log(arr1);
+
+      var callback = function (itm, idx, arr) {
+        console.log(arguments);
+      };
+
+      arr1.forEach(callback);
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>
