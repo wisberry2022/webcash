@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      body {
+        width: 550px;
+        margin: 0 auto;
+      }
+
+      button {
+        width: 50px;
+        height: 350px;
+      }
+
+      .prev {
+        float: left;
+        height: 350px;
+      }
+
+      #carousel {
+        float: left;
+        width: 450px;
+        height: 350px;
+      }
+
+      #carousel img {
+        width: 100%;
+        height: 350px;
+      }
+
+      .next {
+        float: left;
+      }
+    </style>
+
+    <script type="text/javascript">
+      var carousel, prev, next;
+      var idx = 1;
+      var pcnt = 0;
+      var ncnt = 0;
+
+      window.onload = function () {
+
+        carousel = document.querySelector("#carousel");
+        prev = document.querySelector(".prev");
+        next = document.querySelector(".next");
+
+        var autoPrev = function () {
+          if (idx == 1) idx = 6;
+          idx--;
+          var format = "<img src = 'imgs/thumb0" + idx + ".jfif' />";
+          carousel.innerHTML = format;
+        }
+
+        // 이전 버튼 누를 때 이전 슬라이드
+        prev.onclick = function () {
+          if (pcnt == 0) {
+            setInterval(autoPrev, 1200);
+          }
+          pcnt++;
+        }
+
+        var autoNext = function () {
+          if (idx == 5) idx = 1;
+          idx++;
+          var format = "<img src = 'imgs/thumb0" + idx + ".jfif' />";
+          carousel.innerHTML = format;
+        }
+
+        // 다음 버튼 누를 때 다음 슬라이드
+        next.onclick = function () {
+          if (ncnt == 0) {
+            setInterval(autoNext, 1200);
+          }
+          ncnt++;
+        }
+
+
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <button class="prev">prev</button>
+    <div id="carousel">
+      <img src="imgs/thumb01.jfif" alt="" />
+    </div>
+    <button class="next">next</button>
+  </body>
+
+</html>

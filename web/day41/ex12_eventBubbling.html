@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      div {
+        width: 500px;
+        height: 500px;
+        background-color: aqua;
+      }
+
+      div>div {
+        margin: 100px;
+        width: 300px;
+        height: 300px;
+        background-color: burlywood;
+      }
+    </style>
+  </head>
+
+  <script type="text/javascript">
+    var div1, div2;
+    window.onload = function () {
+      div1 = document.querySelector('div');
+      div2 = document.querySelector('div>div');
+
+      // div1.onmouseover = function () {
+      //   console.log('마우스 위로');
+      // }
+
+      div1.onmouseenter = function () {
+        console.log("div2 - 마우스 위로")
+      }
+
+      div1.onmouseleave = function () {
+        console.log("마우스 밖으로 그런데 mouseleave를 곁들인");
+      }
+
+      // div1.onmouseout = function () {
+      //   console.log("마우스 밖으로");
+      // };
+
+      div1.ondblclick = function () {
+        div1.innerHTML = "<h3>더블클릭함</h3>";
+      }
+
+      // div2.onmouseover = function () {
+      //   console.log('div2 - 마우스 위로');
+      // }
+
+      // div2.onmouseout = function () {
+      //   console.log("div2 - 마우스 밖으로");
+      // };
+
+      div2.onmouseleave = function () {
+        console.log("div2 - 마우스 밖으로 그런데 mouseleave를 곁들인");
+      }
+
+
+      div2.onmouseenter = function () {
+        console.log("div2 - 마우스 위로")
+      }
+    }
+  </script>
+
+  <body>
+    <div>
+      <div></div>
+    </div>
+  </body>
+
+</html>

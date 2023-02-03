@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      ul {
+        padding: 0px;
+        list-style: none;
+      }
+
+      ul>li {
+        float: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul style="list-style:none;">
+      <li><img src="imgs/thumb01.jfif" alt=""></li>
+      <li><img src="imgs/thumb02.jfif" alt=""></li>
+      <li><img src="imgs/thumb03.jfif" alt=""></li>
+      <li><img src="imgs/thumb04.jfif" alt=""></li>
+      <li><img src="imgs/thumb05.jfif" alt=""></li>
+      <li><img src="imgs/thumb06.jfif" alt=""></li>
+    </ul>
+  </body>
+  <script type="text/javascript">
+    var ul = document.lastElementChild.lastElementChild.firstElementChild
+    ul.firstElementChild.firstElementChild.style.width = '100px';
+
+    for (li of ul.children) {
+      li.firstElementChild.style.width = '100px';
+    }
+
+    ul.style.width = '600px';
+  </script>
+
+</html>

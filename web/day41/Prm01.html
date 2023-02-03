@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      body {
+        margin: 0 auto;
+        width: 600px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      ul {
+        height: 30px;
+        background-color: gray;
+      }
+
+      ul>li {
+        list-style: none;
+        float: left;
+        width: 25%;
+      }
+
+      ul>li>a {
+        display: block;
+        color: #fff;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>비트교육센터</h1>
+    <ul>
+      <li><a href="#">menu</a></li>
+      <li><a href="#">menu</a></li>
+      <li><a href="#">menu</a></li>
+      <li><a href="#">menu</a></li>
+    </ul>
+    <div id="carousel">
+
+    </div>
+
+    <script type="text/javascript">
+      var carousel = document.getElementById('carousel');
+      var idx = 1;
+
+      var slide = function () {
+        if (idx <= 6) {
+          var format = "imgs/thumb0" + idx + ".jfif";
+          carousel.innerHTML = "<img src = '" + format + "' alt />";
+          idx++;
+        } else {
+          idx = 1;
+          carousel.innerHTML = "<img src = '" + "imgs/thumb0" + idx + ".jfif" + "' alt />";
+        }
+      }
+
+      setInterval(slide, 1200);
+
+    </script>
+  </body>
+
+</html>

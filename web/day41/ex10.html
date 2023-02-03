@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+      var h1;
+      // dom level2 event
+      // script 코드의 산재를 방지하기 위해 DOM TREE가 완전히 렌더링 된 이후 JS가 DOM을 제어할 수 있도록 window.onload를 활용한다 (실제 )
+      function myload() {
+        h1 = document.getElementsByTagName('h1')[0];
+      };
+
+      window.onload = myload;
+
+      // DOM TREE가 렌더링 되기 전
+      window.onbeforeunload = function () {
+        console.log('unload');
+      };
+
+      // 에러 시
+      window.onerror = function () { };
+
+      window.onabort = function () { };
+      window.onbeforeprint = function () { console.log('before...') };
+      // 화면크기 줄일 때마다 일어나는 이벤트
+      window.onresize = function () { console.log('resize...') };
+      // 화면 스크롤 줄일 때마다 일어나는 이벤트
+      window.onscroll = function () {
+        // console.log
+        // if (window.innerHeight - 100 < window.pageYOffset) {
+        //   console.log('scroll 중...');
+        //   document.querySelector('body').innerHTML = document.querySelector("body").innerHTML + '<br/><br/><br/><br/><br/><br/>'
+        // }
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <h1>dom level2 event</h1>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+
+</html>

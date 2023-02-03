@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      #carousel {
+        overflow: hidden;
+      }
+
+      #carousel>ul {
+        padding: 0;
+        list-style: none;
+      }
+
+      #carousel>ul>li {
+        float: left;
+        width: 100px;
+      }
+
+      #carousel>ul>li>img {
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="carousel">
+      <ul>
+        <li><img src="imgs/thumb01.jfif" alt=""></li>
+        <li><img src="imgs/thumb02.jfif" alt=""></li>
+        <li><img src="imgs/thumb03.jfif" alt=""></li>
+        <li><img src="imgs/thumb04.jfif" alt=""></li>
+        <li><img src="imgs/thumb05.jfif" alt=""></li>
+        <li><img src="imgs/thumb06.jfif" alt=""></li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      var w = 100;
+      var carousel = document.getElementById('carousel');
+      carousel.style.width = w * 3 + 'px';
+      carousel.style.height = w + 'px';
+      var ul = carousel.firstElementChild;
+      for (li of ul.children) {
+        li.firstElementChild.style.width = w + 'px';
+      }
+      ul.style.marginLeft = "0";
+      var cnt = 0;
+
+      var callback = function () {
+        if (cnt == -1 * w * (6 - 1)) {
+          cnt = w / 16;
+        }
+        cnt -= w;
+        ul.style.marginLeft = cnt + "px";
+      }
+
+      setInterval(callback, 1200);
+    </script>
+  </body>
+
+</html>

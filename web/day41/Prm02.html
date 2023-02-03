@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="carousel">
+
+    </div>
+    <script type="text/javascript">
+      var carousel = document.querySelector('#carousel').outerHTML;
+
+      var idx = 1;
+
+      var slide = function () {
+        if (idx == 6) idx = 1;
+        var arr = carousel.split("\n\n");
+        temp = arr[1];
+        arr[1] = "<img src = 'imgs/thumb0" + idx + ".jfif' />";
+        arr[2] = temp;
+        // document.querySelector('body').innerHTML(arr.join(''));
+
+        idx++;
+      }
+
+      setInterval(slide, 1200);
+    </script>
+  </body>
+
+</html>
