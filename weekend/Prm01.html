@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style rel="stylesheet" type="text/css">
+    body {
+      margin: 0 auto;
+      width: 600px;
+    }
+
+    .prev {
+      float: left;
+      width: 50px;
+      height: 300px;
+    }
+
+    #carousel {
+      float: left;
+      width: 500px;
+      height: 300px;
+    }
+
+    #carousel img {
+      width: 500px;
+      height: 300px;
+    }
+
+    .next {
+      float: left;
+      width: 50px;
+      height: 300px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <button class="prev">prev</button>
+  <div id="carousel">
+    <img src="imgs/img_01.jpg" alt="" />
+  </div>
+  <button class="next">next</button>
+  <script type="text/javascript">
+    var autoPrev;
+    var autoNext;
+    var carousel = document.querySelector("#carousel");
+    var prevBtn = document.querySelector(".prev");
+    var nextBtn = document.querySelector(".next");
+
+    var idx = 1;
+    var pcnt = 0;
+    var ncnt = 0;
+
+    console.log('최초 실행', autoPrev, autoNext);
+
+    var prevSlide = function () {
+
+      if (idx == 1) idx = 6;
+      idx--;
+      var format = "<img src = 'imgs/img_0" + idx + ".jpg' alt = '' />";
+      carousel.innerHTML = format;
+    }
+
+    autoPrev = function () {
+      clearInterval(autoNext);
+      if (pcnt == 0) {
+        ncnt = 0;
+        autoPrev = setInterval(prevSlide, 1200);
+      }
+      pcnt++;
+    }
+
+    prevBtn.onclick = autoPrev;
+
+    var nextSlide = function () {
+      if (idx == 5) idx = 0;
+      idx++;
+      var format = "<img src = 'imgs/img_0" + idx + ".jpg' alt = '' />";
+      carousel.innerHTML = format;
+    }
+
+    autoNext = function () {
+      clearInterval(autoPrev);
+      if (ncnt == 0) {
+        pcnt = 0;
+        autoNext = setInterval(nextSlide, 1200);
+      }
+      ncnt++;
+    }
+
+    nextBtn.onclick = autoNext;
+
+
+  </script>
+</body>
+
+</html>
