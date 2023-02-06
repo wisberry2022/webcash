@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type = "text/javascript">
+	var btn, btn2, btn3, btn4;
+	window.onload = function() {
+		btn = document.querySelector('button');
+		btn2 = document.querySelector('button+button');
+		btn3 = document.querySelector('button+button+button');
+		btn4 = document.querySelector('button+button+button+button');
+		var callback = function() {
+			console.log('level3 event');
+		}
+		
+		var callback2 = function() {
+			console.log('level3 event2');
+		}
+		
+		// dom level2 event는 요소에 등록한 이벤트는 추가로 다시 붙이지 못한다(덮어 씌워지게 됨)
+// 		btn.onclick = function() {
+// 			console.log('level2 event');
+// 		}
+	
+// 		btn.onclick = function() {
+// 			alert('click');
+// 		} 
+		
+		// dom level2에서의 이벤트 해제
+// 		btn.onclick = null;
+		
+		// dom level3 event는 같은 이벤트를 대상으로 여러 개의 기능을 붙일 수 있다		
+		// dom level3 event에서는 event를 제거할 수 있다
+		btn.addEventListener('click', callback);
+		btn.addEventListener('click', callback2);
+		btn.removeEventListener('click', callback2);
+		
+		btn2.addEventListener('click', function() {
+			btn.removeEventListener('click', callback);
+		})
+		
+		btn3.addEventListener('click', function() {
+			btn.addEventListener('click', callback2);
+		})
+		
+		var callback4 = function() {
+			console.log('1번');
+			btn4.removeEventListener('click', callback4);
+		}
+		
+		btn4.addEventListener('click', callback4);
+		
+		
+		
+		
+		
+		
+	}
+</script>
+</head>
+
+<body>
+	<h1>DOM level3 event</h1>
+	<button>btn</button>
+	<button>off</button>
+	<button>on</button>
+	<button>one</button>
+</body>
+</html>

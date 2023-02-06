@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 단 하나의 루트 엘리먼트가 존재해야 됨 -->
+<students>
+<!-- 	태그를 열면 무조건 닫아야 한다 -->
+	<student>
+		<num>1</num>
+		<name>user1</name>
+		<kor>90</kor>
+		<eng>80</eng>
+		<math>70</math>
+	</student>
+	<student>
+		<num>2</num>
+		<name>user2</name>
+		<kor>92</kor>
+		<eng>85</eng>
+		<math>71</math>
+	</student>
+	<student>
+		<num>3</num>
+		<name>user3</name>
+		<kor>98</kor>
+		<eng>60</eng>
+		<math>74</math>
+	</student>
+	<student>
+		<num>4</num>
+		<name>user4</name>
+		<kor>91</kor>
+		<eng>70</eng>
+		<math>75</math>
+	</student>
+</students>

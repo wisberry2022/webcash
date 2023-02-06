@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style rel = "stylesheet" type = "text/css">
+	table {
+		border-collapse: collapse;
+	}
+	
+	table, th, td {
+		border: 1px solid #000;
+	}
+</style>
+<script type = "text/javascript">
+	var xhr, table, btn, cnt;
+	
+	window.onload = function() {
+		cnt = document.querySelector('input[type="text"]');
+		btn = document.querySelector('button');
+		table = document.querySelector('table');
+		
+		btn.onclick = function() {
+			xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = function(e) {
+				if(e.target.status == 200 && e.target.readyState == 4) {
+					var tr, td;
+					var doc = xhr.responseXML;
+					var arr = doc.childNodes[0].children;
+					tbody = "";
+					
+					table.appendChild(document.createElement('tbody'));
+					
+					for(item of arr) {
+						var empno = item.children[0].childNodes[0].nodeValue;
+						var ename = item.children[1].childNodes[0].nodeValue;
+						
+						tbody += "<tr>";
+						
+						tbody += "<td>" + empno + "</td>";
+						tbody += "<td>" + ename + "</td>";
+						
+						tbody += "</tr>";
+					}
+					
+					document.querySelector('tbody').innerHTML = tbody;
+					
+				}	
+			}
+			xhr.open('get', 'Ex10.jsp?cnt=' + cnt.value);
+			xhr.send();	
+		}	
+		
+		
+	}
+</script>
+<body>
+<h1>list page</h1>
+<table>
+	<thead>
+		<tr>
+			<th>empno</th>
+			<th>ename</th>
+		</tr>
+	</thead>
+</table>
+<input type = "text" name = "cnt"/>
+<button>검색</button>
+</body>
+</html>
