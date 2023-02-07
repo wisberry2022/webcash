@@ -1,0 +1,6 @@
+{"stu":[
+{"num":1, "name":"user1", "kor":90, "eng":89, "math":79},
+{"num":2, "name":"user2", "kor":91, "eng":65, "math":100},
+{"num":3, "name":"user3", "kor":76, "eng":81, "math":96},
+{"num":4, "name":"user4", "kor":82, "eng":85, "math":71}
+]}

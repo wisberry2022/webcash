@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      ul>li {
+        float: left;
+      }
+
+      ul>li>img {
+        width: 100px;
+      }
+
+      /* #carousel {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+      } */
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      // var su = 0, cnt = 3;
+      var su = 0; cnt = 1;
+      window.onload = function () {
+        // $("#carousel").css("width", 100 * cnt);
+        // setInterval(nextImg, 1200);
+        su = -1;
+        nextImg();
+      };
+
+      // function nextImg() {
+      //   if (su++ >= 6 - cnt) su = 0;
+      //   console.log(su);
+      //   $('ul').css("margin-left", -100 * su);
+      // }
+
+      function nextImg() {
+        if (su++ >= 6 - cnt) su = 0;
+        // $('img').css('width', function (idx, val) {
+        $('img').width(function (idx, val) {
+          console.log(idx, val);
+          if (idx == su) return 200;
+          else return 0;
+        })
+
+        setTimeout(nextImg, 1200);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="carousel">
+      <ul>
+        <li><img src="imgs/thumb01.jfif" alt=""></li>
+        <li><img src="imgs/thumb02.jfif" alt=""></li>
+        <li><img src="imgs/thumb03.jfif" alt=""></li>
+        <li><img src="imgs/thumb04.jfif" alt=""></li>
+        <li><img src="imgs/thumb05.jfif" alt=""></li>
+        <li><img src="imgs/thumb06.jfif" alt=""></li>
+      </ul>
+    </div>
+  </body>
+
+</html>

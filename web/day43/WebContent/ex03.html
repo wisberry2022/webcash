@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      h1 {
+        height: 350px;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        // css(key:css property name, value);
+        $('h1').css("color", "red");
+        $('h1').css('background-color', 'yellow');
+        $('h1').css({ 'width': 550, 'height': 350 });
+        var palette = ["red", "green", "black", "white", "yellow", "pink", "lightgray"];
+        var callback = function (idx, val) {
+          console.log(idx, val);
+          return "rgba(255,0,0," + idx / 7 + ")";
+        };
+
+        $('li').css('background-color', callback);
+        // console.log($('h1').css('width'));
+      };
+    </script>
+  </head>
+
+  <body>
+    <h1>style 속성</h1>
+    <ul>
+      <li><a href="#">link</a></li>
+      <li><a href="#">link</a></li>
+      <li><a href="#">link</a></li>
+      <li><a href="#">link</a></li>
+      <li><a href="#">link</a></li>
+      <li><a href="#">link</a></li>
+      <li><a href="#">link</a></li>
+      <li><a href="#">link</a></li>
+    </ul>
+  </body>
+
+</html>

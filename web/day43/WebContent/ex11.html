@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+      }
+
+      ul>li {
+        float: left;
+      }
+
+      ul>li>img {
+        width: 100px;
+      }
+
+      div {
+        margin: 0 auto;
+        width: 300px;
+        height: 100px;
+        overflow: hidden;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      var cnt = 0;
+      $(function () {
+        // $('ul').children().first().clone().appendTo('ul');
+        // $('ul').children().first().next().clone().appendTo('ul');
+
+        $('ul')
+            .children()
+                .first().clone().appendTo('ul')
+                        .end()
+                .end()
+                .next().clone().appendTo('ul');
+      })
+
+      function loop() {
+        cnt++;
+        if (cnt == 6) cnt = 0;
+        $('ul').css('margin-left', -100 * cnt);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <ul>
+        <li><img src="imgs/thumb01.jfif"></img></li>
+        <li><img src="imgs/thumb02.jfif"></img></li>
+        <li><img src="imgs/thumb03.jfif"></img></li>
+        <li><img src="imgs/thumb04.jfif"></img></li>
+        <li><img src="imgs/thumb05.jfif"></img></li>
+        <li><img src="imgs/thumb06.jfif"></img></li>
+      </ul>
+    </div>
+  </body>
+
+</html>
