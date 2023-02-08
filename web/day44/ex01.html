@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      // onload 시점에 콜백함수 실행
+      // $(window).load(function () {
+      //   console.log('loaded...');
+      // })
+
+      // dom이 준비되는 동안 콜백함수 실행
+      $(document).ready(function () {
+        console.log('ready...');
+        $('img').error(function () {
+          $('img').attr('src', 'imgs/thumb01.jfif');
+        });
+      });
+
+      $(window).resize(function () {
+        console.log('사이즈 변경', $(window).width(), $(window).height());
+      });
+
+      $(window).scroll(function () {
+        console.log('scrolling', $(document).height() + 100 - screen.height, $(window).scrollTop());
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>event</h1>
+    <img src="imgs/big00.jfif" alt="" />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+  </body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+
+        // 이벤트 한 번만 실행
+        // $('button').one('click', { key: 'val' }, function (e) {
+        //   console.log('클릭', e.data);
+        // });
+
+        $('button').on('click', { key: 'val' }, function (e) {
+          console.log('클릭', e.data);
+        });
+        $('input').on('keyup ', function () {
+          console.log($(this).val());
+        }).on('focus click', function () {
+          $(this).val("");
+        })
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>event on</h1>
+    <input />
+    <button>btn</button>
+  </body>
+
+</html>

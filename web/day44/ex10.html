@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      ul>li {
+        float: left;
+      }
+
+      ul>li>img {
+        width: 100px;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      var cnt = 0;
+      var callback = function () {
+        if (cnt > 5) {
+          $('ul').clearQueue().stop();
+          cnt = 0;
+        }
+
+        $('li').eq(0).appendTo('ul');
+        cnt++;
+        $('ul').animate({ marginLeft: -100 * cnt + "px" }, 1000, "linear");
+      }
+
+      $(function () {
+        setInterval(callback, 1000);
+
+      });
+    </script>
+  </head>
+
+  <body>
+    <ul>
+      <li><img src="imgs/thumb01.jfif" alt="" /></li>
+      <li><img src="imgs/thumb02.jfif" alt="" /></li>
+      <li><img src="imgs/thumb03.jfif" alt="" /></li>
+      <li><img src="imgs/thumb04.jfif" alt="" /></li>
+      <li><img src="imgs/thumb05.jfif" alt="" /></li>
+      <li><img src="imgs/thumb06.jfif" alt="" /></li>
+    </ul>
+  </body>
+
+</html>

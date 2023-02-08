@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('input')
+          .keydown(function (e) {
+            console.log('down', e.key, e.keyCode, $(this).val());
+          })
+          .keypress(function (e) {
+            // 정확한 입력값을 받을 때에는 keypress를 사용
+            console.log('press', e.key, e.keyCode, $(this).val());
+          })
+          .keyup(function (e) {
+            // 최종 입력값을 받을 때에는 keyup 사용
+            console.log('up', e.key, e.keyCode, $(this).val());
+          });
+
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>key listener</h1>
+    <input /><button>btn</button>
+  </body>
+
+</html>
