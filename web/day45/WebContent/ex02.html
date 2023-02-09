@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      .slider img {
+        width: 100%;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('.slider').bxSlider({
+          // hideControlOnEnd: true,
+          pager: false,
+          slideMargin: 100,
+          minSlides: 3,
+          maxSlides: 3,
+          slideWidth: 400,
+          moveSlides: 1,
+          nextText: '다음',
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="slider">
+      <div><img src="imgs/big01.jfif" title="img01" alt="" /></div>
+      <div><img src="imgs/big02.jfif" title="img02" alt="" /></div>
+      <div><img src="imgs/big03.jfif" title="img03" alt="" /></div>
+      <div><img src="imgs/big04.jfif" title="img04" alt="" /></div>
+      <div><img src="imgs/big05.jfif" title="img05" alt="" /></div>
+      <div><img src="imgs/big06.jfif" title="img06" alt="" /></div>
+
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type = "text/css">
+	table{
+		border-collapse: collapse;
+		margin: 0 auto;
+		width: 500px;
+	}
+	table,th,td{
+		border: 1px solid gray;
+	}
+	table tr>th:first-child{
+		width: 100px;
+	}
+	table tr>th:nth-child(3), 
+	table tr>th:nth-child(4), 
+	table tr>th:nth-child(5){
+		width: 80px
+	} 
+</style>
+<script type = "text/javascript" src = "js/jquery-1.12.4.min.js"></script>
+<script type = "text/javascript">
+	
+	$(function() {
+		var callback = function(data,resultText,xhr) {
+			console.log(typeof data);
+			// xml도 node의 일종이라 jquery로 select가 가능하다
+			$(data).find('stu').each(function(idx, ele) {
+				var tr = $('<tr/>').appendTo('tbody');
+				$(ele).children().each(function(idx,ele) {
+					tr.append('<td>' + $(ele).html() + '</td>')	
+				})
+			});
+		};
+		// 특정 데이터형태로 받고 싶다면, 네번째 변수로 파일타입을 명시
+		$.post('ex11.xml', {cnt:9}, callback, "xml");
+		
+	});
+</script>
+</head>
+<body>
+	<h1>학생성적리스트</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>학번</th>
+				<th>이름</th>
+				<th>국어</th>
+				<th>영어</th>
+				<th>수학</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</body>
+</html>

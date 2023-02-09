@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      button {
+        position: absolute;
+        width: 50px;
+        height: 200px;
+      }
+
+      .prev {
+        top: 0;
+        left: 570px;
+      }
+
+      .next {
+        top: 0;
+        right: 570px;
+      }
+
+      #carousel {
+        outline: 1px solid #000;
+        margin: 0 auto;
+        /* width: 600px; */
+        width: 60vh;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      #carousel>ul {
+        outline: 1px solid #000;
+        width: 100vw;
+        height: 200px;
+        list-style: none;
+      }
+
+      #carousel>ul>li {
+        float: left;
+        margin-left: 0;
+        transition: 1s;
+      }
+
+      #carousel>ul>li>img {
+        width: 200px;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      var prev, next;
+      var prevSlide, nextSlide;
+      var cnt = 0;
+
+      $(function () {
+        $('ul').children().clone().prependTo('ul');
+        $('ul').children().clone().appendTo('ul');
+        prev = $('.prev');
+        next = $('.next');
+
+        prevSlide = function () {
+          if (cnt <= ) {
+            $('ul').clearQueue().stop();
+            $('ul').css({ marginLeft: cnt + 'px' });
+            cnt = 1;
+          }
+          cnt--;
+          $('ul').animate({ marginLeft: cnt * 200 + 'px' }, 1200, "linear");
+        }
+
+        nextSlide = function () {
+          console.log(cnt);
+          if (cnt > 5) {
+            cnt = 0;
+            $('ul').clearQueue().stop();
+            $('ul').css({ marginLeft: cnt + 'px' })
+          };
+          cnt++;
+          $('ul').animate({ marginLeft: cnt * -200 + 'px' }, 1200, "linear");
+        }
+
+        prev.on('click', prevSlide);
+        next.on('click', nextSlide);
+      });
+    </script>
+  </head>
+
+  <body>
+    <button class="prev">prev</button>
+    <div id="carousel">
+      <ul>
+        <li><img src="imgs/thumb01.jfif" /></li>
+        <li><img src="imgs/thumb02.jfif" /></li>
+        <li><img src="imgs/thumb03.jfif" /></li>
+        <li><img src="imgs/thumb04.jfif" /></li>
+        <li><img src="imgs/thumb05.jfif" /></li>
+        <li><img src="imgs/thumb06.jfif" /></li>
+      </ul>
+    </div>
+    <button class="next">next</button>
+  </body>
+
+</html>
