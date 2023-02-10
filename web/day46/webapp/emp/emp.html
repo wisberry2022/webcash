@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/main.css" type = "text/css">
+<style type = "text/css">
+	#content form{
+		margin: 0 auto;
+		width: 500px;
+	}
+	#content form>div{
+		text-align: center;
+	}
+	#content form>div>label{
+		display: inline-block;
+		width: 130px;
+		background-color: #ddd;
+	}
+	
+	#content form>div>input {
+		width: 250px;
+	}
+	
+	.err {
+		position: absolute;
+		right: 500px;
+		color: red; font-style: italic;
+	}
+	
+
+</style>
+<script type = "text/javascript" src = "../js/jquery-1.12.4.min.js"></script>
+<script type = "text/javascript" src = "../js/jquery.bxslider.min.js"></script>
+<script type = "text/javascript" src = "../js/menu.js" ></script>
+<script type = "text/javascript">
+	var loadData = function(empno){
+// 		$.get('one.do', {empno:empno}, function(data){
+// 			console.log(data);
+// 		});
+		
+		
+		$.ajax({
+			url: 'one.do',
+			type: 'get',
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			data: $.param({empno:empno}),
+			// dataType이 영향을 주는 것은 success 콜백 함수의 첫 번째 매개변수이다.
+			dataType: 'json',
+			success: function(data) {
+				$('#content input')
+					.eq(0).val(data.emp[0].empno)
+					.end().eq(1).val(data.emp[0].ename)
+					.end().eq(2).val(data.emp[0].sal)
+					.end().eq(3).val(data.emp[0].hiredate)
+					.end().eq(4).val(data.emp[0].mgr)
+					.end().eq(5).val(data.emp[0].comm)
+					.end().eq(6).val(data.emp[0].deptno)
+			},
+			error: function(xhr, status, errMsg) {
+				console.log(errMsg);
+			}
+		});
+	};
+
+	$(function() {
+		var empno = location.search.substr(location.search.indexOf('=')+1);
+		loadData(empno);
+		
+		$('#content form')
+			.find(":text")
+			.prop('readonly', true)
+			.css('border-color','white')
+			.css('border-width', 0);
+		
+		$('#content form').one('submit', function(){
+			$('#content')
+			.find('h2').html("수정페이지")
+			.end()
+			.find('input')
+				.filter(':gt(3)')
+				.add('#content input:eq(1)')
+				.add('#content input:eq(2)')
+				.removeProp('readonly');
+			
+			$('#content form button')
+			.eq(1).text('취소');
+			
+			
+			
+			$(this).one('submit', function() {
+				console.log('수정실행');
+				return false;
+			})
+			return false;
+		});
+	});
+</script>
+</head>
+<body>
+	<div class = "container">
+		<div id = "header">
+			<h1>비트교육센터</h1>
+			<div>
+				<form>
+					<label for = "id">id</label>
+					<input type = "text" name = "id" id = "id" />
+					<label for = "pw">pw</label>
+					<input type = "text" name = "pw" id = "pw" />
+					<button>로그인</button>
+					<a href = "../login/join.html">join</a>
+					
+				</form>
+			</div>
+		</div>
+		<div id = "menu">
+			<ul>
+				<li><a href = "../index.html">home</a></li>
+				<li><a href = "../intro.html">intro</a></li>
+				<li><a href = "#">emp</a>
+					<ol>
+						<li><a href = "list.html">emp</a></li>
+						<li><a href = "add.html">add</a></li>
+					</ol>
+				</li>
+				<li><a href = "../login/form.html">login</a></li>
+			</ul>
+		</div>
+		<div id = "content">
+			<h2>상세페이지</h2>
+			<form>
+				<div>
+					<label for = "empno">empno</label>
+					<input type = "text" name = "empno" id ="empno" />
+				</div>
+				<div>
+					<label for = "ename">ename</label>
+					<input type = "text" name = "ename" id ="ename" />
+				</div>
+				<div>
+					<label for = "sal">sal</label>
+					<input type = "text" name = "sal" id ="sal" />
+				</div>
+				<div>
+					<label for = "hiredate">hiredate</label>
+					<input type = "text" name = "hiredate" id ="hiredate" />
+				</div>
+				<div>
+					<label for = "mgr">mgr</label>
+					<input type = "text" name = "mgr" id ="mgr" />
+				</div>
+				<div>
+					<label for = "comm">comm</label>
+					<input type = "text" name = "comm" id ="comm" />
+				</div>
+				<div>
+					<label for = "dept">dept</label>
+					<input type = "text" name = "dept" id ="dept" />
+				</div>
+				<div>
+					<button type = "submit">수정</button>
+					<button type = "reset">삭제</button>
+					<button type = "button">뒤로</button>
+				</div>
+			</form>
+		</div>
+		<div id = "footer">
+			&copy; by bitacademy co.ltd. <br/> All rights reserved.
+		</div>
+	</div>
+</body>
+</html>
