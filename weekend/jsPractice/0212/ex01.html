@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript">
+    var box;
+    var btns;
+    var colorSet = ["yellow", "red", "blue"];
+
+    var modifyCallback = function (place, search, color) {
+      var target = place.find(search);
+      if (target.length) target.css({ backgroundColor: color })
+    }
+
+    $(function () {
+      box = $('.box');
+
+      $('button').each(function (idx, ele) {
+        $(ele).click(function (e) {
+          modifyCallback(box, 'h1', colorSet[idx]);
+        });
+      })
+
+    });
+  </script>
+</head>
+
+<body>
+  <div class="box">
+    <h1>TITLE</h1>
+  </div>
+  <button>확인1</button>
+  <button>확인2</button>
+  <button>확인3</button>
+</body>
+
+</html>
