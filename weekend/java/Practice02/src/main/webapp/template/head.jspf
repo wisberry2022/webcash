@@ -1,0 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% 
+	String root = request.getContextPath();
+%>
+<link rel="stylesheet" type="text/css" href="<%=root %>/assets/css/common/reset.css">
+<link rel="stylesheet" type="text/css" href="<%=root %>/assets/css/common/basic.css">
+<link rel="stylesheet" type="text/css" href="<%=root %>/assets/css/index.css">
+<script type="text/javascript" src="<%=root %>/assets/js/jquery-1.12.4.min.js"></script>
