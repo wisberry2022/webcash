@@ -15,45 +15,44 @@ import javax.servlet.http.HttpServletResponse;
 import com.bit.model.RoomDao;
 import com.bit.model.RoomDto;
 
-@WebServlet("/api/infos")
-public class RoomInfoController extends HttpServlet {
+@WebServlet("/api/rooms/*")
+public class RoomCountController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("Access-Control-Allow-Origin", "*");
 		resp.setContentType("application/json");
-		System.out.println("infos 요청 들어옴!");
+		
+		String[] uri = req.getRequestURI().split("/");
+		int dept = Integer.parseInt(uri[uri.length-1]);
+		
 		try(
-				PrintWriter out = resp.getWriter();	
+				PrintWriter out = resp.getWriter();		
 		) {
-			RoomDao dao = new RoomDao();
-			List<RoomDto> list = dao.getInfoData();
 			
-			out.print("{\"infos\":[");
+			RoomDao dao = new RoomDao();
+			
+			List<RoomDto> datas = dao.getData(dept);
+			
+			out.print("{\"rooms\":[");
 			
 			int idx = 0;
-			for(RoomDto bean:list) {
-				out.print("{\"typenum\":"+bean.getTypenum()+", "
-						+ "\"roomtype\":\""+bean.getRoomtype()+"\", "
-						+ "\"roomname\":\""+bean.getRoomname()+"\", "
-						+ "\"maxnum\":"+bean.getMaxnum()+", "
-						+ "\"price\":"+bean.getPrice());
-				if(idx == list.size()-1) out.print("}");
-				else out.print("},");
+			
+			for(RoomDto bean:datas) {
+				out.print("{\"num\":"+bean.getNum()+
+						", \"type\":\""+bean.getRoomtype()+
+						"\", \"name\":\""+bean.getRoomname()+
+						"\", \"maxnum\":"+bean.getMaxnum()+
+						", \"price\":"+bean.getPrice());
+				if(idx != datas.size()-1) out.print("},");
+				else out.print("}");
 				idx++;
 			}
-
 			out.print("]}");
 			
-			resp.setStatus(resp.SC_OK);
-		} catch (NamingException e) {
+		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			resp.setStatus(resp.SC_INTERNAL_SERVER_ERROR);
 		}
 		
-		
-		
-		
+		resp.setStatus(resp.SC_OK);
 	}
 }
