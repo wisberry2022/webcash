@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", function (e) {
+      // 드래그한 문자열 받기
+      // var sel = window.getSelection();
+      // var targetText = sel.toString();
+
+      // 해당 요소 내에서 드래그한 텍스트의 시작 인덱스, 끝 인덱스 출력
+      // element.selectionStart / element.selectionEnd
+
+      console.log('hello');
+      var p = document.createElement('p');
+
+      var btnBox = document.querySelector(".btnBox").children;
+
+      var ta = document.querySelector("textarea");
+      console.log(ta);
+
+      var beBold = btnBox[0];
+      var beItalic = btnBox[1];
+
+      beBold.addEventListener('click', function (e) {
+        var txt = ta.value;
+        var start, end;
+        start = ta.selectionStart;
+        end = ta.selectionEnd;
+
+        console.log(txt.slice(start, end));
+
+      });
+    })
+  </script>
+  <title>Document</title>
+  <style type="text/css" rel="stylesheet">
+    h1 {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .btnBox {
+      margin: 0 auto 10px auto;
+      width: 550px;
+      text-align: center;
+    }
+
+    textarea {
+      display: block;
+      margin: 0 auto;
+      width: 550px;
+      height: 350px;
+      resize: unset;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>편집기</h1>
+  <div class="btnBox">
+    <button type="button">굵게</button>
+    <button type="button">기울기</button>
+  </div>
+  <textarea>
+
+  </textarea>
+  <p>
+    hihi
+  </p>
+</body>
+
+</html>
