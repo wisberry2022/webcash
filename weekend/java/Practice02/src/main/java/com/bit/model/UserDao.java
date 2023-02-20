@@ -31,8 +31,11 @@ public class UserDao {
 		}
 	}
 	
+	// 로그인
 	public String isLogin(UserDto bean) throws SQLException {
 		String sql = "select id from userinfo where id=? and pwd=?";
+		
+		
 		
 		try(
 			Connection conn = this.conn;

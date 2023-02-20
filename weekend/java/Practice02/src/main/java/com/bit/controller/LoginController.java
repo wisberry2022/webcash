@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bit.model.UserDao;
 import com.bit.model.UserDto;
@@ -39,7 +40,6 @@ public class LoginController extends HttpServlet {
 			}else if(dao.isLogin(dto).equals("nodata")) {
 				resp.setStatus(resp.SC_NOT_FOUND);
 			};
-			
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

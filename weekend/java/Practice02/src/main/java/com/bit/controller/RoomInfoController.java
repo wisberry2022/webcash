@@ -21,7 +21,7 @@ public class RoomInfoController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("Access-Control-Allow-Origin", "*");
 		resp.setContentType("application/json");
-		System.out.println("infos 요청 들어옴!");
+		
 		try(
 				PrintWriter out = resp.getWriter();	
 		) {
@@ -51,9 +51,5 @@ public class RoomInfoController extends HttpServlet {
 			e.printStackTrace();
 			resp.setStatus(resp.SC_INTERNAL_SERVER_ERROR);
 		}
-		
-		
-		
-		
 	}
 }

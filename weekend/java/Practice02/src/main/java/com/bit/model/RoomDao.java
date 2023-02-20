@@ -27,6 +27,35 @@ public class RoomDao {
 	}
 	
 	
+	public List<RoomDto> getFloorRoom(int floor) throws SQLException {
+		List<RoomDto> list = new ArrayList<>();
+		
+		String sql = "select a.typenum, a.roomtype, a.roomname, a.maxnum, a.price, b.num ";
+		sql += "from roomtype as a join room as b on a.typenum = b.typenum ";
+		sql += "where b.num Like ?";
+		
+		try(
+			Connection conn = this.conn;
+			PreparedStatement pstmt = conn.prepareStatement(sql);		
+		){
+			pstmt.setString(1, floor + "%");
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				RoomDto bean = new RoomDto();
+				bean.setRoomtype(rs.getString(2));
+				bean.setRoomname(rs.getString(3));
+				bean.setMaxnum(rs.getInt(4));
+				bean.setPrice(rs.getInt(5));
+				bean.setNum(rs.getInt(6));
+				list.add(bean);
+			}
+		}
+		
+		return list;
+	}
+	
+	
 	public List<RoomDto> getInfoData() throws SQLException {
 		List<RoomDto> list = new ArrayList<>();
 		
