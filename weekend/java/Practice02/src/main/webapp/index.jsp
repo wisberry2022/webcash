@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import = "javax.servlet.http.HttpSession" %>
+<%
+	HttpSession csession = request.getSession();
+	System.out.println("session in index.jsp" + csession.getAttribute("id"));
+%>
 <!DOCTYPE html>
 <html>
   <head>

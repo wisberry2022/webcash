@@ -35,8 +35,6 @@ public class UserDao {
 	public String isLogin(UserDto bean) throws SQLException {
 		String sql = "select id from userinfo where id=? and pwd=?";
 		
-		
-		
 		try(
 			Connection conn = this.conn;
 			PreparedStatement pstmt = conn.prepareStatement(sql);

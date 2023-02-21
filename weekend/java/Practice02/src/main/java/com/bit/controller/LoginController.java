@@ -34,6 +34,8 @@ public class LoginController extends HttpServlet {
 			dto.setPwd(pwd);
 			
 			if(dao.isLogin(dto).equals("success")) {
+				HttpSession session = req.getSession();
+				session.setAttribute("id", dto.getId());
 				resp.sendRedirect("../index.do");
 			}else if(dao.isLogin(dto).equals("fail")) {
 				resp.setStatus(resp.SC_BAD_REQUEST);
