@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css" rel="stylesheet">
+    nav {
+      margin: 0 auto;
+      width: 120rem;
+    }
+
+    nav>ul {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      list-style-type: none;
+    }
+
+    nav>ul>li {
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+  <script>
+    var before;
+
+    $(function () {
+
+      onpopstate = function (e) {
+        var parsed = location.href.split("#")[1];
+        if (parsed) {
+          console.log(parsed);
+          $('section').each(function (_, ele) {
+            if ($(ele).attr('id') == parsed) $(ele).show();
+            else $(ele).hide();
+          });
+        };
+      }
+
+      $('section').each(function (idx, ele) {
+        if (idx != 0) $(ele).hide();
+      });
+
+      $('ul>li').each(function (idx, ele) {
+        $(ele).on('click', function (e) {
+          history.pushState({ num: idx }, "page", "#p" + (idx + 1));
+          $('section').each(function (num, itm) {
+            if (num == idx) {
+              $(itm).show();
+            }
+            else $(itm).hide();
+          });
+
+        });
+      })
+    });
+  </script>
+  <title>Document</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li>MENU1</li>
+      <li>MENU2</li>
+      <li>MENU3</li>
+      <li>MENU4</li>
+    </ul>
+  </nav>
+  <section id="p1">
+    <h1>hello p1</h1>
+  </section>
+  <section id="p2">
+    <h1>hello p2</h1>
+  </section>
+  <section id="p3">
+    <h1>hello p3</h1>
+  </section>
+  <section id="p4">
+    <h1>hello p4</h1>
+  </section>
+</body>
+
+</html>
