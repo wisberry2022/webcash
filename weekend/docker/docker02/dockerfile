@@ -1,0 +1,12 @@
+FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get install -y wget
+RUN cd ~
+RUN apt install -y openjdk-8-jdk
+RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+RUN tar -xvzf apache-tomcat-9.0.73.tar.gz
+WORKDIR /apache-tomcat-9.0.73/bin
+EXPOSE 8080
+ENTRYPOINT ["./catalina.sh", "run"] 
+
