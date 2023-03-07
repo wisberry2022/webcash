@@ -8,6 +8,14 @@
 </head>
 <body>
 	<h1>로그인 하기</h1>
+	<nav>
+		<ul>
+			<li><a href = "${pageContext.request.contextPath }/">HOME</a></li>
+			<li><a href = "${pageContext.request.contextPath }/intro">INTRO</a></li>
+			<li><a href = "${pageContext.request.contextPath }/book/list">LIST</a></li>
+			<li><a href = "${pageContext.request.contextPath }/signin">SINGIN</a></li>
+		</ul>
+	</nav>
 	<form method="post">
 		<div>
 			<label for="id">아이디</label>

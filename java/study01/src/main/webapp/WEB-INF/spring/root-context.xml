@@ -18,4 +18,8 @@
 	<bean id = "UserDao" class="com.study.spring.model.UserDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
+	
+	<bean id = "BookDao" class="com.study.spring.model.BookDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
 </beans>

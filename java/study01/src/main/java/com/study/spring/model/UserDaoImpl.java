@@ -10,6 +10,8 @@ public interface UserDaoImpl {
 
 	List<UserVo> selectAll();
 
+	boolean isLogin(UserVo bean);
+	
 	void updateOne(String id);
 
 	void deleteOne(String id);
