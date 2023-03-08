@@ -22,4 +22,5 @@
 	<bean id = "BookDao" class="com.study.spring.model.BookDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
+	
 </beans>
