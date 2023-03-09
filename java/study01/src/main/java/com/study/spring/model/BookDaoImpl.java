@@ -6,5 +6,6 @@ public interface BookDaoImpl {
 
 	public List<BookVo> getAllBook();
 	public BookVo getBook(int num);
+	public void insertOne(BookVo bean);
 	
 }

@@ -41,5 +41,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div>
+		<a href="add">입력</a>
+	</div>
 </body>
 </html>

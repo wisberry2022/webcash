@@ -7,6 +7,8 @@ public class BookVo {
 	private String name, author;
 	private Date published;
 	
+	public BookVo() {}
+	
 	public BookVo(int num, String name, String author, Date published) {
 		super();
 		this.num = num;

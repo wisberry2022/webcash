@@ -33,4 +33,10 @@ public class BookDao extends JdbcDaoSupport implements BookDaoImpl {
 		}, num);
 	}
 
+	@Override
+	public void insertOne(BookVo bean) {
+		String sql = "insert into book(num, name, author, publish) values(?,?,?,now())";
+		getJdbcTemplate().update(sql, bean.getNum(), bean.getName(), bean.getAuthor());
+	}
+
 }
