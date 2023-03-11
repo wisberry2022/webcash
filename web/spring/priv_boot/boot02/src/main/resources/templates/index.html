@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Book Store</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>num</th>
+				<th>name</th>
+				<th>author</th>
+				<th>publish</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="bean: ${bean}">
+				<td><a href="book/detail.html" th:href="@{book/detail(num=${bean.num})}" th:text=${bean.num}>10</td>
+				<td><a href="book/detail.html" th:href="@{book/detail(num=${bean.num})}" th:text=${bean.name}>DEFAULT</td>
+				<td><a href="book/detail.html" th:href="@{book/detail(num=${bean.num})}" th:text=${bean.author}>DEFAULT</td>
+				<td><a href="book/detail.html" th:href="@{book/detail(num=${bean.num})}" th:text=${bean.publish}>DEFAULT</td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{book/add}" href="book/add.html">입력</a>
+</body>
+</html>
