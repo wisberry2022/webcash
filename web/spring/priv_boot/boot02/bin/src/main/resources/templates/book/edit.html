@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>수정 페이지</h2>
+	<form action="../index.html" th:action="@{edit}" method="post" th:method="put" enctype="multipart/form-data">
+		<div>
+			<strong>num</strong>
+			<input type="text" name="num" th:value="${book.num}" readonly />
+		</div>
+		<div>
+			<strong>name</strong>
+			<input type="text" name="name" th:value="${book.name}" />
+		</div>
+		<div>
+			<strong>author</strong>
+			<input type="text" name="author" th:value="${book.author}" />
+		</div>
+		<div>
+			<strong>publish</strong>
+			<input type="text" name="publish" th:value="${book.publish}" readonly/>
+		</div>
+		<div>
+			<strong>첨부파일</strong>
+			<input type="file" name="uploadFile"/>
+		</div>
+		<div>
+			<button>수정하기</button>
+			<button type="button" onclick="history.back();">뒤로가기</button>
+		</div>		
+	</form>
+	
+	
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>상세 페이지</h2>
+	<div>
+		<div>
+			<strong>num</strong>
+			<strong th:text="${book.num}">01</strong>
+		</div>
+		<div>
+			<strong>name</strong>
+			<strong th:text="${book.name}">name</strong>
+		</div>
+		<div>
+			<strong>author</strong>
+			<strong th:text="${book.author}">author</strong>
+		</div>
+		<div>
+			<strong>publish</strong>
+			<strong th:text="${book.publish}"></strong>
+		</div>
+		<div>
+			<strong>첨부 파일</strong>
+			<a href="#" th:href="@{download(num=${book.num})}" th:text="${book.uploadFile}"></a>
+		</div>
+		<div>
+			<button><a href="./edit.html" th:href="@{edit(num=${book.num})}">수정하기</a></button>
+			<button type="button"><a href="../index.html" th:href="@{delete(num=${book.num})}" />삭제하기</a></button>
+			<button type="button" onclick="history.back();">뒤로가기</button>
+		</div>	
+	</div>
+			
+</body>
+</html>
