@@ -12,29 +12,28 @@ import java.util.Map;
 import java.util.Set;
 
 import com.api.util.ApiCall;
+import com.api.util.ApiPlatform;
 
 public class ApiCallImpl implements ApiCall {
 
 	private String apiURL;
 	private String apiKey;
 	private String queryString;
-	private Map<String, String> paramMap;
+	private ApiPlatform api;
 	private String REQUEST_METHOD;
 	private String REQUEST_PROPERTY;
 	private HttpURLConnection conn;
 	
-	public ApiCallImpl(String apiURL, String apiKey) {
-		this.apiURL = apiURL;
-		this.apiKey = apiKey;
+	public ApiCallImpl(ApiPlatform api) {
+		this.apiURL = api.getApiURL();
+		this.apiKey = api.getApiKey();
+		this.api = api;
 	}
 	
 	@Override
-	public void setParamMap(Map<String, String> paramMap) {
-		this.paramMap = paramMap;
-	}
-
-	@Override
-	public void setQuery() throws Exception {
+	public void setQuery(String[] params) throws Exception {
+		api.setParam(params);
+		Map<String, String> paramMap = api.getParamMap();
 		if(paramMap != null) {
 			Set<String> keys = paramMap.keySet();
 			Iterator<String> ite = keys.iterator();
@@ -50,6 +49,10 @@ public class ApiCallImpl implements ApiCall {
 		}
 	}
 
+	public String getString() {
+		return queryString;
+	}
+	
 	@Override
 	public void setConnectionSetting(String method, String property) {
 		this.REQUEST_METHOD = method;
