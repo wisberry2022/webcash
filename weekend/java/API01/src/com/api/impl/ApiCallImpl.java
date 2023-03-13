@@ -32,25 +32,7 @@ public class ApiCallImpl implements ApiCall {
 	
 	@Override
 	public void setQuery(String[] params) throws Exception {
-		api.setParam(params);
-		Map<String, String> paramMap = api.getParamMap();
-		if(paramMap != null) {
-			Set<String> keys = paramMap.keySet();
-			Iterator<String> ite = keys.iterator();
-			String qS = "&";
-			while(ite.hasNext()) {
-				String key = ite.next();
-				if(ite.hasNext()) qS += key + "=" + paramMap.get(key) + "&";
-				else qS += key + "=" + paramMap.get(key);
-			}
-			this.queryString = qS;			
-		}else {
-			throw new Exception("paramMap is null, did you executed 'setParamMap' method of this class?");
-		}
-	}
-
-	public String getString() {
-		return queryString;
+		queryString = api.getQuery(params);
 	}
 	
 	@Override
@@ -71,6 +53,8 @@ public class ApiCallImpl implements ApiCall {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn != null) conn.disconnect();
 		}
 	}
 
@@ -89,7 +73,6 @@ public class ApiCallImpl implements ApiCall {
 			
 			return result;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
