@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>
+      <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+  <body>
+    <h1>
+      <%= title %>
+    </h1>
+    <p>Welcome to <%= title %>
+    </p>
+    <form action="/users/" method="post">
+      <div>
+        <input type="text" name="deptno" />
+      </div>
+      <div>
+        <input type="text" name="dname" />
+      </div>
+      <div>
+        <input type="text" name="loc" />
+      </div>
+      <button>확인</button>
+    </form>
+  </body>
+
+</html>
