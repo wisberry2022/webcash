@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	group = 'com.biz'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '1.8'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-security:3.0.4'
+		implementation 'org.springframework.boot:spring-boot-starter-web:3.0.4'
+		developmentOnly 'org.springframework.boot:spring-boot-devtools:3.0.4'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
+		testImplementation 'org.springframework.security:spring-security-test:6.0.2'
+	}
+}
+
+project(':board') {
+	dependencies {
+		implementation project(':core')
+	}
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+rootProject.name = 'spring-multimodule'
+include 'board'
+include 'calendar'
+include 'core'
+
