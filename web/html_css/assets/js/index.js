@@ -33,7 +33,11 @@ $(function() {
     })
   });
 
+<<<<<<< HEAD
   
+=======
+  console.log(ProcessingInstruction)
+>>>>>>> 7fa81050b39a4460e0db330ab83f9204c04ac0a8
 
   assignBackdrop.find('.form-control').map((index, item) => {
     $(item).on('click', () => {
