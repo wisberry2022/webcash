@@ -40,7 +40,7 @@ $(function() {
       // console.log(location.origin);
       const param = {
         "POST_CALLBACK_PAGE" : `${location.origin}/popUpCallback/emp`,
-        "SECR_KEY" : "9cf5a051-6174-45a7-d073-f3fe1f5ca9e4",
+        "SECR_KEY" : "hello",
       
         "PTL_ID" : "PTL_51",
         "CHNL_ID" : "CHNL_1",
