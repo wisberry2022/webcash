@@ -1,11 +1,11 @@
-import {FindElementModule} from '../js/FindElementModule.js';
+import { FindElementModule } from '../js/FindElementModule.js';
 import { PopUpService } from './PopUpService.js';
 
-$(function() {
+$(function () {
   const modalSet = new FindElementModule();
   const popUpService = new PopUpService();
   modalSet.setElement('#modalSet');
-  
+
   const assignBackdrop = modalSet.getTargetElement('assignBackdrop');
   const assignCloseBtn = assignBackdrop.find('.btn-close');
 
@@ -26,40 +26,36 @@ $(function() {
   assignBackdropNav.map((idx, item) => {
     $(item).on('click', (e) => {
       let onOff = $(e.target).attr('data-click-target').split("/");
-  
+
       $($(onOff[0])).show();
       $($(onOff[1])).hide();
 
     })
   });
 
-<<<<<<< HEAD
-  
-=======
-  console.log(ProcessingInstruction)
->>>>>>> 7fa81050b39a4460e0db330ab83f9204c04ac0a8
+
 
   assignBackdrop.find('.form-control').map((index, item) => {
     $(item).on('click', () => {
       // console.log(location.origin);
       const param = {
-        "POST_CALLBACK_PAGE" : `${location.origin}/popUpCallback/emp`,
-        "SECR_KEY" : "hello",
-      
-        "PTL_ID" : "PTL_51",
-        "CHNL_ID" : "CHNL_1",
-        "USE_INTT_ID" : "UTLZ_1709060902735",
-        "USER_ID" : "simdemo01t",
-        "POPUP_TYPE" : "P",
-        "MULT_SEL_YN" : "Y",
-        "MY_SELYN" : "N",
+        "POST_CALLBACK_PAGE": `${location.origin}/popUpCallback/emp`,
+        "SECR_KEY": "hello",
+
+        "PTL_ID": "PTL_51",
+        "CHNL_ID": "CHNL_1",
+        "USE_INTT_ID": "UTLZ_1709060902735",
+        "USER_ID": "simdemo01t",
+        "POPUP_TYPE": "P",
+        "MULT_SEL_YN": "Y",
+        "MY_SELYN": "N",
       };
-      
+
       const popUpCallback = data => {
         $('.table tbody').text(JSON.stringify(data, null, 2));
       }
-      
-      popUpService.open("https://b2bccstm-dev.appplay.co.kr/b2bc2_comm_0001_01.act", param, popUpCallback);      
+
+      popUpService.open("https://b2bccstm-dev.appplay.co.kr/b2bc2_comm_0001_01.act", param, popUpCallback);
     })
   });
 })

@@ -1,4 +1,6 @@
-ul, ol, li {
+ul,
+ol,
+li {
   list-style-type: none;
 }
 
@@ -120,12 +122,12 @@ h2 {
   display: none;
 }
 
-.scrollbox{
-   -ms-overflow-style: none;
+.scrollbox {
+  -ms-overflow-style: none;
 }
 
-.scrollbox::-webkit-scrollbar{
-  display:none;
+.scrollbox::-webkit-scrollbar {
+  display: none;
 }
 
 #myBoardBackdrop table {
@@ -168,7 +170,7 @@ h2 {
   display: block;
   min-width: 20vw;
   text-overflow: ellipsis;
-  overflow: hidden;  
+  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -199,7 +201,12 @@ h2 {
   font-size: 12px;
 }
 
-@media (max-width:1325px) { 
+#myBoardBackdrop .btnBox {
+  padding: 15px 0;
+  gap: 10px;
+}
+
+@media (max-width:1325px) {
   #myBoardBackdrop .headTable tr th:first-child {
     width: 50%;
   }
@@ -207,11 +214,11 @@ h2 {
   #myBoardBackdrop .headTable tr th:nth-child(n+2) {
     width: 10%;
   }
-  
+
   #myBoardBackdrop .headTable thead th {
     padding: 10px 0;
   }
-  
+
   #myBoardBackdrop .bodyTable tbody tr td:first-child {
     width: 50%;
   }
@@ -221,7 +228,8 @@ h2 {
   }
 }
 
-@media (max-width:1200px) { 
+@media (max-width:1200px) {
+
   #myBoardBackdrop .headTable tr th:first-child,
   #myBoardBackdrop .bodyTable tbody tr td:first-child {
     width: 50%;
@@ -231,7 +239,7 @@ h2 {
   #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
     width: 10%;
   }
-  
+
   #myBoardBackdrop .headTable tr th:nth-child(2),
   #myBoardBackdrop .headTable tr th:nth-child(3),
   #myBoardBackdrop .bodyTable tbody tr td:nth-child(3),
@@ -244,7 +252,8 @@ h2 {
   }
 }
 
-@media (max-width:768px) { 
+@media (max-width:768px) {
+
   #myBoardBackdrop .headTable tr th:first-child,
   #myBoardBackdrop .bodyTable tbody tr td:first-child {
     width: 30%;
@@ -322,7 +331,7 @@ h2 {
 
 #boardSettingBackdrop .prefaceListBox .prefaceColumn {
   display: flex;
-  justify-content: start;  
+  justify-content: start;
   border-bottom: 1px solid #ddd;
   padding: 5px;
 }
@@ -337,39 +346,38 @@ h2 {
 }
 
 #boardSettingBackdrop .prefaceColumn li {
-  cursor:pointer
+  cursor: pointer
 }
 
-@media (max-width:1325px) { 
+@media (max-width:1325px) {
   #boardSettingBackdrop .prefaceColumn>li:first-child {
     flex: 1;
   }
-  
+
   #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
     width: 10%;
     text-align: center;
-  } 
+  }
 }
 
-@media (max-width:1200px) { 
+@media (max-width:1200px) {
   #boardSettingBackdrop .prefaceColumn>li:first-child {
     flex: 1;
   }
-  
+
   #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
     width: 10%;
     text-align: center;
-  } 
+  }
 }
 
-@media (max-width:768px) { 
+@media (max-width:768px) {
   #boardSettingBackdrop .prefaceColumn>li:first-child {
     flex: 1;
   }
-  
+
   #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
     width: 10%;
     text-align: center;
-  } 
+  }
 }
-

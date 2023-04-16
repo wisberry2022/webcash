@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../assets/css/index.css"/>
+  <link rel="stylesheet" href="../assets/css/index.css" />
   <script type="text/javascript" src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
   <script type="module" src="../assets/js/index.js"></script>
   <title>Document</title>
 </head>
+
 <body>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center categoryIntroBar">
@@ -33,15 +35,16 @@
               <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#myBoardBackdrop">내 게시판</li>
               <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#boardSettingBackdrop">게시판 설정</li>
             </ul>
-          </li> 
+          </li>
         </ul>
       </div>
     </div>
   </div>
-  <div id="modalSet">  
+  <div id="modalSet">
     <!-- .settings 자식들을 클릭했을 때 나타나는 모달들 -->
     <!-- 게시판 사용자 정보 모달 -->
-    <div class="modal" id="assignBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal" id="assignBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -51,15 +54,19 @@
           <div class="modal-body">
             <ul class="nav nav-tabs navSelector" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" data-click-target=".adminTab/.userTab">관리자</button>
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                  type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"
+                  data-click-target=".adminTab/.userTab">관리자</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link"  id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" data-click-target=".userTab/.adminTab">사용자</button>
+                <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                  type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"
+                  data-click-target=".userTab/.adminTab">사용자</button>
               </li>
-            </ul> 
+            </ul>
             <!-- 관리자 탭 -->
             <div class="content adminTab">
-            <!-- 관리자를 추가할 수 있는 인풋박스(사용자가 해당 게시판을 개설한 경우에만 사용 가능) -->
+              <!-- 관리자를 추가할 수 있는 인풋박스(사용자가 해당 게시판을 개설한 경우에만 사용 가능) -->
               <div class="inviteBox">
                 <p>관리자 추가</p>
                 <input class="form-control" type="text" value="관리자 추가하기" aria-label="readonly input example" readonly>
@@ -91,7 +98,7 @@
                       <td class="text-left"><i class="bi bi-person-dash-fill fs-6"></i></td>
                     </tr>
                   </tbody>
-                </table> 
+                </table>
               </div>
               <div class="afterAdminBox">
                 <p>추가 관리자</p>
@@ -155,7 +162,7 @@
                       <td class="text-left"><i class="bi bi-person-dash-fill fs-6"></i></td>
                     </tr>
                   </tbody>
-                </table> 
+                </table>
               </div>
             </div>
           </div>
@@ -167,7 +174,8 @@
       </div>
     </div>
     <!-- 내 게시판 관리 모달 -->
-    <div class="modal" id="myBoardBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal" id="myBoardBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -199,24 +207,30 @@
                     <td class="text-center"><span>0</span></td>
                     <td class="text-center">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                          checked>
                         <label class="form-check-label" for="flexSwitchCheckChecked">사용</label>
                       </div>
                     </td>
                     <td class="text-center">
-                      <button type="button" class="btn btn-outline-primary delBtn" data-bs-toggle="modal" data-bs-target="#delModal">삭제</button>
+                      <button type="button" class="btn btn-outline-primary delBtn" data-bs-toggle="modal"
+                        data-bs-target="#delModal">삭제</button>
                     </td>
                   </tr>
                 </tbody>
-              </table> 
-              <!-- Modal -->
+              </table>
             </div>
-          </div>  
+          </div>
+          <div class="btnBox d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">저장</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          </div>
         </div>
       </div>
     </div>
     <!-- 게시판 설정 모달 -->
-    <div class="modal" id="boardSettingBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal" id="boardSettingBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -227,11 +241,13 @@
             <div class="settingsBox">
               <div class="topBox">
                 <div class="form-floating">
-                  <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="게시판 이름">
+                  <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com"
+                    value="게시판 이름">
                   <label for="floatingInputValue">게시판 이름</label>
                 </div>
                 <div class="form-floating">
-                  <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="게시판 설명">
+                  <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com"
+                    value="게시판 설명">
                   <label for="floatingInputValue">게시판 설명</label>
                 </div>
               </div>
@@ -248,7 +264,8 @@
               <!-- 말머리 사용여부 미해제 시 disabled -->
               <div class="prefaceBox">
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="머리말 추가하기(8자 이내로 입력해주세요)" aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <input type="text" class="form-control" placeholder="머리말 추가하기(8자 이내로 입력해주세요)"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
                   <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <i class="bi bi-plus-lg fs-5"></i>
                   </button>
@@ -295,4 +312,5 @@
     </div>
   </div>
 </body>
+
 </html>
