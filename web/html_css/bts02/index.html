@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../assets/css/index.css" />
+  <link rel="stylesheet" href="../assets/css/email.css"/>
   <script type="text/javascript" src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
   <script type="module" src="../assets/js/index.js"></script>
@@ -16,53 +17,102 @@
 
 <body>
   <div class="container-fluid">
-    <!-- 김행운 코드 -->
+    <!-- 상단 logo & title -->
+    <div id="header">
+      <div class="header-left" style="display: inline;">
   
-    <div class="p-3 bg-dark text-white"></div>
-    <div class="d-flex">
+        <a href="http://localhost:8080" style="padding-right: 15px; text-decoration: none;">
+          <img src="https://sportal-dev.bizplay.co.kr/file/img/20150122_50fd974b-2049-4902-9b0d-33214d50500e.png" id="logoImg" alt="bizpaly">
+        </a>
+  
+        <h6 style="display: inline;">비플테스트(주)</h6>
+        <em class="txt-line">|</em>
+        <h5 style="display: inline;">오픈보드</h5>
+      </div>
+      <div class="header-right" style="float:right;">
+        <em class="txt-line">|</em>
+        <a href="">
+          <img class="icon_img" src="https://sportal-dev.bizplay.co.kr/img/btn/btn_tophd_community.png?v=1">
+          온라인고객센터
+        </a>
+        <a href="">
+          <img class="icon_img" src="https://sportal-dev.bizplay.co.kr/img/btn/btn_tophd_reSupport.png">
+          원격지원
+        </a>
+      </div>
+  
+    </div>
+  
+  
+    <!-- sidebar & main -->
+    <div class="row" style="margin: 0px;">
+  
       <!-- 사이드 바 -->
-      <div class="sideBar col-4">
+      <div class="sideBar col-2">
         <!-- 즐겨찾기 or 전체 탭 -->
-        <div class="container d-flex justify-content-around" id="sideBarTap">
-          <div class="btn sideBarTapItem">
-            <a class="nav-link" href="#">즐겨찾기</a>
+        <div class=" container d-flex justify-content-around" id="sideBarTap" style="padding: 0px;">
+          <div class="btn sideBarTapItem" id = "boardFavorite">
+            <a class="nav-link" style="font-weight: bold; line-height: 30px;">
+              <svg xmlns="http://www.w3.org/2000/svg" id="bookmarkMenu" style="color: gold; position: relative; top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+              즐겨찾기</a>
           </div>
-          <div class="btn sideBarTapItem">
-            <a class="nav-link" href="#">전체</a>
+          <div class="btn sideBarTapItem" id = "boardList">
+            <a class="nav-link" style="font-weight: bold; line-height: 30px;">
+              <svg xmlns="http://www.w3.org/2000/svg" id="totalMenu" style="position: relative; top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+              전체</a>
           </div>
         </div>
         <!-- 목록 리스트 -->
-        <div class="container">
-          <div class="" th:each="bean:${boardList}">
-            
-            <div class="d-flex justify-content-between" th:id="${bean.boardSrno}" >
-              <a class="btn w-75 boardListTitle" href="#" th:text="${bean.boardNm}">리스트 1</a>
-              <div class="btn w-25 favorite" >별</div>
+        <div class="container" id="boardListAll">
+          <div th:each="bean:${data}">
+            <div class="d-flex justify-content-between boardLedgFrom" th:id="${bean.id}" >
+              <a class="boardListTitle" th:text="${bean.boardNm}">리스트 1</a>
+              <img type="btn" class="boardFavorite" id="favoriteTrue"  th:src="@{/image/star-fill.svg}" alt=""  th:if="${bean.favorite == true}"/>
+              <img type="btn" class="boardFavorite" id="favoriteFalse" th:src="@{/image/star.svg}" alt=""  th:if="${bean.favorite == false}"/>
             </div>
-            
-            <!--                    <div class="d-flex justify-content-around ">-->
-            <!--                        <div class="d-flex w-75">-->
-            <!--                            <input type="hidden" th:value="${bean.boardSrno}"/>-->
-            <!--                            <a class="btn" href="#" th:text="${bean.boardNm}">리스트</a>-->
-            <!--                        </div>-->
-            <!--                        <div class="btn w-25">별</div>-->
-            <!--                    </div>-->
           </div>
         </div>
         <!-- 사이드바 푸터 -->
         <div class="sideBarTapFooter">
           <!-- 새 게시판 추가 버튼 -->
-          <div class="btn" id="myModal" data-bs-toggle="modal" data-bs-target="#boardAddModal" >
-            + 게시판
-          </div>
+          <button type="button" id="myModal" data-bs-toggle="modal" data-bs-target="#boardAddModal" class="btn btn-light">
+            <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: -1px;" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg> 새 게시판
+          </button>
         </div>
       </div>
-      <div id="rightBar" class="col-8">
-        <div class="row d-flex justify-content-center categoryIntroBar">
-          <div class="col-10">
-            <h2>CATEGORY TITLE</h2>
+  
+      <!-- 메인 -->
+      <div id="mainContent" class="col-10" style="width: 85%;">
+        <!-- search -->
+        <div class="row d-flex justify-content-center categoryIntroBar" id="boardDetailInfo">
+          <input type="hidden" id="boardDetailSrno" th:value="${boardId}"/>
+        </div>
+        <div class="" id="searchArticle">
+          <div class="input-group" id="searchForm">
+            <input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." aria-label="검색창" aria-describedby="button-addon2">
+            <button class="btn btn-outline-primary" type="button" id="searchBtn">검색</button>
           </div>
-          <div class="col-2 d-flex justify-content-end iconBox">
+        </div>
+        <div class="container mt-3 d-flex flex-row">
+          <div class="col-9">
+            <!-- 게시판명, 게시판설명 -->
+            <p th:text="${boardTitle}" id="boardDetailTitle">게시판명</p>
+            <span style="position: relative; top: -3px;" >
+             <!-- todo: href에 즐겨찾기 관련 넣어야함. -->
+              <img type="btn" class="boardDetailFavorite" id="boardDetailFavoriteTrue"  th:src="@{/image/star-fill.svg}" alt=""  th:if="${favoriteWhether == true}"/>
+              <img type="btn" class="boardDetailFavorite" id="boardDetailFavoriteFalse" th:src="@{/image/star.svg}" alt=""  th:if="${favoriteWhether == false}"/>
+            </span>
+            <p th:text="${boardContent}" id="boardDetailContent">게시판 설명</p>
+  
+          </div>
+          <div class="col-3 d-flex justify-content-end iconBox">
             <ul class="d-flex headlessUl">
               <li class="d-flex p-2 justify-content-center">
                 <i class="bi bi-question-circle fs-5"></i>
@@ -70,7 +120,7 @@
               <li class="d-flex p-2 justify-content-center">
                 <i class="bi bi-bell fs-5"></i>
               </li>
-              <li class="d-flex p-2 justify-content-center dropdown">
+              <li class="d-flex p-2 justify-content-center dropdown" data-bs-toggle="dropdown">
                 <i class="bi bi-gear fs-5" role="button" data-bs-toggle="dropdown"></i>
                 <ul class="settings dropdown-menu">
                   <li id="assign" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#assignBackdrop">사용자 정보</li>
@@ -81,317 +131,428 @@
             </ul>
           </div>
         </div>
-      <div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade modal-lg" id="boardAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <!-- 모달 Header -->
-        <div class="modal-header text-center">
-          <h1 class="modal-title fs-5  fw-bold" id="exampleModalLabel">새 게시판</h1>
-          <div class="btn btn-close boardAddModalCloseBtn" data-bs-dismiss="modal" aria-label="Close" id=""></div>
+  
+        <!-- content -->
+        <div id="articleContent">
+  
         </div>
-        <!-- 모달 Body -->
-        <div class="modal-body">
-          <div class="mb-3">
-            
-            <input type="text" class="form-control" id="addModalBoardTitle" name="" placeholder="게시판 제목을 입력해주세요.">
-          </div>
-          <div class="mb-3">
-            
-            <input type="text" class="form-control" id="addModalBoardContent" name="" placeholder="게시판 설명을 입력해주세요.">
-          </div>
-          <div div class="mb-3">
-            <label for="" class="form-label fw-bold">사용자 그룹</label>
-            <div class="form-check d-flex">
-              <div class="form-check me-3" id="userInvtForm">
-                <input class="form-check-input" type="radio" name="userRadios" id="userInvtClick" value="I" checked>
-                <label class="form-check-label" for="exampleRadios1">
-                  사용자 초대
-                </label>
-              </div>
-              <div class="form-check" id="userAllForm">
-                <input class="form-check-input" type="radio" name="userRadios" id="userAllClick" value="A">
-                <label class="form-check-label" for="exampleRadios2">
-                  직원 전체
-                </label>
-              </div>
+      </div>
+  
+      <!-- Modal -->
+      <div class="modal fade modal-lg" id="boardAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content" style="width: 700px;">
+            <!-- 모달 Header -->
+            <div class="modal-header text-center" style="padding: 15px 25px;">
+              <h1 class="modal-title fs-5  fw-bold" id="exampleModalLabel">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="position: relative; top: -3px;" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+                  <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                  <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                </svg>
+                새 게시판</h1>
+              <div class="btn btn-close boardAddModalCloseBtn" data-bs-dismiss="modal" aria-label="Close" id="modal-close-btn"></div>
             </div>
-            <!--사용자 그룹 목록-->
-            <div class="popUpBox border" id="test">
-              <div class="d-flex popUpBox">
-                <div class="mr-5">
-                  <div class="btn border" id="empPopUpBtn" >+추가</div>
-                </div>
-                <div class="mt-2" id="empResult">
-                  <span>test1 <span> X </span></span>
-                  <span>test2 <span> X </span></span>
-                  <span>test3 <span> X </span></span>
-                </div>
+            <!-- 모달 Body -->
+            <div class="modal-body" style="padding: 20px 30px;">
+  
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="addModalBoardTitle" placeholder="게시판 제목을 입력해주세요.">
+                <label for="addModalBoardTitle">게시판명</label>
               </div>
-            </div>
-          
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label fw-bold">말머리</label>
-            <!--머리말 추가-->
-            <div class="mb-1">
-              <input type="text" class="w-50" id="athrContent" name="athrContent" placeholder="말머리를 입력해주세요.">
-              <button class="btn btn-primary" id="athrAddBtn"> +추가</button>
-              <label>0/8글자</label>
-            </div>
-            <!--머리말 목록-->
-            <div class="border w-50" style="height: 100px;" id="athrListForm">
-              
-              <!-- <div class="border-bottom d-flex justify-content-between">
-                  <label for="" class="form-label">ㅇㅈㅇㅈㅇㅈ</label>
-                  <div>
-                      <label for="" class="form-label">위</label>
-                      <label for="" class="form-label">하</label>
-                      <label for="" class="form-label">수정</label>
-                      <label for="" class="form-label">삭제</label>
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="addModalBoardContent" placeholder="간략한 게시판 설명을 입력해주세요.">
+                <label for="addModalBoardContent">게시판설명</label>
+              </div>
+  
+              <div div class="boardGroupBox" style="border: lightgray solid 1px; border-radius: 5px; padding: 10px;">
+                <label for="" class="form-label fw-bold">사용자 그룹</label>
+                <div class="form-check d-flex">
+                  <div class="form-check me-3" id="userInvtForm" style="padding: 0px">
+                    <input class="form-check-input" type="radio" name="userRadios" id="userInvtClick" value="I" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      사용자 초대
+                    </label>
                   </div>
-              </div> -->
-            
-            </div>
-          
-          </div>
-          <div class="form-check form-switch mb-3">
-            <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">댓글</label>
-            <input class="form-check-input" type="checkbox" role="switch" name="boardReplyRef" id="boardReplyRef" checked>
-          </div>
-        </div>
-        
-        <!-- 모달 Footer -->
-        <div class="modal-footer d-flex justify-content-center">
-          <div class="btn btn-primary" id="boardAdd">생성</div>
-          <div class="btn btn-secondary boardAddModalCloseBtn" data-bs-dismiss="modal" id="">닫기</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 왕인서 코드 -->
-  <div id="modalSet">
-    <!-- .settings 자식들을 클릭했을 때 나타나는 모달들 -->
-    <!-- 게시판 사용자 정보 모달 -->
-    <div class="modal" id="assignBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5 vw-50" id="staticBackdropLabel">게시판 사용자 정보</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <ul class="nav nav-tabs navSelector" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" data-click-target=".adminTab/.userTab">관리자</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link"  id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" data-click-target=".userTab/.adminTab">사용자</button>
-              </li>
-            </ul>
-            <!-- 관리자 탭 -->
-            <div class="content adminTab">
-              <!-- 관리자를 추가할 수 있는 인풋박스(사용자가 해당 게시판을 개설한 경우에만 사용 가능) -->
-              <div class="inviteBox">
-                <input class="form-control" type="text" value="관리자 추가하기" aria-label="readonly input example" readonly>
-                <i class="bi bi-people-fill fs-5"></i>
-                <div class="addList">
-                  <strong>
-                    비플테스트
-                    <i class="bi bi-x-circle-fill"></i>
-                  </strong>
-                  <strong>
-                    비플테스트
-                    <i class="bi bi-x-circle-fill"></i>
-                  </strong>
-                  <strong>
-                    비플테스트
-                    <i class="bi bi-x-circle-fill"></i>
-                  </strong>
-                  <strong>
-                    비플테스트
-                    <i class="bi bi-x-circle-fill"></i>
-                  </strong>
-
+                  <div class="form-check" id="userAllForm">
+  
+                    <input class="form-check-input" type="radio" name="userRadios" id="userAllClick" value="A">
+                    <label class="form-check-label" for="exampleRadios2">
+                      직원 전체
+                    </label>
+                  </div>
+                </div>
+                <!--사용자 그룹 목록-->
+                <div class="popUpBox border mt-2" id="test">
+                  <div class="d-flex popUpBox">
+                    <div style="display: flex; align-items: center; justify-content: center; padding: 10px;">
+                      <div class="btn border" id="empPopUpBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;" width="24" height="24" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                          <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div id="empResult"></div>
+                  </div>
                 </div>
               </div>
-              <!-- 관리자 추가 박스 -->
-              <div class="defaultAdminBox scrollbox">
-                <!-- <p>관리자</p> -->
-                <table class="table table-sm">
-                  <tbody>
-                    <tr>
-                      <!-- <td class="text-center"><i class="bi bi-key fs-5"></i></td> -->
-                      <td class="text-center"><strong>심관리자s</strong></td>
-                      <td class="text-left"><span>ground444@naver.com</span></td>
-                      <td class="text-center">
-                        <div class="iconBox">
-                          <i class="bi bi-box-arrow-right fs-6"></i>
-                          <span>나가기</span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- 사용자 탭 -->
-            <div class="content userTab">
-              <!-- 사용자를 추가할 수 있는 인풋박스 -->
-              <div class="inviteBox">
-                <input class="form-control" type="text" value="사용자 추가하기" aria-label="readonly input example" readonly>
-                <i class="bi bi-people-fill fs-5"></i>
-                <div class="addList">
-                  
+              <div class="boardGroupBox" style="border: lightgray solid 1px; border-radius: 5px; padding: 10px;">
+                <label for="" class="form-label fw-bold">말머리</label>
+                <!--머리말 추가-->
+                <div class="mb-1">
+  
+                  <div class="input-group" style="width: 500px">
+                    <input type="text" class="form-control" id="athrContent" name="athrContent" placeholder="말머리를 입력해주세요.">
+                    <button class="btn btn-outline-primary" type="button" id="athrAddBtn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                      </svg>
+                    </button>
+                    <label style="padding-left: 15px; color: gray; padding-top: 6px;">0/8글자</label>
+                  </div>
+  
+                </div>
+                <!--머리말 목록-->
+                <div id="athrListForm">
                 </div>
               </div>
-              <!-- 사용자 추가 박스 -->
-              <div class="defaultUserBox">
-                <table class="table table-sm">
-                  <tbody>
-                    <tr>
-                      <td class="text-center"><strong>심관리자s</strong></td>
-                      <td class="text-left">
-                        <div class="iconBox">
-                          <i class="bi bi-box-arrow-right fs-6"></i>
-                          <span>나가기</span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+  
+              <div class="form-check form-switch" id="form-check-switch-btn" style="border: lightgray solid 1px; border-radius: 5px; padding: 10px;">
+                <label class="form-check-label fw-bold d-flex justify-content-between" id="form-check-switch-label">댓글 사용여부
+                  <input class="form-check-input" type="checkbox" role="switch" name="boardReplyRef" id="boardReplyRef" checked>
+                </label>
               </div>
+  
+  
+  
             </div>
-          </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-primary">확인</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+            <!-- 모달 Footer -->
+            <div class="modal-footer d-flex justify-content-center" style="padding: 0 0 10px 0;">
+              <div class="btn btn-primary" id="boardAdd" style="width: 100px">생성</div>
+              <div class="btn btn-secondary boardAddModalCloseBtn" data-bs-dismiss="modal" id="" style="width: 100px">취소</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- 내 게시판 관리 모달 -->
-    <div class="modal" id="myBoardBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="headerContainer">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">내 게시판</h1>
+      <!-- 왕인서 코드 -->
+      <div id="modalSet">
+        <!-- .settings 자식들을 클릭했을 때 나타나는 모달들 -->
+        <!-- 게시판 사용자 정보 모달 -->
+        <div class="modal" id="assignBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5 vw-50" id="staticBackdropLabel">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: -2px;" width="25" height="25" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                  </svg>
+                  게시판 사용자 정보</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ul class="nav nav-tabs navSelector" role="tablist">
+                  <li class="nav-item adminNavToggle" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" data-click-target=".adminTab/.userTab">관리자</button>
+                  </li>
+                  <li class="nav-item userNavToggle" role="presentation">
+                    <button class="nav-link"  id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" data-click-target=".userTab/.adminTab">사용자</button>
+                  </li>
+                </ul>
+                <!-- 관리자 탭 -->
+                <div class="content adminTab">
+                  <!-- 관리자를 추가할 수 있는 인풋박스(사용자가 해당 게시판을 개설한 경우에만 사용 가능) -->
+                  <div class="inviteBox">
+                    <input class="form-control" type="text" value="관리자 추가하기" aria-label="readonly input example" readonly>
+                    <i class="bi bi-person-fill-add fs-4"></i>
+                    <div class="addList" style="height: 30px"></div>
+                  </div>
+                  <!-- 관리자 추가 박스 -->
+                  <div class="defaultList scrollbox">
+                    <table class="table table-sm">
+                      <tbody>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123123123123123123123123123123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- 사용자 탭 -->
+                <div class="content userTab">
+                  <!-- 사용자를 추가할 수 있는 인풋박스 -->
+                  <div class="inviteBox">
+                    <input class="form-control" type="text" value="사용자 추가하기" aria-label="readonly input example" readonly>
+                    <i class="bi bi-person-fill-add fs-4"></i>
+                    <div class="addList">
+  
+                    </div>
+                  </div>
+                  <!-- 사용자 추가 박스 -->
+                  <div class="defaultList scrollbox">
+                    <table class="table table-sm">
+                      <tbody>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123123123123123123123123123123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr data-user-id="rrrttt" data-grp-cd="공지게시판_관리자">
+                          <td class="text-center"><strong>123</strong></td>
+                          <td class="text-left"><span>qwe@naver.com</span></td>
+                          <td class="text-center">
+                            <div class="iconBox">
+                              <i class="bi bi-box-arrow-right fs-6"></i>
+                              <span>나가기</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer" style="padding: 0 0 10px 0;">
+                <div class="footerBtnBox">
+                  <button type="button" class="btn btn-primary" style="width: 100px">저장</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100px">취소</button>
+                </div>
+                <div class="d-flex justify-content-end invitingReminderBox">
+                  <button type="button" class="btn btn-primary">초대 리마인더</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 내 게시판 관리 모달 -->
+        <div class="modal" id="myBoardBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="headerContainer">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">내 게시판</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+              </div>
+              <div class="modal-body">
+                <table class="table table-sm table-light headTable">
+                  <thead>
+                  <tr>
+                    <th class="text-left">이름</th>
+                    <th class="text-center">생성일자</th>
+                    <th class="text-center">게시물 수</th>
+                    <th class="text-center">상태</th>
+                    <th class="text-center">삭제</th>
+                  </tr>
+                  </thead>
+                </table>
+                <div class="scrollBox">
+                  <table class="table bodyTable">
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="btnBox d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">저장</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 게시판 설정 모달 -->
+        <div class="modal" id="boardSettingBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">게시판 설정</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" >
+                <div class="settingsBox" >
+                  <div class="topBox">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="boardUpdateTitle"  placeholder="게시판 이름을 입력해주세요" >
+                      <label>게시판 이름</label>
+                    </div>
+                    <div class="form-floating">
+                      <input type="email" class="form-control" id="boardUpdateContent" placeholder="게시판 설명을 입력해주세요">
+                      <label>게시판 설명</label>
+                    </div>
+                  </div>
+                  <div class="checkSettingsBox d-flex justify-content-start">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="boardUpdateAthr" name="boardUpdateAthr" checked>
+                      <label class="form-check-label" for="preface">말머리 사용여부</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="boardUpdateCommt" name="boardUpdateCommt" checked>
+                      <label class="form-check-label" for="useComment">댓글 사용 여부</label>
+                    </div>
+                  </div>
+                  <!-- 말머리 사용여부 미해제 시 disabled -->
+                  <div class="prefaceBox">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="머리말 추가하기(8자 이내로 입력해주세요)" aria-label="Recipient's username" aria-describedby="button-addon2" id="updateAthrContent">
+                      <button class="btn btn-outline-secondary" type="button" id="updateAthrAddBtn">
+                        <i class="bi bi-plus-lg fs-5"></i>
+                      </button>
+                    </div>
+                    <div class="prefaceListBox">
+                      <!--머리말 항목-->
+                      <ul class="prefaceList" id="AuthrUpdateList">
+  
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="boardUpdateBtn">저장</button>
+  
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="delModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">삭제</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body d-flex justify-content-center">
+              <p>삭제하시겠습니까?</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-primary" >네</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
+            </div>
           </div>
-          <div class="modal-body">
-            <table class="table table-sm table-light headTable">
-              <thead>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- <div class="container emailInvite">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between topBox">
+          <strong>초대하기</strong>
+          <div class="iconSet">
+            <i class="bi bi-x fs-5"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center emailTitle">
+          <h3>초대하기</h3>
+          <p>
+            초대자 중 오픈보드 미사용자가 있습니다. 미사용자는 게시판을 볼 수 없습니다. <br/>
+            원활한 협업을 위해 이메일로 미사용자를 초대할 수 있습니다.
+          </p>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center targetBox">
+        <div class="col-11">
+          <table class="table">
+            <thead>
               <tr>
-                <th class="text-left">이름</th>
-                <th class="text-center">생성일자</th>
-                <th class="text-center">게시물 수</th>
-                <th class="text-center">상태</th>
-                <th class="text-center">삭제</th>
+                <th scope="col" class="selectCol">선택</th>
+                <th scope="col" class="imgCol">이미지</th>
+                <th scope="col" class="dvsnCol">소속</th>
+                <th scope="col" class="nameCol">이름</th>
+                <th scope="col" class="emailCol">이메일</th>
               </tr>
-              </thead>
-            </table>
-            <div class="scrollBox">
-              <table class="table bodyTable">
-                <tbody>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row mailSendBox">
+        <div class="col-12">
+          <div class="d-flex justify-content-center mailTitleBox">
+            <strong>메일제목</strong>
+            <input type="text" name="emailTitle" class="mailInput" placeholder="오픈보드에 초대하셨습니다."/>
+          </div>
+          <div class="d-flex justify-content-center mailContentBox">
+            <strong>메일내용</strong>
+            <textarea name="emailContent" class="mailInput"></textarea>
+          </div>
+          <div class="mailBtnBox d-flex justify-content-center">
+            <button type="button" class="btn btn-primary goInvite">확인</button>
+            <button type="button" class="btn btn-light cancelInvite">취소</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
   
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="btnBox d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">저장</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 게시판 설정 모달 -->
-    <div class="modal" id="boardSettingBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">게시판 설정</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="settingsBox">
-              <div class="topBox">
-                <div class="form-floating">
-                  <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="게시판 이름">
-                  <label for="floatingInputValue">게시판 이름</label>
-                </div>
-                <div class="form-floating">
-                  <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="게시판 설명">
-                  <label for="floatingInputValue">게시판 설명</label>
-                </div>
-              </div>
-              <div class="checkSettingsBox d-flex justify-content-start">
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="preface" checked>
-                  <label class="form-check-label" for="preface">말머리 사용여부</label>
-                </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="useComment" checked>
-                  <label class="form-check-label" for="useComment">댓글 사용 여부</label>
-                </div>
-              </div>
-              <!-- 말머리 사용여부 미해제 시 disabled -->
-              <div class="prefaceBox">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="머리말 추가하기(8자 이내로 입력해주세요)" aria-label="Recipient's username" aria-describedby="button-addon2">
-                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                    <i class="bi bi-plus-lg fs-5"></i>
-                  </button>
-                </div>
-                <div class="prefaceListBox">
-                  <ul class="prefaceList">
-                    <li class="prefaceRow">
-                      <ul class="prefaceColumn">
-                        <li>머리말 항목</li>
-                        <li class="d-none d-sm-none d-md-block"><i class="bi bi-arrow-up-circle fs-6"></i></li>
-                        <li class="d-none d-sm-none d-md-block"><i class="bi bi-arrow-down-circle fs-6"></i></li>
-                        <li><i class="bi bi-pencil fs-6"></i></li>
-                        <li><i class="bi bi-trash fs-6"></i></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">저장</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="delModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">삭제</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex justify-content-center">
-          <p>삭제하시겠습니까?</p>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-primary" >네</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
+  </body>
 
 
 </html>

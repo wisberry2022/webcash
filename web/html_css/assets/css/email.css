@@ -1,0 +1,119 @@
+.emailInvite {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #d9d9d9;
+  width: 50%;
+  height: 80%;
+  background-color: #fff;
+}
+
+.topBox {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+strong {
+  display: block;
+}
+
+i {
+  cursor: pointer;
+}
+
+.emailTitle {
+  background-color: #F0F8FF;
+}
+
+.emailTitle h3 {
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* .emailTitle p {
+outline: 1px solid #000;
+} */
+
+.targetBox {
+  padding: 1rem 0;
+  height: 52%;
+  overflow-y: scroll;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.targetBox .table th {
+  text-align: center;
+}
+
+.targetBox .table thead .selectCol {
+  width: 10%;
+}
+
+.targetBox .table thead .imgCol {
+  width: 10%;
+}
+
+.targetBox .table thead .dvsnCol {
+  width: 15%;
+}
+
+.targetBox .table thead .nameCol {
+  width: 15%;
+}
+
+.targetBox .table img {
+  width: 1.5rem;
+}
+
+.targetBox .table td {
+  font-size: .9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.targetBox .table .dvsnCell {
+  max-width: 1rem;
+}
+
+.targetBox .table .nameCell {
+  max-width: 1.5rem;
+}
+
+.targetBox .table .emailCell {
+  max-width: 3.5rem;
+}
+
+.mailSendBox {
+  padding: 2rem 0;
+}
+
+.mailSendBox strong {
+  display: block;
+}
+
+.mailTitleBox {
+  gap: 1rem;
+  margin-bottom: .5rem;
+}
+
+.mailSendBox .mailInput {
+  border: 1px solid #bbb;
+  width: 80%;
+}
+
+.mailContentBox {
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mailBtnBox {
+  gap: 1rem;
+}
+
+.mailContentBox textarea {
+  resize: none;
+}
+

@@ -1,487 +1,957 @@
 /* 헤더/즐겨찾기/메인 컨텐츠 영역 */
 
 #sideBarTap{
-  border: 1px solid black;
-  height: 50px;
-  width: 100%;
+    /*border: 1px solid black;*/
+    height: 50px;
+    /*width: 100%;*/
 }
 
-#sideBar {
-  outline: 1px solid #000;
+#header {
+    height: 47px;
+    padding: 8px;
+    border-bottom: 2px solid #4e72be;
+}
+
+.header-left {
+    margin-left: 15px;
+}
+
+.logo {
+    display: inline-block;
+    /*vertical-align: middle;*/
+}
+
+#logoImg {
+    height: 28px;
+    width: auto;
+}
+
+.site-name {
+    display: inline-block;
+    /*vertical-align: middle;*/
+    margin-left: 10px;
+}
+
+#mainContent {
+    padding: 0px;
+}
+
+.header-right > a {
+    display: inline;
+    font-size: 11px;
+    color: gray;
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+.header-right > a:hover {
+    text-decoration: underline;
+}
+
+#searchArticle {
+    background-color: aliceblue;
+    /*padding: 13px;*/
+    /*height: 50px;*/
+}
+
+#searchForm {
+    padding: 6px;
+    width: 30%;
+    min-width: 300px;
+}
+
+.user-list {
+    padding: 1px 5px;
+    margin: 3px 3px;
+    border: lightgray solid 1px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    display: inline-block;
+    color: darkslategray;
+}
+
+#empResult {
+    padding: 10px 0;
+}
+
+#empPopUpBtn {
+    width: 60px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: aliceblue;
+}
+
+#empPopUpBtn:hover {
+    background-color:lightblue ;
+}
+
+.boardGroupBox {
+    border: lightgray solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#empItemDeleteBtn:hover {
+    cursor: pointer;
+}
+
+#boardReplyRef {
+    height: 20px;
+    width: 50px;
+    top: -2px;
+    position: relative;
+}
+
+#searchBtn {
+    color: white;
+    background-color: royalblue;
+    font-weight: bold;
+    border-color: royalblue;
+}
+
+#athrAddBtn {
+    color: black;
+    background-color: aliceblue;
+    font-weight: bold;
+    border-color: lightgray;
+    border-radius: 0 5px 5px 0;
+}
+
+#athrAddBtn:hover {
+    background-color:lightblue ;
+}
+
+#form-check-switch-btn:hover {
+    cursor: pointer;
+    background-color: aliceblue;
+}
+
+#form-check-switch-label {
+    cursor: pointer;
+}
+
+#athrListForm {
+    border: lightgray solid 1px;
+    border-radius: 5px;
+    width: 430px;
+    min-height: 100px;
+    padding: 5px 5px 0px 5px;
+}
+
+#athrItem {
+    padding: 3px 10px;
+    height: 30px;
+    border: lightgray solid 1px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#athrItemSetting svg {
+    color: gray;
+    margin: 5px;
+    position: relative;
+    top: -2px;
+}
+
+#athrItemSetting svg:hover {
+    cursor: pointer;
+}
+
+.txt-line {
+    font-style: normal;
+    font-size: 12px;
+    color: #dddddd;
+    margin: 7px 10px;
 }
 
 .sideBar {
-  width: 15%;
+    /*outline: 1px solid #000;*/
+    padding: 0px;
+    height: 100%;
+    border-right: 1px solid lightgray;
+    width: 15%;
+    /*min-width: 231px;*/
+}
+
+#boardFavorite, #boardList {
+    border-radius: 0px;
+    border: white solid 0.5px;
+    /*border-bottom: black solid 1px;*/
+}
+
+#boardListAll {
+    border-bottom: lightgray solid 1px;
+    padding: 10px 0px 10px 0px;
+}
+
+.boardListTitle {
+    margin-left: 30px;
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 0px 5px 0px;
+    display: inline-block;
+    text-align: left;
+}
+
+.boardListTitle:hover {
+    cursor: pointer;
+}
+
+.boardFavorite {
+    padding-right: 20px;
+}
+
+#boardListAll > div {
+    padding: 0px 5px 0px 5px;
+}
+
+#boardListAll > div:hover {
+    /*background-color: #ebebeb;*/
+    background-color: #f5f5f5;
+}
+
+.sideBarTapFooter {
+    background-color: aliceblue;
+    height: auto;
+}
+
+.rounded-circle {
+    width: 45px;
+    height: 45px;
+}
+
+.commtContent {
+    font-size: 15px;
+}
+
+.replyContent {
+    font-size: 15px;
+}
+
+.commentContent {
+    display: flex;
+    margin-bottom: 10px;
+    border-bottom: whitesmoke solid 1px;
+    padding-bottom: 10px;
+}
+
+#commentCount {
+    padding-top: 50px;
+}
+
+.commtContentDate {
+    font-size: 12px;
+    font-weight: normal;
+    color: gray;
+}
+
+.commtContentWriter {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#myModal {
+    border-radius: 20px;
+    border: lightgray solid 1px;
+    margin-top: 20px;
+    margin-bottom: 1000px;
+    background-color: white;
+    width: 200px;
 }
 
 #rightBar {
-  width: 85%;
+    width: 85%;
 }
 
 #boardAddModal {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .sideBarTapItem{
-  width: 100%;
+    width: 100%;
 }
 .sideBarTapFooter{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container-fluid {
-  padding: 0;
+    padding: 0;
 }
 
 ul, ol, li {
-  list-style-type: none;
+    list-style-type: none;
 }
 
-.categoryIntroBar {
-  border-bottom: .1rem solid #d9d9d9;
-  padding: 5px 0;
-}
+/*.categoryIntroBar {*/
+/*    !*border-bottom: .1rem solid #d9d9d9;*!*/
+/*    padding: 5px 0;*/
+/*}*/
 
 h2 {
-  line-height: 3.5rem;
+    line-height: 3.5rem;
 }
 
 .headlessUl {
-  gap: .6rem;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  list-style-type: none;
+    gap: .6rem;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    list-style-type: none;
 }
 
 .headlessUl>li {
-  margin-top: 5px;
-  cursor: pointer;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 .modal-dialog-centered {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 .modal-header {
-  border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 .modal-footer {
-  border-top: none;
+    border-top: none;
 }
 
 /* 게시판 사용자 정보 모달 */
 
+.warn {
+    display: block;
+    color: #ff0000;
+    font-size: 14px;
+    text-align: center;
+}
+
 #assignBackdrop .modal-dialog {
-  min-width: 35%;
+    min-width: 35%;
 }
 
 .navSelector {
-  margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
-.inviteBox,
-.defaultAdminBox,
-.defaultUserBox {
-  position: relative;
-  margin-bottom: 50px;
+.inviteBox {
+    position: relative;
+    margin-bottom: 0px;
 }
 
-.inviteBox p,
-.defaultAdminBox p,
-.afterAdminBox p,
-.defaultUserBox p {
-  margin-bottom: 10px;
-  padding-left: 5px;
-  font-size: 15px;
-  font-weight: 600;
+.inviteBox p {
+    margin-bottom: 10px;
+    padding-left: 5px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .inviteBox input {
-  margin-bottom: 10px;
-  cursor: pointer;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .inviteBox i {
-  position: absolute;
-  top: 5%;
-  right: 3%;
+    position: absolute;
+    top: 0;
+    right: 4%;
 }
 
 #assignBackdrop .addList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  gap: .2rem;
-  padding: 5px;
-  max-height: 10vh;
-  overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: .2rem;
+    margin-bottom: .5rem;
+    padding: 5px;
+    max-height: 10vh;
+    overflow-y: scroll;
+    border: lightgray solid 1px;
+    border-radius: 5px;
+    min-height: 100px;
 }
 
 #assignBackdrop .addList strong {
-  border: 1px solid #ddd;
-  padding: 2px 15px;
-  display: flex;
-  justify-content: space-between;
-
-  width: 8vw;
-  text-align: center;
-  font-size: .7vw;
-  cursor: pointer;
+    border: 1px solid #ddd;
+    padding: 2px 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 8vw;
+    text-align: center;
+    font-size: .7vw;
+    height: 30px;
 }
 
 #assignBackdrop .addList strong i {
-  position: static;
+    position: static;
+    cursor: pointer;
 }
 
 #assignBackdrop table {
-  font-size: 15px;
+    font-size: 15px;
 }
 
 #assignBackdrop .scrollbox {
-  overflow-y: scroll;
-  max-height: 200px;
+    overflow-y: scroll;
+    max-height: 200px;
 }
 
 #assignBackdrop table tbody tr td:first-child {
-  width: 6vw;
+    width: 5vw;
+
 }
 
 #assignBackdrop table tbody tr td:first-child strong {
-  display: block;
-  max-width: 6vw;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    display: block;
+    max-width: 5vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-#assignBackdrop .adminTab table tbody tr td:nth-child(2) {
-  position: relative;
+#assignBackdrop table tbody tr td:nth-child(2) {
+    position: relative;
 }
 
-#assignBackdrop .adminTab table tbody tr td:nth-child(2)::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: -2.5%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 1vw;
-  background-color: #d9d9d9;
-  
+#assignBackdrop table tbody tr td:nth-child(2) span {
+  padding: 0 5px;
+}
+
+#assignBackdrop table tbody tr td:nth-child(2)::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 1vw;
+    background-color: #d9d9d9;
 }
 
 #assignBackdrop table tbody tr td:last-child {
-  width: 15%;
-  cursor: pointer;
+    width: 15%;
+    cursor: pointer;
 }
 
 #assignBackdrop table tbody tr td:last-child .iconBox {
-  display: flex;
-  gap: 10%;
-  align-items: center;
+    display: flex;
+    gap: 10%;
+    align-items: center;
 }
 
 #assignBackdrop table tbody tr td:last-child .iconBox span {
-  font-size: 12px;
-  font-weight: 600;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#assignBackdrop .footerBtnBox {
+  flex: 2;
+  justify-content: flex-end;
+}
+
+#assignBackdrop .invitingReminderBox {  
+  flex: 1;
+}
+
+#assignBackdrop .modal-footer {
+  margin: 0 auto;
+  width: 95%;
 }
 
 /* 내 게시판 관리 모달 */
 
 #myBoardBackdrop .modal-dialog {
-  min-width: 60%;
+    min-width: 60%;
 }
 
 #myBoardBackdrop .modal-header {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 #myBoardBackdrop .headerContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 90%;
 }
 
 #myBoardBackdrop .modal-body {
-  height: 70vh;
+    height: 70vh;
 }
 
 #myBoardBackdrop .modal-body .scrollBox {
-  height: 58vh;
-  overflow-y: scroll;
+    height: 58vh;
+    overflow-y: scroll;
 }
 
 /* 특정 부분 스크롤바 없애기 */
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .scrollbox{
-  -ms-overflow-style: none;
+    -ms-overflow-style: none;
 }
 
 .scrollbox::-webkit-scrollbar{
-  display:none;
+    display:none;
 }
 
 #myBoardBackdrop table {
-  margin: 0 auto;
-  max-width: 90%;
+    margin: 0 auto;
+    max-width: 90%;
 }
 
 #myBoardBackdrop .headTable tr th:first-child {
-  width: 60%;
+    width: 60%;
 }
 
 #myBoardBackdrop .headTable tr th:nth-child(n+2) {
-  width: 10%;
+    width: 10%;
 }
 
 #myBoardBackdrop .headTable thead th {
-  padding: 10px 0;
-  font-size: .9vw;
+    padding: 10px 0;
+    font-size: .9vw;
 }
 
 #myBoardBackdrop .bodyTable tbody tr td {
-  /* outline: 1px solid #000; */
-  font-size: .9vw;
+    /* outline: 1px solid #000; */
+    font-size: .9vw;
 }
 
 #myBoardBackdrop .bodyTable tbody tr td>* {
-  /* outline: 1px solid #000; */
+    /* outline: 1px solid #000; */
 }
 
 #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
-  width: 10%;
+    width: 10%;
 }
 
 #myBoardBackdrop .bodyTable tbody tr td:first-child {
-  max-width: 20vw;
-  min-width: 20vw;
+    max-width: 20vw;
+    min-width: 20vw;
 }
 
 #myBoardBackdrop .bodyTable tbody tr td:first-child strong {
-  display: block;
-  min-width: 20vw;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    display: block;
+    min-width: 20vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 #myBoardBackdrop .form-check {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 #myBoardBackdrop .form-check input {
-  width: 2vw;
+    width: 2vw;
 }
 
 #myBoardBackdrop .form-check label {
-  /* font-size: .9vw; */
-  font-size: 15px;
-  font-weight: 600;
+    /* font-size: .9vw; */
+    font-size: 15px;
+    font-weight: 600;
 }
 
 #myBoardBackdrop tbody td {
-  padding: 7px 0;
+    padding: 7px 0;
 }
 
 #myBoardBackdrop .delBtn {
-  padding: 2.5px 5px;
-  width: 60%;
-  font-size: 12px;
+    padding: 2.5px 5px;
+    width: 60%;
+    font-size: 12px;
 }
 
 #myBoardBackdrop .btnBox {
-  padding: 15px 0;
-  gap: 10px;
+    padding: 15px 0;
+    gap: 10px;
 }
 
 @media (max-width:1325px) {
-  #myBoardBackdrop .headTable tr th:first-child {
-      width: 50%;
-  }
+    #myBoardBackdrop .headTable tr th:first-child {
+        width: 50%;
+    }
 
-  #myBoardBackdrop .headTable tr th:nth-child(n+2) {
-      width: 10%;
-  }
+    #myBoardBackdrop .headTable tr th:nth-child(n+2) {
+        width: 10%;
+    }
 
-  #myBoardBackdrop .headTable thead th {
-      padding: 10px 0;
-  }
+    #myBoardBackdrop .headTable thead th {
+        padding: 10px 0;
+    }
 
-  #myBoardBackdrop .bodyTable tbody tr td:first-child {
-      width: 50%;
-  }
+    #myBoardBackdrop .bodyTable tbody tr td:first-child {
+        width: 50%;
+    }
 
-  #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
-      width: 10%;
-  }
+    #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
+        width: 10%;
+    }
 }
 
 @media (max-width:1200px) {
-  #myBoardBackdrop .headTable tr th:first-child,
-  #myBoardBackdrop .bodyTable tbody tr td:first-child {
-      width: 50%;
-  }
+    #myBoardBackdrop .headTable tr th:first-child,
+    #myBoardBackdrop .bodyTable tbody tr td:first-child {
+        width: 50%;
+    }
 
-  #myBoardBackdrop .headTable tr th:nth-child(n+2),
-  #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
-      width: 10%;
-  }
+    #myBoardBackdrop .headTable tr th:nth-child(n+2),
+    #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
+        width: 10%;
+    }
 
-  #myBoardBackdrop .headTable tr th:nth-child(2),
-  #myBoardBackdrop .headTable tr th:nth-child(3),
-  #myBoardBackdrop .bodyTable tbody tr td:nth-child(3),
-  #myBoardBackdrop .bodyTable tbody tr td:nth-child(2) {
-      display: none;
-  }
+    #myBoardBackdrop .headTable tr th:nth-child(2),
+    #myBoardBackdrop .headTable tr th:nth-child(3),
+    #myBoardBackdrop .bodyTable tbody tr td:nth-child(3),
+    #myBoardBackdrop .bodyTable tbody tr td:nth-child(2) {
+        display: none;
+    }
 
-  #myBoardBackdrop .headTable thead th {
-      padding: 10px 0;
-  }
+    #myBoardBackdrop .headTable thead th {
+        padding: 10px 0;
+    }
 }
 
 @media (max-width:768px) {
-  #myBoardBackdrop .headTable tr th:first-child,
-  #myBoardBackdrop .bodyTable tbody tr td:first-child {
-      width: 30%;
-  }
+    #myBoardBackdrop .headTable tr th:first-child,
+    #myBoardBackdrop .bodyTable tbody tr td:first-child {
+        width: 30%;
+    }
 
-  #myBoardBackdrop .headTable tr th:nth-child(n+2),
-  #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
-      width: 10%;
-  }
+    #myBoardBackdrop .headTable tr th:nth-child(n+2),
+    #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
+        width: 10%;
+    }
 
 
-  #myBoardBackdrop .headTable tr th:nth-child(2),
-  #myBoardBackdrop .headTable tr th:nth-child(3),
-  #myBoardBackdrop .bodyTable tbody tr td:nth-child(3),
-  #myBoardBackdrop .bodyTable tbody tr td:nth-child(2),
-  #myBoardBackdrop .bodyTable tbody tr td label {
-      display: none;
-  }
+    #myBoardBackdrop .headTable tr th:nth-child(2),
+    #myBoardBackdrop .headTable tr th:nth-child(3),
+    #myBoardBackdrop .bodyTable tbody tr td:nth-child(3),
+    #myBoardBackdrop .bodyTable tbody tr td:nth-child(2),
+    #myBoardBackdrop .bodyTable tbody tr td label {
+        display: none;
+    }
 
-  #myBoardBackdrop .bodyTable tbody tr td .form-switch {
-      /* display: block; */
-  }
+    #myBoardBackdrop .bodyTable tbody tr td .form-switch {
+        /* display: block; */
+    }
 
-  #myBoardBackdrop .bodyTable tbody tr td .form-switch input {
-      margin: 0 auto;
-      font-size: 1.5rem;
-  }
+    #myBoardBackdrop .bodyTable tbody tr td .form-switch input {
+        margin: 0 auto;
+        font-size: 1.5rem;
+    }
 
-  #myBoardBackdrop .headTable thead th {
-      padding: 10px 0;
-  }
+    #myBoardBackdrop .headTable thead th {
+        padding: 10px 0;
+    }
 }
 
 /* 삭제 모달 */
 #delModal p {
-  font-size: 1.3rem;
-  font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 /* 게시판 설정 모달 */
 #boardSettingBackdrop .modal-dialog {
-  min-width: 30%;
+    min-width: 30%;
 }
 
 #boardSettingBackdrop .settingsBox {
-  padding: 15px 5px;
+    padding: 15px 5px;
 }
 
 #boardSettingBackdrop .settingsBox .topBox {
-  margin-bottom: 35px;
+    margin-bottom: 35px;
 }
 
 #boardSettingBackdrop .settingsBox .form-floating:first-child {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #boardSettingBackdrop .settingsBox .checkSettingsBox {
-  margin-bottom: 10px;
-  gap: 50px;
+    margin-bottom: 10px;
+    gap: 50px;
 }
 
 #boardSettingBackdrop .settingsBox .prefaceBox .prefaceListBox {
-  border: 1px solid #d9d9d9;
-  height: 150px;
-  overflow-y: scroll;
+    border: 1px solid #d9d9d9;
+    height: 150px;
+    overflow-y: scroll;
 }
 
 #boardSettingBackdrop .settingsBox .prefaceBox #button-addon2 {
-  border: 1px solid #d9d9d9;
+    border: 1px solid #d9d9d9;
 }
 
 #boardSettingBackdrop .prefaceList {
-  padding: 0;
+    padding: 0;
 }
 
 #boardSettingBackdrop .prefaceListBox .prefaceColumn {
-  display: flex;
-  justify-content: start;
-  border-bottom: 1px solid #ddd;
-  padding: 5px;
+    display: flex;
+    justify-content: start;
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
 }
 
 #boardSettingBackdrop .prefaceColumn>li:first-child {
-  flex: 2;
+    flex: 2;
 }
 
 #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
-  width: 1.8vw;
-  text-align: center;
+    width: 1.8vw;
+    text-align: center;
 }
 
 #boardSettingBackdrop .prefaceColumn li {
-  cursor:pointer
+    cursor:pointer
+}
+
+.ck-editor__editable { height: 500px; }
+.ck-content { font-size: 15px; }
+
+.btn.btn-secondary {
+    background-color: #efefef;
+    border-color: #efefef;
+    color: black;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.order_control > a {
+    text-decoration: none;
+    color: black;
+}
+
+table {
+    text-align: center;
+    font-size: 14px;
+}
+
+thead {
+    line-height: 30px;
+}
+
+table tr td:nth-child(2) {
+    text-align: left;
+}
+
+table tr td:nth-child(6) {
+    padding: 6px;
+}
+
+td > a {
+    text-decoration: none;
+    color: black;
+}
+
+tr td:nth-child(2) > a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+#post-list td:nth-child(2) > a:hover {
+    text-decoration: underline;
+    color: black;
+    cursor: pointer;
+}
+
+/* 말머리 너비 */
+th:nth-child(1) {
+    width: 160px;
+}
+
+th:nth-child(2) {
+
+}
+
+/* 작성자 너비 */
+th:nth-child(3) {
+    width: 115px;
+}
+
+/* 작성일 너비 */
+th:nth-child(4) {
+    width: 110px;
+}
+
+/* 조회 너비 */
+th:nth-child(5) {
+    width: 80px;
+}
+
+/* 첨부 너비 */
+th:nth-child(6) {
+    width: 70px;
+}
+
+.form-select:hover {
+    cursor: pointer;
+}
+
+#page-numbers {
+    display: flex;
+    justify-content: center;
+}
+
+
+#page-numbers button {
+    background-color: white;
+    border-style: none;
+    margin: 5px;
+}
+
+#page-numbers button.active {
+    color: dodgerblue;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: thin;
+    border-radius: 5px;
+}
+
+#boardDetailTitle {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+#boardDetailContent {
+    color: gray;
+    font-size: 15px;
+    margin: 0;
+}
+
+.card-body {
+    border-radius: 5px;
+    background: white;
+    border: #efefef solid 1px;
+    padding: 10px;
+}
+
+#commentInput {
+    border: none;
+    margin-bottom: 10px;
+}
+
+#reply-input {
+    border: none;
+    margin-bottom: 10px;
+    width: 900px;
+}
+
+#addComment{
+    background-color: aliceblue;
+    border-color: aliceblue;
+    color: cornflowerblue;
+    font-weight: bold;
+}
+
+#reply-submit1 {
+    background-color: aliceblue;
+    border-color: aliceblue;
+    color: cornflowerblue;
+    font-weight: bold;
+}
+
+.commtInsert, .replyUpdate, .commtUpdate, .replyDelete, .commtDelete {
+    border: none;
+    font-size: 14px;
+    background-color: white;
+    color: gray;
+}
+
+.commtInsert:hover, .replyUpdate:hover, .commtUpdate:hover, .commtDelete:hover, .replyDelete:hover {
+    text-decoration: underline;
+}
+
+#filePopUpBtn {
+    background-color: white;
+    color: black;
+    border-color: white;
+}
+
+.user-info {
+    text-decoration: none;
+    color: black;
+}
+
+.user-info:hover {
+    cursor: pointer;
+}
+
+.user-info-wrapper {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+    font-weight: normal;
+    padding: 20px;
+    width: 330px;
+    height: 160px;
+}
+
+.user-name, .user-email, .user-phone {
+    margin-left: 10px;
+}
+
+.user-email, .user-phone {
+    margin: 10px 0 0 10px;
 }
 
 @media (max-width:1325px) {
-  #boardSettingBackdrop .prefaceColumn>li:first-child {
-      flex: 1;
-  }
+    #boardSettingBackdrop .prefaceColumn>li:first-child {
+        flex: 1;
+    }
 
-  #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
-      width: 10%;
-      text-align: center;
-  }
+    #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
+        width: 10%;
+        text-align: center;
+    }
 }
 
 @media (max-width:1200px) {
-  #boardSettingBackdrop .prefaceColumn>li:first-child {
-      flex: 1;
-  }
+    #boardSettingBackdrop .prefaceColumn>li:first-child {
+        flex: 1;
+    }
 
-  #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
-      width: 10%;
-      text-align: center;
-  }
+    #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
+        width: 10%;
+        text-align: center;
+    }
 }
 
 @media (max-width:768px) {
-  #boardSettingBackdrop .prefaceColumn>li:first-child {
-      flex: 1;
-  }
+    #boardSettingBackdrop .prefaceColumn>li:first-child {
+        flex: 1;
+    }
 
-  #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
-      width: 10%;
-      text-align: center;
-  }
+    #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
+        width: 10%;
+        text-align: center;
+    }
 }
 
