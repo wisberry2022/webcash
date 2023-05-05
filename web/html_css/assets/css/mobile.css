@@ -1,0 +1,129 @@
+@media (max-width:768px) {
+
+  /* 게시판 참여자 모달(반응형) */
+
+  #assignBackdrop .modal-dialog {
+    max-width: 90%;
+  }
+
+  #assignBackdrop .scrollbox {
+    padding: 0 .5rem;
+    border: .1rem solid #ddd;
+  }
+
+  #assignBackdrop table tbody tr td {
+    font-size: 13px;
+  }
+
+  #assignBackdrop table tbody tr td:first-child {
+    width: 15vw;
+  }
+
+  #assignBackdrop table tbody tr td:first-child strong {
+    max-width: 15vw;
+  }
+
+  #assignBackdrop table tbody tr td:nth-child(2)::after {
+    height: 5vw;
+  }
+
+  #assignBackdrop table tbody tr td:last-child {
+    width: 20%;
+    cursor: none;
+  }
+
+  #assignBackdrop .footerBtnBox button {
+    width: 25% !important;
+    font-size: 12px;
+  }
+
+  #assignBackdrop .invitingReminderBox button {
+    width: 80%;
+    font-size: 12px;
+  }
+
+  /* 내 게시판 관리 모달(반응형) */
+
+  #myBoardBackdrop .modal-dialog {
+    max-width: 90%;
+  }
+
+  #myBoardBackdrop .headTable tr th {
+    font-size: 13px;
+  }
+
+  #myBoardBackdrop .headTable tr th:first-child {
+    width: 30%;
+  }
+
+  #myBoardBackdrop .bodyTable tbody tr td:first-child {
+    max-width: 30vw;
+    min-width: 20%;
+    font-size: 13px;
+  }
+
+  #myBoardBackdrop .bodyTable tbody tr td:first-child strong {
+    display: block;
+    max-width: 40vw;
+    margin: 0 auto;
+  }
+
+  #myBoardBackdrop .bodyTable tbody tr td:nth-child(4),
+  #myBoardBackdrop .bodyTable tbody tr td:nth-child(5) {
+    width: 20%;
+  }
+
+  #myBoardBackdrop .bodyTable tbody tr td:nth-child(4) {
+    padding: 0;
+  }
+
+  #myBoardBackdrop .bodyTable tbody tr td:nth-child(4) .form-switch {
+    justify-content: center;
+  }
+
+  #myBoardBackdrop .bodyTable tbody tr td:nth-child(4) input {
+    margin-left: -12px;
+    margin-top: 11px;
+    width: 50%;
+    font-size: 15px;
+  }
+
+  #myBoardBackdrop .headTable tr th:nth-child(2),
+  #myBoardBackdrop .headTable tr th:nth-child(3),
+  #myBoardBackdrop .bodyTable tbody tr td:nth-child(2),
+  #myBoardBackdrop .bodyTable tbody tr td:nth-child(3),
+  #myBoardBackdrop .bodyTable tbody tr td label {
+    display: none;
+  }
+
+  #myBoardBackdrop .btnBox {
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  #myBoardBackdrop .btnBox button:first-child {
+    margin-top: 5px;
+  }
+
+  #myBoardBackdrop .btnBox button {
+    font-size: 14px;
+    width: 15%;
+    height: 35px;
+  }
+
+  /* 게시판 설정 모달(반응형) */
+
+  #boardSettingBackdrop .modal-dialog {
+    max-width: 90%;
+  }
+
+  #boardSettingBackdrop .prefaceColumn>li:first-child {
+    flex: 1;
+  }
+
+  #boardSettingBackdrop .prefaceColumn>li:nth-child(n+2) {
+    width: 10%;
+    text-align: center;
+  }
+
+}
