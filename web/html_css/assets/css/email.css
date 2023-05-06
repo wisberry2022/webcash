@@ -38,7 +38,7 @@ outline: 1px solid #000;
 
 .targetBox {
   padding: 1rem 0;
-  height: 52%;
+  height: 62%;
   overflow-y: scroll;
   border-bottom: 1px solid #d9d9d9;
 }
@@ -116,4 +116,3 @@ outline: 1px solid #000;
 .mailContentBox textarea {
   resize: none;
 }
-

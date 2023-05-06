@@ -1,0 +1,52 @@
+@media (max-width:768px) {
+
+  #mainContent {
+    outline: 1px solid #000;
+    width: 100% !important;
+  }
+
+  #mainContent .container>div:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+  }
+
+  #mainContent .container>div:first-child p#boardDetailTitle,
+  #mainContent .container>div:first-child p#boardDetailContent {
+    max-width: 14rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  #mainContent .container>div:first-child p#boardDetailTitle {
+    margin-bottom: 0;
+    font-size: 1.4rem;
+  }
+
+  #mainContent .container>div:first-child p#boardDetailContent {
+    font-size: .9rem;
+  }
+
+  #mainContent .container>div:first-child span {
+    margin-top: 5px;
+  }
+
+
+  #mainContent .iconBox .headlessUl {
+    margin-top: -10px;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  #mainContent .iconBox .headlessUl>li:nth-child(-n+2) {
+    display: none !important;
+  }
+
+  /* 여기서부터는 프로젝트에 반영하지 않은 코드임  */
+
+  /* #searchArticle #searchForm {
+    outline: 1px solid #000;
+  } */
+}

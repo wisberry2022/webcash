@@ -1,0 +1,80 @@
+@media (max-width:768px) {
+  .emailInvite {
+    display: none;
+    width: 90%;
+    height: auto;
+    z-index: 999;
+  }
+
+  .topBox {
+    border-bottom: 1px solid #d9d9d9;
+  }
+
+  i {
+    cursor: default;
+  }
+
+  .emailTitle {
+    background-color: #F0F8FF;
+  }
+
+  .emailTitle h3 {
+    font-size: 1rem;
+  }
+
+  .emailTitle .mobileOnly {
+    font-size: .8rem;
+  }
+
+  .targetBox {
+    padding: 5px 0;
+    height: 40%;
+    overflow-y: scroll;
+  }
+
+  .targetBox .table thead th {
+    display: none;
+  }
+
+  .targetBox .table tbody td {
+    font-size: .8rem;
+  }
+
+  .targetBox .table tbody th {
+    width: 3%;
+  }
+
+  .targetBox .table tbody th input {
+    display: block;
+    margin-top: 1px;
+  }
+
+  .targetBox .table .profileCell {
+    display: none !important;
+  }
+
+  .targetBox .table .dvsnCell {
+    display: none;
+  }
+
+  .mailSendBox {
+    margin-top: 9px;
+    padding: 1rem 0;
+  }
+
+  .mailSendBox strong {
+    display: flex;
+    align-items: center;
+    font-size: .7rem;
+  }
+
+  .mailSendBox .mailInput::placeholder {
+    font-size: 13px;
+  }
+
+  .mailBtnBox button {
+    width: 25%;
+    font-size: 11px;
+  }
+
+}

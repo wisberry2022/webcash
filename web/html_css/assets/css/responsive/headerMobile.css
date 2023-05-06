@@ -2,11 +2,17 @@
 
   #header .header-left {
     margin: 0;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
   }
 
   #header h1 a {
     display: block;
+  }
+
+  #header h6 {
+    display: none;
   }
 
   #header h6::after {
@@ -15,7 +21,6 @@
 
   #header .header-left h5 {
     display: block;
-    margin-left: 180px;
     padding: 0;
   }
 

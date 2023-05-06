@@ -1,19 +1,58 @@
 /* 헤더/즐겨찾기/메인 컨텐츠 영역 */
 
 #sideBarTap {
-  /*border: 1px solid black;*/
+  border: 1px solid black;
   height: 50px;
-  /*width: 100%;*/
+  width: 100%;
 }
 
 #header {
+  display: flex;
+  justify-content: space-between;
   height: 47px;
   padding: 8px;
   border-bottom: 2px solid #4e72be;
 }
 
 .header-left {
+  display: flex;
   margin-left: 15px;
+}
+
+#header h1 {
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+#header h1 a {
+  display: block;
+}
+
+#header h1 img {
+  display: block;
+}
+
+#header h6 {
+  position: relative;
+  line-height: 1.9rem;
+  font-size: 18px;
+}
+
+#header h6::after {
+  content: '';
+  position: absolute;
+  right: -14%;
+  top: 30%;
+  width: 1px;
+  height: 1.2rem;
+  background-color: #ddd;
+}
+
+#header h5 {
+  padding: 0 30px;
+  line-height: 1.9rem;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .logo {
@@ -34,6 +73,20 @@
 
 #mainContent {
   padding: 0px;
+}
+
+.header-right {
+  position: relative;
+}
+
+.header-right::after {
+  content: '';
+  position: absolute;
+  left: -7%;
+  top: 19%;
+  width: 1px;
+  height: 1.2rem;
+  background-color: #ddd;
 }
 
 .header-right>a {
@@ -347,29 +400,26 @@ h2 {
 }
 
 .inviteBox {
+  position: relative;
   margin-bottom: 0px;
 }
 
-
-.defaultAdminBox,
-.defaultUserBox {
-  position: relative;
-  margin-bottom: 50px;
-}
-
-.inviteBox p,
-.defaultAdminBox p,
-.afterAdminBox p,
-.defaultUserBox p {
+.inviteBox p {
   margin-bottom: 10px;
   padding-left: 5px;
   font-size: 15px;
   font-weight: 600;
 }
 
-.inviteBox .form-control {
+.inviteBox input {
   margin-bottom: 10px;
   cursor: pointer;
+}
+
+.inviteBox i {
+  position: absolute;
+  top: 0;
+  right: 4%;
 }
 
 #assignBackdrop .addList {
@@ -377,13 +427,13 @@ h2 {
   flex-wrap: wrap;
   justify-content: start;
   gap: .2rem;
-  margin-bottom: 8px;
+  margin-bottom: .5rem;
   padding: 5px;
   max-height: 10vh;
-  min-height: 100px;
   overflow-y: scroll;
   border: lightgray solid 1px;
   border-radius: 5px;
+  min-height: 100px;
 }
 
 #assignBackdrop .addList strong {
@@ -412,12 +462,13 @@ h2 {
 }
 
 #assignBackdrop table tbody tr td:first-child {
-  width: 6vw;
+  width: 5vw;
+
 }
 
 #assignBackdrop table tbody tr td:first-child strong {
   display: block;
-  max-width: 6vw;
+  max-width: 5vw;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -427,17 +478,20 @@ h2 {
   position: relative;
 }
 
+#assignBackdrop table tbody tr td:nth-child(2) span {
+  padding: 0 5px;
+}
+
 #assignBackdrop table tbody tr td:nth-child(2)::after {
   content: '';
   display: block;
   position: absolute;
   top: 50%;
-  left: -2.5%;
+  left: 0;
   transform: translateY(-50%);
   width: 1px;
   height: 1vw;
   background-color: #d9d9d9;
-
 }
 
 #assignBackdrop table tbody tr td:last-child {
@@ -454,6 +508,20 @@ h2 {
 #assignBackdrop table tbody tr td:last-child .iconBox span {
   font-size: 12px;
   font-weight: 600;
+}
+
+#assignBackdrop .footerBtnBox {
+  flex: 2;
+  justify-content: flex-end;
+}
+
+#assignBackdrop .invitingReminderBox {
+  flex: 1;
+}
+
+#assignBackdrop .modal-footer {
+  margin: 0 auto;
+  width: 95%;
 }
 
 /* 내 게시판 관리 모달 */
@@ -517,12 +585,7 @@ h2 {
 }
 
 #myBoardBackdrop .bodyTable tbody tr td {
-  /* outline: 1px solid #000; */
   font-size: .9vw;
-}
-
-#myBoardBackdrop .bodyTable tbody tr td>* {
-  /* outline: 1px solid #000; */
 }
 
 #myBoardBackdrop .bodyTable tr td:nth-child(n+2) {
@@ -587,6 +650,7 @@ h2 {
   width: 10%;
   height: 35px;
 }
+
 
 /* 삭제 모달 */
 #delModal p {

@@ -1,0 +1,63 @@
+/* 아직 프로젝트에 반영되지 않은 코드 */
+
+@media (max-width: 768px) {
+
+  #articleContent .row {
+    display: flex;
+    justify-content: space-between;
+    width: 35rem;
+  }
+
+  #articleContent .row div {
+    width: 35%;
+  }
+
+  #articleContent .row div:first-child {
+    margin-left: -.9rem;
+  }
+
+  #articleContent .row div:first-child button {
+    border: 1px solid #ced4da;
+  }
+
+  #articleContent .row div:last-child {
+    margin-right: -.6rem;
+  }
+
+  /* 말머리 너비 */
+  #articleContent th:nth-child(1),
+  #articleContent th:last-child,
+  #articleContent th:nth-child(4),
+  #articleContent td:last-child,
+  #articleContent td:first-child,
+  #articleContent td:nth-child(4) {
+    display: none;
+  }
+
+  #articleContent td:nth-child(2),
+  #articleContent td:nth-child(3) {
+    max-width: 30vw;
+  }
+
+  #articleContent td:nth-child(2) a,
+  #articleContent td:nth-child(3) a {
+    display: block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+  }
+
+  /* 작성자 너비 */
+  #articleContent th:nth-child(3) {
+    width: 100px;
+  }
+
+
+  /* 조회 너비 */
+  #articleContent th:nth-child(5) {
+    width: 80px;
+  }
+
+}
