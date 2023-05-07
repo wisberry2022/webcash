@@ -1,0 +1,276 @@
+/* 프로젝트에 아직 반영되지 않은 코드 */
+
+@media (max-width:768px) {
+
+  #article-view {
+    width: 100%;
+  }
+
+  #article-view .container:first-child {
+    padding: 0;
+  }
+
+  #article-view .container:first-child>.row:first-child {
+    display: flex;
+  }
+
+  #article-view #update-delete-button {
+    display: flex;
+    gap: 0;
+    margin-left: 10px;
+  }
+
+  #article-view>.container:first-child button {
+    border: 1px solid #ced4da;
+    width: 55px;
+    font-size: 12px;
+  }
+
+
+  #article-view .container:first-child>.row div:last-child {
+    margin-right: 3%;
+    margin-left: -13%;
+    width: 30%;
+  }
+
+  #article-view .container:first-child>.row div:last-child button:nth-child(-n+2) {
+    display: none;
+  }
+
+  /* 상세보기 메인 - 게시글 정보 및 글쓴이 정보 */
+
+  #article-view #article-content {
+    padding: 0;
+  }
+
+  #article-view #article-content #content-frame {
+    margin: 0 auto;
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  #article-view #article-ttl {
+    margin: 0 auto;
+    padding: 20px 15px 0 15px;
+    width: 550px;
+  }
+
+  #article-view #article-ttl span:first-child {
+    display: none;
+  }
+
+  #article-view #article-ttl span {
+    position: static !important;
+    display: block;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  #article-view #article-content .writerInfo {
+    position: relative;
+    width: 100%;
+  }
+
+  #article-view .writerInfo .thumb_area {
+    position: absolute;
+    top: -100%;
+    right: 0;
+    margin-left: 0 !important;
+    margin-bottom: 0;
+    width: 15%;
+  }
+
+  #article-view .writerInfo .profile_area {
+    padding-right: 10px;
+    width: 100%;
+  }
+
+  #article-view .writerInfo .profile_area button {
+    margin-top: 5px;
+  }
+
+  #article-view .writerInfo .profile_area .profile_info {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto 0 auto !important;
+    width: 100%;
+  }
+
+  #article-view .writerInfo .profile_area .article_info {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+    margin: 0 auto !important;
+    width: 100%;
+  }
+
+  /* 상세보기 메인 - 게시글 */
+
+  #article-content .article_container {
+    width: 100%;
+  }
+
+  #article-content .article_container .article_viewer {
+    margin: 0 auto !important;
+    padding: 35px 0;
+  }
+
+  #article-content #commentCount {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #article-content .commentBox section {
+    margin-right: .7rem;
+  }
+
+  #article-content .commentBox section .card {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #article-content .commentBox section .card .card-body {
+    margin: 0 auto;
+    border: none;
+    width: 100%;
+  }
+
+  #article-content .commentBox hr {
+    margin-bottom: .8rem !important;
+  }
+
+  #article-content .commentBox section #commentForm div {
+    margin: 0 auto;
+  }
+
+  #article-content .commentBox section #commentForm div button:first-child {
+    position: relative;
+    margin: auto 0;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #article-content .commentBox section #commentForm div button:first-child svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #article-content .commentBox section #commentForm div button:last-child {
+    width: 4rem;
+    height: 2rem;
+    font-size: .9rem;
+    line-height: 0;
+  }
+
+  /* 상세보기 메인 - 댓글 및 대댓글 */
+
+  #article-content #commentList {
+    /* outline: 1px solid #000; */
+  }
+
+  #article-content #commentList .commentContent {
+    /* outline: 1px solid #000; */
+    margin-left: 1.2rem !important;
+  }
+
+  #article-content #commentList .commentContent>div:first-child {
+    position: relative;
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  #article-content #commentList .commentContent>div:first-child img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  #article-content #commentList .commentContent .ms-3 {
+    width: 100%;
+  }
+
+  #article-content #commentList .commentContent .commtContentWriter {
+    font-size: .7rem;
+  }
+
+  #article-content #commentList .commentContent .commtContentWriter * {
+    font-size: .7rem;
+  }
+
+  #article-content #commentList .commentContent .commtContentWriter a {
+    margin-right: .5rem;
+  }
+
+  #article-content #commentList .commentContent .commtContentWriter small {
+    margin-right: .5rem;
+  }
+
+  #article-content #commentList .commentContent .commtContentWriter button {
+    font-size: .6rem;
+  }
+
+  #article-content #commentList .commentContent .commtContent,
+  #article-content #commentList .replyContent {
+    width: 94%;
+    font-size: .8rem;
+  }
+
+  #article-content #commentList .commentContent .commtContentWriter .user-info-wrapper {
+    /* outline: 1px solid #000; */
+    padding: 0;
+    width: 45%;
+    height: auto;
+  }
+
+  #article-content #commentList .commentContent .user-info-wrapper .user-info-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  #article-content #commentList .user-info-content img {
+    margin-top: .2rem;
+    margin-left: .6rem;
+    width: 25px;
+    height: 25px;
+  }
+
+  #article-content #commentList .user-info-content .user-email {
+    width: 10rem;
+  }
+
+  #article-content #commentList .user-info-content .user-email svg,
+  #article-content #commentList .user-info-content .user-phone svg {
+    margin-bottom: .2rem;
+  }
+
+  #article-content #commentList #reply-form {
+    outline: 1px solid #000;
+    /* position: static; */
+    width: 89%;
+  }
+
+  #article-content #commentList #reply-form form>textarea {
+    width: 100%;
+    resize: none;
+  }
+
+  #article-content #commentList #reply-form form>div {
+    margin: 0 auto;
+  }
+
+  #article-content #commentList #reply-form form>div button {
+    font-size: .8rem;
+  }
+
+}

@@ -162,4 +162,33 @@
     text-align: center;
   }
 
+  /* 아직 프로젝트에 반영되지 않은 코드 */
+
+  #delModal {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  #delModal .modal-header {
+    padding: 3px 15px;
+  }
+
+  #delModal .modal-header h2 {
+    font-size: 1rem !important;
+  }
+
+  #delModal .modal-header button {
+    width: 8px;
+    height: 8px;
+  }
+
+  #delModal .modal-body p {
+    margin-bottom: 1px;
+    font-size: 1.2rem;
+  }
+
+  #delModal .modal-footer>* {
+    width: 30%;
+    font-size: .8rem;
+  }
 }

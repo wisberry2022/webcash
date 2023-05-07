@@ -1,6 +1,8 @@
-/* 아직 프로젝트에 반영되지 않은 코드 */
-
 @media (max-width: 768px) {
+
+  #articleContent #article-list {
+    display: none;
+  }
 
   #articleContent .row {
     display: flex;
@@ -8,7 +10,7 @@
     width: 35rem;
   }
 
-  #articleContent .row div {
+  #articleContent #article-list .row div {
     width: 35%;
   }
 
@@ -25,22 +27,22 @@
   }
 
   /* 말머리 너비 */
-  #articleContent th:nth-child(1),
-  #articleContent th:last-child,
-  #articleContent th:nth-child(4),
-  #articleContent td:last-child,
-  #articleContent td:first-child,
-  #articleContent td:nth-child(4) {
+  #articleContent #article-list th:nth-child(1),
+  #articleContent #article-list th:last-child,
+  #articleContent #article-list th:nth-child(4),
+  #articleContent #article-list td:last-child,
+  #articleContent #article-list td:first-child,
+  #articleContent #article-list td:nth-child(4) {
     display: none;
   }
 
-  #articleContent td:nth-child(2),
-  #articleContent td:nth-child(3) {
+  #articleContent #article-list td:nth-child(2),
+  #articleContent #article-list td:nth-child(3) {
     max-width: 30vw;
   }
 
-  #articleContent td:nth-child(2) a,
-  #articleContent td:nth-child(3) a {
+  #articleContent #article-list td:nth-child(2) a,
+  #articleContent #article-list td:nth-child(3) a {
     display: block;
     max-width: 100%;
     text-overflow: ellipsis;
@@ -50,13 +52,13 @@
   }
 
   /* 작성자 너비 */
-  #articleContent th:nth-child(3) {
+  #articleContent #article-list th:nth-child(3) {
     width: 100px;
   }
 
 
   /* 조회 너비 */
-  #articleContent th:nth-child(5) {
+  #articleContent #article-list th:nth-child(5) {
     width: 80px;
   }
 

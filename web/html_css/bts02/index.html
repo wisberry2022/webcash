@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../assets/css/custom_index.css" />
+  <link rel="stylesheet" href="../assets/css/index.css" />
   <link rel="stylesheet" href="../assets/css/email.css" />
   <link rel="stylesheet" href="../assets/css/responsive/mobile.css" />
   <link rel="stylesheet" href="../assets/css/responsive/headerMobile.css" />
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../assets/css/responsive/categoryMobile.css" />
   <link rel="stylesheet" href="../assets/css/responsive/sideBarMobile.css" />
   <link rel="stylesheet" href="../assets/css/responsive/articleMobile.css" />
+  <link rel="stylesheet" href="../assets/css/responsive/articleContentMobile.css" />
   <script type="text/javascript" src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
   <script type="module" src="../assets/js/index.js"></script>
@@ -154,204 +155,342 @@
 
         <!-- content -->
         <div id="articleContent">
-          <div class="container" id="article-list"> <!-- 글쓰기 버튼 및 출력 갯수 셀렉트 -->
+          <div class="container" id="article-view"><!-- 게시글 버튼 -->
             <div class="container">
               <div class="row mt-4">
-                <!-- 글쓰기 버튼 -->
-                <div class="col-6" style="text-align: left; padding: 0px">
-                  <button type="button" class="btn btn-outline-secondary" id="write-button">
-                    <svg style="position: relative; top:-2px" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                      fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                      <path
-                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z">
+
+                <!-- 글작성자에게 보이는 버튼 (수정, 삭제) -->
+                <div class="col-6" id="update-delete-button" style="text-align: left; padding: 0px">
+                  <button type="button" class="btn btn-secondary" id="go-article-edit">수정</button>
+                  <button type="button" class="btn btn-secondary" id="go-article-delete"
+                    data-info="${JSON.stringify({id:articleId})}">삭제 </button>
+                </div>
+
+                <!-- 모두에게 보이는 버튼 (이전글, 다음글, 목록) -->
+                <div class="col-6" style="text-align: right; padding: 0px">
+                  <button type="button" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-chevron-up" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z">
                       </path>
                     </svg>
-                    글쓰기</button>
+                    이전글</button>
+                  <button type="button" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-chevron-down" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                      </path>
+                    </svg>
+                    다음글</button>
+                  <button type="button" class="btn btn-secondary" id="go-article-list">목록</button>
                 </div>
-                <!-- 게시글 출력 갯수 셀렉트 -->
-                <div class="col-6" style="text-align: right; padding: 0px">
-                  <select class="form-select" id="post-size" aria-label=".form-select-sm example"
-                    style="width: 100px; float: right;">
-                    <option value="10" selected="">10개씩</option>
-                    <option value="20">20개씩</option>
-                    <option value="50">50개씩</option>
-                    <option value="2">2개씩</option>
-                  </select>
-                </div>
+
               </div>
             </div>
-            <!-- 게시글 목록 화면 -->
-            <div class="container" style="padding: 0px;">
-              <table class="table table-hover mt-3" style="border-top: black solid 1px;">
-                <thead>
-                  <tr>
-                    <th scope="col">말머리
-                      <span class="order_control">
-                        <a href="#" name="dsnc_itnm">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
-                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path
-                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
-                            </path>
-                          </svg>
-                          <!--              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">-->
-                          <!--                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>-->
-                          <!--              </svg>-->
-                        </a>
-                      </span>
-                    </th>
-                    <th scope="col">제목
-                      <span class="order_control">
-                        <a href="#" name="ttl">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
-                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path
-                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
-                            </path>
-                          </svg>
-                        </a>
-                      </span>
-                    </th>
-                    <th scope="col">작성자
-                      <span class="order_control">
-                        <a href="#" name="rgsr_nm">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
-                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path
-                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
-                            </path>
-                          </svg>
-                        </a>
-                      </span>
-                    </th>
-                    <th scope="col">작성일
-                      <span class="order_control">
-                        <a href="#" name="rgsn_dttm">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
-                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path
-                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
-                            </path>
-                          </svg>
-                        </a>
-                      </span>
-                    </th>
-                    <th scope="col">조희
-                      <span class="order_control">
-                        <a href="#" name="iqcnt">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
-                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path
-                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
-                            </path>
-                          </svg>
-                        </a>
-                      </span>
-                    </th>
-                    <th scope="col">첨부
-                      <span class="order_control">
-                        <a href="#" name="atch_cnt">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
-                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path
-                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
-                            </path>
-                          </svg>
-                        </a>
-                      </span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody id="post-list">
-                  <tr>
-                    <td></td>
-                    <td><a>공지입니다</a></td>
-                    <td><a>심관리자s</a></td>
-                    <td>2023.05.06.</td>
-                    <td>0</td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                  <tr style="height: 38px;">
-                    <td></td>
-                    <td><a></a></td>
-                    <td><a></a></td>
-                    <td></td>
-                    <td></td>
-                    <td><a></a></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div id="pagination">
-                <ul class="pagination-list">
-                  <!-- 이 부분은 JavaScript 코드로 동적으로 생성됩니다. -->
-                  <!-- 게시글 목록 리스트 페이지네이션 -->
-                </ul>
+
+            <!-- 게시글 화면 -->
+            <div class="container" id="article-content">
+              <div class="row mt-2" id="content-frame"
+                style="border-radius: 10px; border-style: solid; border-width: 1.5px; border-color: #efefef; padding: 25px; margin-bottom: 500px">
+
+                <!-- 말머리, 제목 출력 -->
+                <div class="mb-2" id="article-ttl" style="line-height: 30px">
+                  <span id="dsncItcd"
+                    style="border-right: 1px solid lightgray; padding-right: 15px; margin-right: 15px;"></span>
+                  <span style="font-size: 25px; position: absolute;"
+                    id="ttl">공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.</span>
+                </div>
+
+                <!-- 등록자 정보 출력 -->
+                <div class="writerInfo" style="margin-right: 10px; display: flex;">
+
+                  <!-- 등록자 프로필 사진 (누르면 해당 등록자 정보 출력) -->
+                  <div class="thumb_area" style="margin-right: 10px; margin-top: 4px">
+                    <a href="#" class="thumb">
+                      <img src="https://placeimg.com/45/45/animals/sepia" alt="프로필 사진" width="45" height="45"
+                        style="border-radius: 50%">
+                    </a>
+                  </div>
+
+                  <!-- 등록자 이름, 부서명, 작성날짜, 조회수 출력 (등록자 이름 누르면 해당 등록자 정보 출력) -->
+                  <div class="profile_area">
+                    <div class="profile_info" style="margin-bottom: 5px">
+                      <button id="rgsrNm"
+                        style="background: none; border: none; text-align: left; font-weight: bold;">심관리자s</button>
+                      <span>(</span>
+                      <span id="rgsrDvsnNm">개발부</span>
+                      <span>)</span>
+                    </div>
+                    <div class="article_info" style="font-size: 14px; color: gray; margin-left: 7px;">
+                      <span class="data" id="rgsnDttm" style="margin-right: 5px;">2023.05.06. 10:33</span>
+                      <span>조회</span>
+                      <span class="count" id="iqcnt">1</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 구분선 -->
+                <hr class="vertical-line mt-4 mb-4" style="color: lightgray">
+
+                <!-- 본문 내용 + 댓글창 -->
+                <div class="article_container">
+
+                  <!-- 본문 내용 -->
+                  <div class="article_viewer" id="cntn">
+                    <p>공지입니다.</p>
+                  </div>
+                  <!-- 댓글창 -->
+                  <div class="commentBox"> <!-- 댓글 개수 -->
+                    <div id="commentCount">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        style="position: relative; top: -2px;" fill="currentColor" class="bi bi-chat-dots"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
+                        </path>
+                        <path
+                          d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z">
+                        </path>
+                      </svg>
+                      댓글 <span style="font-weight: bold">0</span>
+                    </div> <!-- 구분선 -->
+                    <hr class="vertical-line mt-2 mb-4" style="color: lightgray">
+                    <section class="mb-4">
+                      <div class="card bg-light">
+                        <div class="card-body">
+                          <form id="commentForm">
+                            <textarea class="form-control" id="commentInput" placeholder="댓글을 남겨보세요."
+                              rows="3"></textarea>
+                            <div style="display: flex">
+                              <button type="button" class="btn btn-primary" id="filePopUpBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                  class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+                                  <path
+                                    d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z">
+                                  </path>
+                                  <path
+                                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z">
+                                  </path>
+                                </svg>
+                              </button>
+                              <button type="submit" class="btn btn-primary" id="addComment"
+                                style="margin-left: auto;">등록</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section id="commentList" class="mb-4">
+                      <div class="commentContent" data-comment-id="3">
+                        <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
+                            alt="..."></div>
+                        <div class="ms-3">
+                          <div class="commtContentWriter">
+                            <a class="user-info" data-user-id="3">왕인서</a>
+
+                            <div class="user-info-wrapper" style="display: none;">
+                              <div class="user-info-content">
+                                <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
+                                <span class="user-name" style="font-weight: bold">왕인서</span>
+                                <span class="user-department" style="font-size: 13px; color: gray">null</span>
+                                <p class="user-email">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path
+                                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                    </path>
+                                  </svg> openboard@gmail.com
+                                </p>
+                                <p class="user-phone">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                      d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                    </path>
+                                  </svg> 01042136979
+                                </p>
+                              </div>
+                            </div>
+
+                            <small class="commtContentDate">2023.05.07. 11:53</small>
+
+                            <button type="button" class="commtInsert"
+                              data-info="{&quot;id&quot;:3,&quot;commt&quot;:&quot;gdgd&quot;}">답글쓰기
+                            </button>
+                            <button type="button" class="commtUpdate"
+                              data-info="{&quot;id&quot;:3,&quot;commt&quot;:&quot;gdgd&quot;}">수정
+                            </button>
+                            <button type="button" class="commtDelete" data-info="{&quot;id&quot;:3}">삭제
+                            </button>
+                          </div>
+                          <p class="card-text commtContent" style="">gdgd</p>
+
+                          <div class="d-flex" data-comment-id="5"
+                            style="border-top: whitesmoke solid 1px; padding-top: 10px; padding-bottom: 10px;">
+                            <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
+                                alt="..."></div>
+                            <div class="ms-3">
+                              <div class="commtContentWriter">
+                                <a class="user-info" data-user-id="5">왕인서</a>
+
+                                <div class="user-info-wrapper" style="display: none;">
+                                  <div class="user-info-content">
+                                    <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
+                                    <span class="user-name">왕인서</span>
+                                    <span class="user-department"
+                                      style="font-size: 13px; font-weight: normal; color: gray">null</span>
+                                    <p class="user-email">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                        <path
+                                          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                        </path>
+                                      </svg> openboard@gmail.com
+                                    </p>
+                                    <p class="user-phone">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                        </path>
+                                      </svg> 01042136979
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <small class="commtContentDate">2023.05.07. 11:53</small>
+                                <button type="button" class="replyUpdate"
+                                  data-info="{&quot;id&quot;:5,&quot;commt&quot;:&quot;대댓글&quot;}">수정</button>
+                                <button type="button" class="replyDelete" data-info="{&quot;id&quot;:5}">삭제</button>
+
+                              </div>
+                              <p class="card-text replyContent" style="">대댓글</p>
+
+                            </div>
+                          </div>
+
+                          <div class="d-flex" data-comment-id="4"
+                            style="border-top: whitesmoke solid 1px; padding-top: 10px; padding-bottom: 10px;">
+                            <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
+                                alt="..."></div>
+                            <div class="ms-3">
+                              <div class="commtContentWriter">
+                                <a class="user-info" data-user-id="4">왕인서</a>
+
+                                <div class="user-info-wrapper" style="display: none;">
+                                  <div class="user-info-content">
+                                    <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
+                                    <span class="user-name">왕인서</span>
+                                    <span class="user-department"
+                                      style="font-size: 13px; font-weight: normal; color: gray">null</span>
+                                    <p class="user-email">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                        <path
+                                          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                        </path>
+                                      </svg> openboard@gmail.com
+                                    </p>
+                                    <p class="user-phone">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                        </path>
+                                      </svg> 01042136979
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <small class="commtContentDate">2023.05.07. 11:53</small>
+                                <button type="button" class="replyUpdate"
+                                  data-info="{&quot;id&quot;:4,&quot;commt&quot;:&quot;g2g2&quot;}">수정</button>
+                                <button type="button" class="replyDelete" data-info="{&quot;id&quot;:4}">삭제</button>
+
+                              </div>
+                              <p class="card-text replyContent">g2g2</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="commentContent" data-comment-id="2">
+                        <div class="flex-shrink-0">
+                          <img width="50" height="50" class="rounded-circle" src="null" alt="...">
+                        </div>
+                        <div class="ms-3">
+                          <div class="commtContentWriter">
+                            <a class="user-info" data-user-id="2">왕인서</a>
+
+                            <div class="user-info-wrapper" style="display: none;">
+                              <div class="user-info-content">
+                                <img class="user-photo rounded-circle mb-2" alt="" width="50" height="50">
+                                <span class="user-name" style="font-weight: bold">왕인서</span>
+                                <span class="user-department" style="font-size: 13px; color: gray">null</span>
+                                <p class="user-email">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path
+                                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                    </path>
+                                  </svg> openboard@gmail.com
+                                </p>
+                                <p class="user-phone">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                      d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                    </path>
+                                  </svg> 01042136979
+                                </p>
+                              </div>
+                            </div>
+
+                            <small class="commtContentDate">2023.05.07. 11:53</small>
+
+                            <button type="button" class="commtInsert"
+                              data-info="{&quot;id&quot;:2,&quot;commt&quot;:&quot;gdgd&quot;}">답글쓰기
+                            </button>
+                            <button type="button" class="commtUpdate"
+                              data-info="{&quot;id&quot;:2,&quot;commt&quot;:&quot;gdgd&quot;}">수정
+                            </button>
+                            <button type="button" class="commtDelete" data-info="{&quot;id&quot;:2}">삭제
+                            </button>
+                          </div>
+                          <p class="card-text commtContent">gdgd</p>
+                          <div class="card-body" id="reply-form">
+                            <form>
+                              <textarea class="form-control" id="reply-input" placeholder="대댓글 작성..."></textarea>
+                              <div style="display: flex">
+                                <button type="button" class="btn btn-primary" id="filePopUpBtn">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+                                    <path
+                                      d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z">
+                                    </path>
+                                    <path
+                                      d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z">
+                                    </path>
+                                  </svg>
+                                </button>
+                                <button class="btn btn-primary" id="reply-submit1"
+                                  style="margin-left: auto;">등록</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <div id="comment">
+                      <div class="comment-info">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div id="page-numbers"></div>
             </div>
           </div>
         </div>
@@ -770,7 +909,7 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">삭제</h1>
+              <h2 class="modal-title fs-5" id="exampleModalLabel">삭제</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex justify-content-center">
@@ -870,3 +1009,196 @@
 
 
 </html>
+
+<!-- <div class="container" id="article-list">
+            <div class="container">
+              <div class="row mt-4">
+                <div class="col-6" style="text-align: left; padding: 0px">
+                  <button type="button" class="btn btn-outline-secondary" id="write-button">
+                    <svg style="position: relative; top:-2px" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                      fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z">
+                      </path>
+                    </svg>
+                    글쓰기</button>
+                </div>
+                <div class="col-6" style="text-align: right; padding: 0px">
+                  <select class="form-select" id="post-size" aria-label=".form-select-sm example"
+                    style="width: 100px; float: right;">
+                    <option value="10" selected="">10개씩</option>
+                    <option value="20">20개씩</option>
+                    <option value="50">50개씩</option>
+                    <option value="2">2개씩</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="container" style="padding: 0px;">
+              <table class="table table-hover mt-3" style="border-top: black solid 1px;">
+                <thead>
+                  <tr>
+                    <th scope="col">말머리
+                      <span class="order_control">
+                        <a href="#" name="dsnc_itnm">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
+                            </path>
+                          </svg>
+                        </a>
+                      </span>
+                    </th>
+                    <th scope="col">제목
+                      <span class="order_control">
+                        <a href="#" name="ttl">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
+                            </path>
+                          </svg>
+                        </a>
+                      </span>
+                    </th>
+                    <th scope="col">작성자
+                      <span class="order_control">
+                        <a href="#" name="rgsr_nm">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
+                            </path>
+                          </svg>
+                        </a>
+                      </span>
+                    </th>
+                    <th scope="col">작성일
+                      <span class="order_control">
+                        <a href="#" name="rgsn_dttm">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
+                            </path>
+                          </svg>
+                        </a>
+                      </span>
+                    </th>
+                    <th scope="col">조희
+                      <span class="order_control">
+                        <a href="#" name="iqcnt">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
+                            </path>
+                          </svg>
+                        </a>
+                      </span>
+                    </th>
+                    <th scope="col">첨부
+                      <span class="order_control">
+                        <a href="#" name="atch_cnt">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z">
+                            </path>
+                          </svg>
+                        </a>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="post-list">
+                  <tr>
+                    <td></td>
+                    <td><a>공지입니다</a></td>
+                    <td><a>심관리자s</a></td>
+                    <td>2023.05.06.</td>
+                    <td>0</td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                  <tr style="height: 38px;">
+                    <td></td>
+                    <td><a></a></td>
+                    <td><a></a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a></a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="pagination">
+                <ul class="pagination-list">
+                </ul>
+              </div>
+              <div id="page-numbers"></div>
+            </div>
+          </div> -->

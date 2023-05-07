@@ -1,7 +1,6 @@
 @media (max-width:768px) {
 
   #mainContent {
-    outline: 1px solid #000;
     width: 100% !important;
   }
 
