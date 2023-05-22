@@ -1,8 +1,8 @@
 @media (max-width: 768px) {
 
-  #articleContent #article-list {
+  /* #articleContent #article-list {
     display: none;
-  }
+  } */
 
   #articleContent .row {
     display: flex;

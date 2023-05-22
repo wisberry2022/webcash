@@ -1,0 +1,137 @@
+@media (max-width:768px) {
+
+  /* 게시글 등록 화면 반응형 */
+
+  #articleContent #postForm {
+    position: relative;
+  }
+
+  #articleContent #postForm>.container:first-child {
+    padding: 0;
+  }
+
+  #articleContent #postForm>.container:first-child .row {
+    margin: 0 auto;
+    padding-top: 15px;
+    width: 100%;
+  }
+
+  #articleContent #postForm>.container:first-child .row {
+    display: flex;
+    padding: 0;
+  }
+
+  #articleContent #postForm>.container:first-child .row>div:first-child {
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+  }
+
+  #articleContent #postForm>.container:first-child .row>div:first-child h3 {
+    margin: auto 0;
+  }
+  
+  #articleContent #postForm>.container:first-child .row>.col-5 {
+    position: absolute;
+    bottom: -6%;
+    right: .5rem;
+    z-index: 999;
+    width: 70%;
+    margin-top: 15px;
+    flex: 1;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+
+  #articleContent #postForm>.container:first-child .row>.col-5>button {
+    font-size: .9rem;
+    width: 45%;
+    height: 100%;
+  }
+
+  #articleContent #postForm>.container:first-child .row>.col-5>button:nth-child(2) {
+    display: none;
+  }
+
+  #articleContent #postForm>.container:last-child {
+    padding: 0;
+  }
+
+  #articleContent #postForm>.container:last-child>.row {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #articleContent #postForm>.container:last-child>.row>div:first-child {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #articleContent #postForm>.container:last-child>.row>div:first-child .container {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #articleContent #postForm>.container:last-child>.row>div:first-child .container>.row {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+  }
+
+  #articleContent #postForm>.container:last-child>.row>div:first-child .container>.row>div:first-child {
+    margin-left: .1rem;
+    padding: 0;
+    width: 55%;
+  }
+
+  #articleContent #postForm>.container:last-child>.row>div:first-child .container>.row>div:nth-child(2) {
+    padding: 0;
+    width: 40%;    
+  }
+
+  #articleContent #postForm>.container:last-child>.row>div:first-child .container>.row>div:nth-child(3) {
+    padding: 0;
+  }
+
+  #articleContent #postForm #selectBoardList {
+    width: 100%;
+  }
+
+  #articleContent #postForm #selectBoardAthrList {
+    width: 100%;
+  }
+
+  #articleContent .ck-editor .ck-toolbar {
+    margin-bottom: .8rem;
+    margin-left: .1rem !important;
+    border: none;
+    width: 95%;
+  }
+
+  #articleContent .ck-editor .ck-toolbar__items {
+    display: flex;
+    justify-content: center;
+    gap: .3rem;
+    margin-left: -.3rem !important;
+  }
+
+  #articleContent .ck-editor .ck-toolbar .ck-heading-dropdown,
+  #articleContent .ck-toolbar__items .ck-toolbar__separator,
+  #articleContent .ck-toolbar__items>button:nth-child(5),
+  #articleContent .ck-toolbar__items>button:nth-child(6),
+  #articleContent .ck-toolbar__items>button:nth-child(7),
+  #articleContent .ck-toolbar__items>button:nth-child(16),
+  #articleContent .ck-toolbar__items>button:nth-child(17) {
+    display: none;
+  }
+
+  #articleContent .ck-editor .ck-content {
+    margin-left: -.5rem !important;
+    width: 100%;
+  }
+
+  #articleContent #postForm>.container:last-child>.row>div:last-child {
+    display: none;
+  }
+}

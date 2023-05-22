@@ -16,9 +16,12 @@
   <link rel="stylesheet" href="../assets/css/responsive/sideBarMobile.css" />
   <link rel="stylesheet" href="../assets/css/responsive/articleMobile.css" />
   <link rel="stylesheet" href="../assets/css/responsive/articleContentMobile.css" />
+  <link rel="stylesheet" href="../assets/css/responsive/writeMobile.css" />
   <script type="text/javascript" src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
   <script type="module" src="../assets/js/index.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
   <title>Document</title>
 </head>
 
@@ -58,22 +61,17 @@
       <div class="sideBar col-2">
         <!-- 즐겨찾기 or 전체 탭 -->
         <div class=" container d-flex justify-content-around" id="sideBarTap" style="padding: 0px;">
-          <div class="btn sideBarTapItem" id="boardFavorite">
+          <div class="btn sideBarTapItem" id = "boardFavorite">
             <a class="nav-link" style="font-weight: bold; line-height: 30px;">
-              <svg xmlns="http://www.w3.org/2000/svg" id="bookmarkMenu"
-                style="color: gold; position: relative; top: -2px;" width="16" height="16" fill="currentColor"
-                class="bi bi-star-fill" viewBox="0 0 16 16">
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+              <svg xmlns="http://www.w3.org/2000/svg" id="bookmarkMenu" style="color: gold; position: relative; top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
               </svg>
               즐겨찾기</a>
           </div>
-          <div class="btn sideBarTapItem" id="boardList">
+          <div class="btn sideBarTapItem" id = "boardList">
             <a class="nav-link" style="font-weight: bold; line-height: 30px;">
-              <svg xmlns="http://www.w3.org/2000/svg" id="totalMenu" style="position: relative; top: -2px;" width="16"
-                height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+              <svg xmlns="http://www.w3.org/2000/svg" id="totalMenu" style="position: relative; top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
               </svg>
               전체</a>
           </div>
@@ -81,27 +79,23 @@
         <!-- 목록 리스트 -->
         <div class="container" id="boardListAll">
           <div th:each="bean:${data}">
-            <div class="d-flex justify-content-between boardLedgFrom" th:id="${bean.id}">
+            <div class="d-flex justify-content-between boardLedgFrom" th:id="${bean.id}" >
               <a class="boardListTitle" th:text="${bean.boardNm}">리스트 1</a>
-              <img type="btn" class="boardFavorite" id="favoriteTrue" th:src="@{/image/star-fill.svg}" alt=""
-                th:if="${bean.favorite == true}" />
-              <img type="btn" class="boardFavorite" id="favoriteFalse" th:src="@{/image/star.svg}" alt=""
-                th:if="${bean.favorite == false}" />
+              <img type="btn" class="boardFavorite" id="favoriteTrue"  th:src="@{/image/star-fill.svg}" alt=""  th:if="${bean.favorite == true}"/>
+              <img type="btn" class="boardFavorite" id="favoriteFalse" th:src="@{/image/star.svg}" alt=""  th:if="${bean.favorite == false}"/>
             </div>
           </div>
         </div>
         <!-- 사이드바 푸터 -->
         <div class="sideBarTapFooter">
           <!-- 새 게시판 추가 버튼 -->
-          <button type="button" id="myModal" data-bs-toggle="modal" data-bs-target="#boardAddModal"
-            class="btn btn-light">
-            <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: -1px;" width="16" height="16"
-              fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+          <button type="button" id="myModal" data-bs-toggle="modal" data-bs-target="#boardAddModal" class="btn btn-light">
+            <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: -1px;" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
             </svg> 새 게시판
           </button>
+          <div id="sideHeightControl"></div>
         </div>
       </div>
 
@@ -117,6 +111,14 @@
               aria-describedby="button-addon2">
             <button class="btn btn-outline-primary" type="button" id="searchBtn">검색</button>
           </div>
+          <ul class="d-flex d-md-none mobileOnlyMenu">
+            <li>
+              <i class="bi bi-search fs-4"></i>
+            </li>
+            <li>
+              <i class="bi bi-list fs-4"></i>
+            </li>
+          </ul>
         </div>
         <div class="container mt-3 d-flex flex-row">
           <div class="col-9">
@@ -155,343 +157,283 @@
 
         <!-- content -->
         <div id="articleContent">
-          <div class="container" id="article-view"><!-- 게시글 버튼 -->
-            <div class="container">
-              <div class="row mt-4">
-
-                <!-- 글작성자에게 보이는 버튼 (수정, 삭제) -->
-                <div class="col-6" id="update-delete-button" style="text-align: left; padding: 0px">
-                  <button type="button" class="btn btn-secondary" id="go-article-edit">수정</button>
-                  <button type="button" class="btn btn-secondary" id="go-article-delete"
-                    data-info="${JSON.stringify({id:articleId})}">삭제 </button>
+          <div class="container" id="article-write">
+            <form id="postForm">
+              <div class="container">
+                <div class="row mt-2">
+                  <div class="col-7" style="padding: 14px 0 0 0;">
+                    <h3 style="margin: 0px; font-weight: bold; padding-left: 0px">
+                      글쓰기
+                    </h3>
+                  </div>
+                  <div class="col-5" style="text-align: right; padding-right: 0px">
+                    <button type="button" class="btn btn-secondary">파일첨부</button>
+                    <button type="button" class="btn btn-light">미리보기</button>
+                    <button type="button" class="btn btn-primary" id="addArticleBtn">등록</button>
+                  </div>
                 </div>
-
-                <!-- 모두에게 보이는 버튼 (이전글, 다음글, 목록) -->
-                <div class="col-6" style="text-align: right; padding: 0px">
-                  <button type="button" class="btn btn-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                      class="bi bi-chevron-up" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd"
-                        d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z">
-                      </path>
-                    </svg>
-                    이전글</button>
-                  <button type="button" class="btn btn-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                      class="bi bi-chevron-down" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd"
-                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                      </path>
-                    </svg>
-                    다음글</button>
-                  <button type="button" class="btn btn-secondary" id="go-article-list">목록</button>
-                </div>
-
               </div>
-            </div>
-
-            <!-- 게시글 화면 -->
-            <div class="container" id="article-content">
-              <div class="row mt-2" id="content-frame"
-                style="border-radius: 10px; border-style: solid; border-width: 1.5px; border-color: #efefef; padding: 25px; margin-bottom: 500px">
-
-                <!-- 말머리, 제목 출력 -->
-                <div class="mb-2" id="article-ttl" style="line-height: 30px">
-                  <span id="dsncItcd"
-                    style="border-right: 1px solid lightgray; padding-right: 15px; margin-right: 15px;"></span>
-                  <span style="font-size: 25px; position: absolute;"
-                    id="ttl">공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.</span>
-                </div>
-
-                <!-- 등록자 정보 출력 -->
-                <div class="writerInfo" style="margin-right: 10px; display: flex;">
-
-                  <!-- 등록자 프로필 사진 (누르면 해당 등록자 정보 출력) -->
-                  <div class="thumb_area" style="margin-right: 10px; margin-top: 4px">
-                    <a href="#" class="thumb">
-                      <img src="https://placeimg.com/45/45/animals/sepia" alt="프로필 사진" width="45" height="45"
-                        style="border-radius: 50%">
-                    </a>
-                  </div>
-
-                  <!-- 등록자 이름, 부서명, 작성날짜, 조회수 출력 (등록자 이름 누르면 해당 등록자 정보 출력) -->
-                  <div class="profile_area">
-                    <div class="profile_info" style="margin-bottom: 5px">
-                      <button id="rgsrNm"
-                        style="background: none; border: none; text-align: left; font-weight: bold;">심관리자s</button>
-                      <span>(</span>
-                      <span id="rgsrDvsnNm">개발부</span>
-                      <span>)</span>
-                    </div>
-                    <div class="article_info" style="font-size: 14px; color: gray; margin-left: 7px;">
-                      <span class="data" id="rgsnDttm" style="margin-right: 5px;">2023.05.06. 10:33</span>
-                      <span>조회</span>
-                      <span class="count" id="iqcnt">1</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 구분선 -->
-                <hr class="vertical-line mt-4 mb-4" style="color: lightgray">
-
-                <!-- 본문 내용 + 댓글창 -->
-                <div class="article_container">
-
-                  <!-- 본문 내용 -->
-                  <div class="article_viewer" id="cntn">
-                    <p>공지입니다.</p>
-                  </div>
-                  <!-- 댓글창 -->
-                  <div class="commentBox"> <!-- 댓글 개수 -->
-                    <div id="commentCount">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        style="position: relative; top: -2px;" fill="currentColor" class="bi bi-chat-dots"
-                        viewBox="0 0 16 16">
-                        <path
-                          d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
-                        </path>
-                        <path
-                          d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z">
-                        </path>
-                      </svg>
-                      댓글 <span style="font-weight: bold">0</span>
-                    </div> <!-- 구분선 -->
-                    <hr class="vertical-line mt-2 mb-4" style="color: lightgray">
-                    <section class="mb-4">
-                      <div class="card bg-light">
-                        <div class="card-body">
-                          <form id="commentForm">
-                            <textarea class="form-control" id="commentInput" placeholder="댓글을 남겨보세요."
-                              rows="3"></textarea>
-                            <div style="display: flex">
-                              <button type="button" class="btn btn-primary" id="filePopUpBtn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                  class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
-                                  <path
-                                    d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z">
-                                  </path>
-                                  <path
-                                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z">
-                                  </path>
-                                </svg>
-                              </button>
-                              <button type="submit" class="btn btn-primary" id="addComment"
-                                style="margin-left: auto;">등록</button>
-                            </div>
-                          </form>
+              <!-- 구분선 -->
+              <hr style="border: solid 1px black; margin:10px 0; ">
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col-sm-12 col-md-9">
+                    <div class="container text-center">
+                      <div class="row">
+                        <div class="col-8 mb-2">
+                            <select class="form-select" id="selectBoardList" name="boardSrno" aria-label="게시판 선택">
+                                <option value="1" selected="">공지게시판</option>
+                            </select>
                         </div>
-                      </div>
-                    </section>
-
-                    <section id="commentList" class="mb-4">
-                      <div class="commentContent" data-comment-id="3">
-                        <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
-                            alt="..."></div>
-                        <div class="ms-3">
-                          <div class="commtContentWriter">
-                            <a class="user-info" data-user-id="3">왕인서</a>
-
-                            <div class="user-info-wrapper" style="display: none;">
-                              <div class="user-info-content">
-                                <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
-                                <span class="user-name" style="font-weight: bold">왕인서</span>
-                                <span class="user-department" style="font-size: 13px; color: gray">null</span>
-                                <p class="user-email">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                    <path
-                                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
-                                    </path>
-                                  </svg> openboard@gmail.com
-                                </p>
-                                <p class="user-phone">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                      d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
-                                    </path>
-                                  </svg> 01042136979
-                                </p>
-                              </div>
-                            </div>
-
-                            <small class="commtContentDate">2023.05.07. 11:53</small>
-
-                            <button type="button" class="commtInsert"
-                              data-info="{&quot;id&quot;:3,&quot;commt&quot;:&quot;gdgd&quot;}">답글쓰기
-                            </button>
-                            <button type="button" class="commtUpdate"
-                              data-info="{&quot;id&quot;:3,&quot;commt&quot;:&quot;gdgd&quot;}">수정
-                            </button>
-                            <button type="button" class="commtDelete" data-info="{&quot;id&quot;:3}">삭제
-                            </button>
-                          </div>
-                          <p class="card-text commtContent" style="">gdgd</p>
-
-                          <div class="d-flex" data-comment-id="5"
-                            style="border-top: whitesmoke solid 1px; padding-top: 10px; padding-bottom: 10px;">
-                            <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
-                                alt="..."></div>
-                            <div class="ms-3">
-                              <div class="commtContentWriter">
-                                <a class="user-info" data-user-id="5">왕인서</a>
-
-                                <div class="user-info-wrapper" style="display: none;">
-                                  <div class="user-info-content">
-                                    <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
-                                    <span class="user-name">왕인서</span>
-                                    <span class="user-department"
-                                      style="font-size: 13px; font-weight: normal; color: gray">null</span>
-                                    <p class="user-email">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                        <path
-                                          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
-                                        </path>
-                                      </svg> openboard@gmail.com
-                                    </p>
-                                    <p class="user-phone">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
-                                        </path>
-                                      </svg> 01042136979
-                                    </p>
+                        <div class="col-4 mb-2">
+                            <select class="form-select" id="selectBoardAthrList" name="dsncItcd" aria-label="말머리 선택" disabled="" style="cursor: auto;">
+                                <!--            말머리가 없을 때 -->
+                            </select>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <!-- 제목 -->
+                            <input type="text" class="form-control" id="title" name="ttl" placeholder="제목을 입력해 주세요." required="">
+                        </div>
+                        <div class="col-12 mb-2">
+                          <!-- 내용 -->
+                          <textarea name="cntn" id="editor" required="" style="display: none;"></textarea>
+                          <div class="ck ck-reset ck-editor ck-rounded-corners" role="application" dir="ltr" lang="ko" aria-labelledby="ck-editor__label_e4a3aab976f3cac78397e9ef30c80758d">
+                            <label class="ck ck-label ck-voice-label" id="ck-editor__label_e4a3aab976f3cac78397e9ef30c80758d">리치 텍스트 편집기</label>
+                            <div class="ck ck-editor__top ck-reset_all" role="presentation">
+                              <div class="ck ck-sticky-panel">
+                                <div class="ck ck-sticky-panel__placeholder" style="display: none;"></div>
+                                <div class="ck ck-sticky-panel__content">
+                                  <div class="ck ck-toolbar ck-toolbar_grouping" role="toolbar" aria-label="에디터 툴바">
+                                    <div class="ck ck-toolbar__items">
+                                      <div class="ck ck-dropdown ck-heading-dropdown">
+                                        <button class="ck ck-button ck-off ck-button_with-text ck-dropdown__button" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e923e48a0863c69701785a85bab6967fe" aria-haspopup="true">
+                                          <span class="ck ck-tooltip ck-tooltip_s">
+                                            <span class="ck ck-tooltip__text">제목</span>
+                                          </span>
+                                          <span class="ck ck-button__label" id="ck-editor__aria-label_e923e48a0863c69701785a85bab6967fe">문단</span>
+                                          <svg class="ck ck-icon ck-dropdown__arrow" viewBox="0 0 10 10">
+                                            <path d="M.941 4.523a.75.75 0 1 1 1.06-1.06l3.006 3.005 3.005-3.005a.75.75 0 1 1 1.06 1.06l-3.549 3.55a.75.75 0 0 1-1.168-.136L.941 4.523z"></path>
+                                          </svg>
+                                        </button>
+                                        <div class="ck ck-reset ck-dropdown__panel ck-dropdown__panel_se">
+                                          <ul class="ck ck-reset ck-list">
+                                            <li class="ck ck-list__item">
+                                              <button class="ck ck-button ck-heading_paragraph ck-on ck-button_with-text" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e8710c4a424adbeb93ef12082fac69146">
+                                                <span class="ck ck-tooltip ck-tooltip_s ck-hidden">
+                                                  <span class="ck ck-tooltip__text"></span>
+                                                </span>
+                                                <span class="ck ck-button__label" id="ck-editor__aria-label_e8710c4a424adbeb93ef12082fac69146">
+                                                  문단
+                                                </span>
+                                              </button>
+                                            </li>
+                                            <li class="ck ck-list__item">
+                                              <button class="ck ck-button ck-heading_heading1 ck-off ck-button_with-text" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ed61f46548c4a5131c0b02905be98696b">
+                                                <span class="ck ck-tooltip ck-tooltip_s ck-hidden">
+                                                  <span class="ck ck-tooltip__text"></span>
+                                                </span>
+                                                <span class="ck ck-button__label" id="ck-editor__aria-label_ed61f46548c4a5131c0b02905be98696b">제목 1</span>
+                                              </button>
+                                            </li>
+                                            <li class="ck ck-list__item">
+                                              <button class="ck ck-button ck-heading_heading2 ck-off ck-button_with-text" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ede152882c6b5181a1da7961641a43b2c">
+                                                <span class="ck ck-tooltip ck-tooltip_s ck-hidden">
+                                                  <span class="ck ck-tooltip__text"></span>
+                                                </span>
+                                                <span class="ck ck-button__label" id="ck-editor__aria-label_ede152882c6b5181a1da7961641a43b2c">제목 2</span>
+                                              </button>
+                                            </li>
+                                            <li class="ck ck-list__item">
+                                              <button class="ck ck-button ck-heading_heading3 ck-off ck-button_with-text" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e169ad79926b31cd6f85592b3fac2af18">
+                                                <span class="ck ck-tooltip ck-tooltip_s ck-hidden">
+                                                  <span class="ck ck-tooltip__text"></span>
+                                                </span>
+                                                <span class="ck ck-button__label" id="ck-editor__aria-label_e169ad79926b31cd6f85592b3fac2af18">제목 3</span>
+                                              </button>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                      <span class="ck ck-toolbar__separator"></span>
+                                      <button class="ck ck-button ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ebca9dd945747168a2bc92c8bae2ca68f" aria-pressed="false">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20">
+                                          <path d="M10.187 17H5.773c-.637 0-1.092-.138-1.364-.415-.273-.277-.409-.718-.409-1.323V4.738c0-.617.14-1.062.419-1.332.279-.27.73-.406 1.354-.406h4.68c.69 0 1.288.041 1.793.124.506.083.96.242 1.36.478.341.197.644.447.906.75a3.262 3.262 0 0 1 .808 2.162c0 1.401-.722 2.426-2.167 3.075C15.05 10.175 16 11.315 16 13.01a3.756 3.756 0 0 1-2.296 3.504 6.1 6.1 0 0 1-1.517.377c-.571.073-1.238.11-2 .11zm-.217-6.217H7v4.087h3.069c1.977 0 2.965-.69 2.965-2.072 0-.707-.256-1.22-.768-1.537-.512-.319-1.277-.478-2.296-.478zM7 5.13v3.619h2.606c.729 0 1.292-.067 1.69-.2a1.6 1.6 0 0 0 .91-.765c.165-.267.247-.566.247-.897 0-.707-.26-1.176-.778-1.409-.519-.232-1.31-.348-2.375-.348H7z"></path>
+                                        </svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">굵게 (Ctrl+B)</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_ebca9dd945747168a2bc92c8bae2ca68f">굵게</span>
+                                      </button>
+                                      <button class="ck ck-button ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e0eaa262b545a0e6246625f6ad9808e64" aria-pressed="false">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="m9.586 14.633.021.004c-.036.335.095.655.393.962.082.083.173.15.274.201h1.474a.6.6 0 1 1 0 1.2H5.304a.6.6 0 0 1 0-1.2h1.15c.474-.07.809-.182 1.005-.334.157-.122.291-.32.404-.597l2.416-9.55a1.053 1.053 0 0 0-.281-.823 1.12 1.12 0 0 0-.442-.296H8.15a.6.6 0 0 1 0-1.2h6.443a.6.6 0 1 1 0 1.2h-1.195c-.376.056-.65.155-.823.296-.215.175-.423.439-.623.79l-2.366 9.347z"></path></svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">기울임꼴 (Ctrl+I)</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_e0eaa262b545a0e6246625f6ad9808e64">기울임꼴</span>
+                                      </button>
+                                      <button class="ck ck-button ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_efb20a71c84fcb2e256c76855e053ce47" aria-pressed="false">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="m11.077 15 .991-1.416a.75.75 0 1 1 1.229.86l-1.148 1.64a.748.748 0 0 1-.217.206 5.251 5.251 0 0 1-8.503-5.955.741.741 0 0 1 .12-.274l1.147-1.639a.75.75 0 1 1 1.228.86L4.933 10.7l.006.003a3.75 3.75 0 0 0 6.132 4.294l.006.004zm5.494-5.335a.748.748 0 0 1-.12.274l-1.147 1.639a.75.75 0 1 1-1.228-.86l.86-1.23a3.75 3.75 0 0 0-6.144-4.301l-.86 1.229a.75.75 0 0 1-1.229-.86l1.148-1.64a.748.748 0 0 1 .217-.206 5.251 5.251 0 0 1 8.503 5.955zm-4.563-2.532a.75.75 0 0 1 .184 1.045l-3.155 4.505a.75.75 0 1 1-1.229-.86l3.155-4.506a.75.75 0 0 1 1.045-.184z"></path></svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">링크 (Ctrl+K)</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_efb20a71c84fcb2e256c76855e053ce47">링크</span>
+                                      </button>
+                                      <button class="ck ck-button ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ecfa7c84298a247c06611bf319cdccabf" aria-pressed="false">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="M7 5.75c0 .414.336.75.75.75h9.5a.75.75 0 1 0 0-1.5h-9.5a.75.75 0 0 0-.75.75zm-6 0C1 4.784 1.777 4 2.75 4c.966 0 1.75.777 1.75 1.75 0 .966-.777 1.75-1.75 1.75C1.784 7.5 1 6.723 1 5.75zm6 9c0 .414.336.75.75.75h9.5a.75.75 0 1 0 0-1.5h-9.5a.75.75 0 0 0-.75.75zm-6 0c0-.966.777-1.75 1.75-1.75.966 0 1.75.777 1.75 1.75 0 .966-.777 1.75-1.75 1.75-.966 0-1.75-.777-1.75-1.75z"></path></svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">불릿 목록</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_ecfa7c84298a247c06611bf319cdccabf">불릿 목록</span>
+                                      </button>
+                                      <button class="ck ck-button ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e7412ead31bca5bb1388ba7fe2ea49158" aria-pressed="false">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="M7 5.75c0 .414.336.75.75.75h9.5a.75.75 0 1 0 0-1.5h-9.5a.75.75 0 0 0-.75.75zM3.5 3v5H2V3.7H1v-1h2.5V3zM.343 17.857l2.59-3.257H2.92a.6.6 0 1 0-1.04 0H.302a2 2 0 1 1 3.995 0h-.001c-.048.405-.16.734-.333.988-.175.254-.59.692-1.244 1.312H4.3v1h-4l.043-.043zM7 14.75a.75.75 0 0 1 .75-.75h9.5a.75.75 0 1 1 0 1.5h-9.5a.75.75 0 0 1-.75-.75z"></path></svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">번호 목록</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_e7412ead31bca5bb1388ba7fe2ea49158">번호 목록</span>
+                                      </button>
+                                      <span class="ck ck-toolbar__separator"></span>
+                                      <button class="ck ck-button ck-disabled ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e580476930d5fdfdcf5626535227e9ff8" aria-disabled="true">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="M2 3.75c0 .414.336.75.75.75h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 0 0-.75.75zm5 6c0 .414.336.75.75.75h9.5a.75.75 0 1 0 0-1.5h-9.5a.75.75 0 0 0-.75.75zM2.75 16.5h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 1 0 0 1.5zm1.618-9.55L.98 9.358a.4.4 0 0 0 .013.661l3.39 2.207A.4.4 0 0 0 5 11.892V7.275a.4.4 0 0 0-.632-.326z"></path></svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">들여쓰기 줄이기</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_e580476930d5fdfdcf5626535227e9ff8">들여쓰기 줄이기</span>
+                                      </button>
+                                      <button class="ck ck-button ck-disabled ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ea3318fa1e16daa4450db784de8eddefd" aria-disabled="true">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="M2 3.75c0 .414.336.75.75.75h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 0 0-.75.75zm5 6c0 .414.336.75.75.75h9.5a.75.75 0 1 0 0-1.5h-9.5a.75.75 0 0 0-.75.75zM2.75 16.5h14.5a.75.75 0 1 0 0-1.5H2.75a.75.75 0 1 0 0 1.5zM1.632 6.95 5.02 9.358a.4.4 0 0 1-.013.661l-3.39 2.207A.4.4 0 0 1 1 11.892V7.275a.4.4 0 0 1 .632-.326z"></path></svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">들여쓰기 늘리기</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_ea3318fa1e16daa4450db784de8eddefd">들여쓰기 늘리기</span>
+                                      </button>
+                                      <span class="ck ck-toolbar__separator"></span>
+                                      <span class="ck-file-dialog-button">
+                                        <button class="ck ck-button ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e08c60758b669b34ddf624b7a9e19aef8">
+                                          <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="M6.91 10.54c.26-.23.64-.21.88.03l3.36 3.14 2.23-2.06a.64.64 0 0 1 .87 0l2.52 2.97V4.5H3.2v10.12l3.71-4.08zm10.27-7.51c.6 0 1.09.47 1.09 1.05v11.84c0 .59-.49 1.06-1.09 1.06H2.79c-.6 0-1.09-.47-1.09-1.06V4.08c0-.58.49-1.05 1.1-1.05h14.38zm-5.22 5.56a1.96 1.96 0 1 1 3.4-1.96 1.96 1.96 0 0 1-3.4 1.96z"></path>
+                                          </svg>
+                                          <span class="ck ck-tooltip ck-tooltip_s">
+                                            <span class="ck ck-tooltip__text">사진 삽입</span>
+                                          </span>
+                                          <span class="ck ck-button__label" id="ck-editor__aria-label_e08c60758b669b34ddf624b7a9e19aef8">사진 삽입</span>
+                                        </button>
+                                        <input class="ck-hidden" type="file" tabindex="-1" accept="image/jpeg,image/png,image/gif,image/bmp,image/webp,image/tiff" multiple="true">
+                                      </span>
+                                      <button class="ck ck-button ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e7202adf89761bd83650ef64983b5850b" aria-pressed="false">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20">
+                                          <path d="M3 10.423a6.5 6.5 0 0 1 6.056-6.408l.038.67C6.448 5.423 5.354 7.663 5.22 10H9c.552 0 .5.432.5.986v4.511c0 .554-.448.503-1 .503h-5c-.552 0-.5-.449-.5-1.003v-4.574zm8 0a6.5 6.5 0 0 1 6.056-6.408l.038.67c-2.646.739-3.74 2.979-3.873 5.315H17c.552 0 .5.432.5.986v4.511c0 .554-.448.503-1 .503h-5c-.552 0-.5-.449-.5-1.003v-4.574z"></path>
+                                        </svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">인용 단락</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_e7202adf89761bd83650ef64983b5850b">인용 단락</span>
+                                      </button>
+                                      <div class="ck ck-dropdown">
+                                        <button class="ck ck-button ck-off ck-dropdown__button" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e0a39a3b40d61ee9a3ca8293065191218" aria-haspopup="true">
+                                          <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="M3 6v3h4V6H3zm0 4v3h4v-3H3zm0 4v3h4v-3H3zm5 3h4v-3H8v3zm5 0h4v-3h-4v3zm4-4v-3h-4v3h4zm0-4V6h-4v3h4zm1.5 8a1.5 1.5 0 0 1-1.5 1.5H3A1.5 1.5 0 0 1 1.5 17V4c.222-.863 1.068-1.5 2-1.5h13c.932 0 1.778.637 2 1.5v13zM12 13v-3H8v3h4zm0-4V6H8v3h4z"></path>
+                                          </svg>
+                                          <span class="ck ck-tooltip ck-tooltip_s">
+                                            <span class="ck ck-tooltip__text">테이블 삽입</span>
+                                          </span>
+                                          <span class="ck ck-button__label" id="ck-editor__aria-label_e0a39a3b40d61ee9a3ca8293065191218">테이블 삽입</span>
+                                          <svg class="ck ck-icon ck-dropdown__arrow" viewBox="0 0 10 10">
+                                            <path d="M.941 4.523a.75.75 0 1 1 1.06-1.06l3.006 3.005 3.005-3.005a.75.75 0 1 1 1.06 1.06l-3.549 3.55a.75.75 0 0 1-1.168-.136L.941 4.523z"></path>
+                                          </svg>
+                                        </button>
+                                        <div class="ck ck-reset ck-dropdown__panel ck-dropdown__panel_se"></div>
+                                      </div>
+                                      <div class="ck ck-dropdown">
+                                        <button class="ck ck-button ck-off ck-dropdown__button" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_e14ef7a9b170a043fa5cdd3762c0ff1df" aria-haspopup="true">
+                                          <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20">
+                                            <path d="M18.68 3.03c.6 0 .59-.03.59.55v12.84c0 .59.01.56-.59.56H1.29c-.6 0-.59.03-.59-.56V3.58c0-.58-.01-.55.6-.55h17.38zM15.77 15V5H4.2v10h11.57zM2 4v1h1V4H2zm0 2v1h1V6H2zm0 2v1h1V8H2zm0 2v1h1v-1H2zm0 2v1h1v-1H2zm0 2v1h1v-1H2zM17 4v1h1V4h-1zm0 2v1h1V6h-1zm0 2v1h1V8h-1zm0 2v1h1v-1h-1zm0 2v1h1v-1h-1zm0 2v1h1v-1h-1zM7.5 7.177a.4.4 0 0 1 .593-.351l5.133 2.824a.4.4 0 0 1 0 .7l-5.133 2.824a.4.4 0 0 1-.593-.35V7.176v.001z"></path>
+                                          </svg>
+                                          <span class="ck ck-tooltip ck-tooltip_s">
+                                            <span class="ck ck-tooltip__text">미디어 삽입</span>
+                                          </span>
+                                          <span class="ck ck-button__label" id="ck-editor__aria-label_e14ef7a9b170a043fa5cdd3762c0ff1df">미디어 삽입</span>
+                                          <svg class="ck ck-icon ck-dropdown__arrow" viewBox="0 0 10 10"><path d="M.941 4.523a.75.75 0 1 1 1.06-1.06l3.006 3.005 3.005-3.005a.75.75 0 1 1 1.06 1.06l-3.549 3.55a.75.75 0 0 1-1.168-.136L.941 4.523z"></path>
+                                          </svg>
+                                        </button>
+                                        <div class="ck ck-reset ck-dropdown__panel ck-dropdown__panel_se">
+                                          <form class="ck ck-media-form ck-responsive-form" tabindex="-1">
+                                            <div class="ck ck-labeled-field-view ck-labeled-field-view_empty">
+                                              <div class="ck ck-labeled-field-view__input-wrapper">
+                                                <input class="ck ck-input ck-input-text_empty ck-input-text" id="ck-labeled-field-view-eb1fb44cef16a3d6fc0fc45c12cdb7a38" inputmode="text" aria-describedby="ck-labeled-field-view-status-e5df88ed72f9d1a781ae2f2a2470c1984" type="text">
+                                                <label class="ck ck-label" id="ck-editor__label_ef781f77662b7ceb26109ee74e4377834" for="ck-labeled-field-view-eb1fb44cef16a3d6fc0fc45c12cdb7a38">미디어 URL</label>
+                                              </div>
+                                              <div class="ck ck-labeled-field-view__status" id="ck-labeled-field-view-status-e5df88ed72f9d1a781ae2f2a2470c1984">미디어의 URL을 입력해주세요.</div>
+                                            </div>
+                                            <button class="ck ck-button ck-disabled ck-off ck-button-save" type="submit" tabindex="-1" aria-labelledby="ck-editor__aria-label_ea50b7c8e2ca40fc2da6269214a3a53c6" aria-disabled="true">
+                                              <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="M6.972 16.615a.997.997 0 0 1-.744-.292l-4.596-4.596a1 1 0 1 1 1.414-1.414l3.926 3.926 9.937-9.937a1 1 0 0 1 1.414 1.415L7.717 16.323a.997.997 0 0 1-.745.292z"></path>
+                                              </svg>
+                                              <span class="ck ck-tooltip ck-tooltip_s">
+                                                <span class="ck ck-tooltip__text">저장</span>
+                                              </span>
+                                              <span class="ck ck-button__label" id="ck-editor__aria-label_ea50b7c8e2ca40fc2da6269214a3a53c6">저장</span>
+                                            </button>
+                                            <button class="ck ck-button ck-off ck-button-cancel" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ef8f2b1065ac6b73a3f539ea369cbd92d">
+                                              <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20">
+                                                <path d="m11.591 10.177 4.243 4.242a1 1 0 0 1-1.415 1.415l-4.242-4.243-4.243 4.243a1 1 0 0 1-1.414-1.415l4.243-4.242L4.52 5.934A1 1 0 0 1 5.934 4.52l4.243 4.243 4.242-4.243a1 1 0 1 1 1.415 1.414l-4.243 4.243z"></path>
+                                              </svg>
+                                              <span class="ck ck-tooltip ck-tooltip_s">
+                                                <span class="ck ck-tooltip__text">취소</span>
+                                              </span>
+                                              <span class="ck ck-button__label" id="ck-editor__aria-label_ef8f2b1065ac6b73a3f539ea369cbd92d">취소</span>
+                                            </button>
+                                          </form>
+                                        </div>
+                                      </div>
+                                      <button class="ck ck-button ck-disabled ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ebefbae5f03334974024fd4aace0f8539" aria-disabled="true">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20"><path d="m5.042 9.367 2.189 1.837a.75.75 0 0 1-.965 1.149l-3.788-3.18a.747.747 0 0 1-.21-.284.75.75 0 0 1 .17-.945L6.23 4.762a.75.75 0 1 1 .964 1.15L4.863 7.866h8.917A.75.75 0 0 1 14 7.9a4 4 0 1 1-1.477 7.718l.344-1.489a2.5 2.5 0 1 0 1.094-4.73l.008-.032H5.042z"></path>
+                                        </svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">실행 취소 (Ctrl+Z)</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_ebefbae5f03334974024fd4aace0f8539">실행 취소</span>
+                                      </button>
+                                      <button class="ck ck-button ck-disabled ck-off" type="button" tabindex="-1" aria-labelledby="ck-editor__aria-label_ed92f8eee7106af11bf21d3208551acf3" aria-disabled="true">
+                                        <svg class="ck ck-icon ck-button__icon" viewBox="0 0 20 20">
+                                          <path d="m14.958 9.367-2.189 1.837a.75.75 0 0 0 .965 1.149l3.788-3.18a.747.747 0 0 0 .21-.284.75.75 0 0 0-.17-.945L13.77 4.762a.75.75 0 1 0-.964 1.15l2.331 1.955H6.22A.75.75 0 0 0 6 7.9a4 4 0 1 0 1.477 7.718l-.344-1.489A2.5 2.5 0 1 1 6.039 9.4l-.008-.032h8.927z"></path>
+                                        </svg>
+                                        <span class="ck ck-tooltip ck-tooltip_s">
+                                          <span class="ck ck-tooltip__text">다시 실행 (Ctrl+Y)</span>
+                                        </span>
+                                        <span class="ck ck-button__label" id="ck-editor__aria-label_ed92f8eee7106af11bf21d3208551acf3">다시 실행</span>
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
-
-                                <small class="commtContentDate">2023.05.07. 11:53</small>
-                                <button type="button" class="replyUpdate"
-                                  data-info="{&quot;id&quot;:5,&quot;commt&quot;:&quot;대댓글&quot;}">수정</button>
-                                <button type="button" class="replyDelete" data-info="{&quot;id&quot;:5}">삭제</button>
-
                               </div>
-                              <p class="card-text replyContent" style="">대댓글</p>
-
                             </div>
-                          </div>
-
-                          <div class="d-flex" data-comment-id="4"
-                            style="border-top: whitesmoke solid 1px; padding-top: 10px; padding-bottom: 10px;">
-                            <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
-                                alt="..."></div>
-                            <div class="ms-3">
-                              <div class="commtContentWriter">
-                                <a class="user-info" data-user-id="4">왕인서</a>
-
-                                <div class="user-info-wrapper" style="display: none;">
-                                  <div class="user-info-content">
-                                    <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
-                                    <span class="user-name">왕인서</span>
-                                    <span class="user-department"
-                                      style="font-size: 13px; font-weight: normal; color: gray">null</span>
-                                    <p class="user-email">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                        <path
-                                          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
-                                        </path>
-                                      </svg> openboard@gmail.com
-                                    </p>
-                                    <p class="user-phone">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
-                                        </path>
-                                      </svg> 01042136979
-                                    </p>
-                                  </div>
-                                </div>
-
-                                <small class="commtContentDate">2023.05.07. 11:53</small>
-                                <button type="button" class="replyUpdate"
-                                  data-info="{&quot;id&quot;:4,&quot;commt&quot;:&quot;g2g2&quot;}">수정</button>
-                                <button type="button" class="replyDelete" data-info="{&quot;id&quot;:4}">삭제</button>
-
+                            <div class="ck ck-editor__main" role="presentation">
+                              <div class="ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline" lang="ko" dir="ltr" role="textbox" aria-label="리치 텍스트 편집기, main" contenteditable="true">
+                                <p>
+                                  <br data-cke-filler="true">
+                                </p>
                               </div>
-                              <p class="card-text replyContent">g2g2</p>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="commentContent" data-comment-id="2">
-                        <div class="flex-shrink-0">
-                          <img width="50" height="50" class="rounded-circle" src="null" alt="...">
+                    </div>
+                  </div>
+                  <div class="col-md-3" style="padding: 0px">
+                    <div class="" style="text-align: left">
+                      <div class="form-check" style="background-color: #F5F5F5; border-radius: 10px; padding: 15px;">
+                        <input class="form-check-input" type="checkbox" value="" name="topUseYn" id="flexCheckDefault" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-left: 0px; float: none;">
+                        <label class="form-check-label mb-3" for="flexCheckDefault">
+                          중요로 등록
+                        </label>
+                        <div class="collapse" id="collapseExample">
+                            <input type="date" id="date-input" name="topEndData" min="2023-05-08" style="width: 180px; height: 35px; padding-left: 10px">
+                            <label>까지</label>
                         </div>
-                        <div class="ms-3">
-                          <div class="commtContentWriter">
-                            <a class="user-info" data-user-id="2">왕인서</a>
-
-                            <div class="user-info-wrapper" style="display: none;">
-                              <div class="user-info-content">
-                                <img class="user-photo rounded-circle mb-2" alt="" width="50" height="50">
-                                <span class="user-name" style="font-weight: bold">왕인서</span>
-                                <span class="user-department" style="font-size: 13px; color: gray">null</span>
-                                <p class="user-email">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                    <path
-                                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
-                                    </path>
-                                  </svg> openboard@gmail.com
-                                </p>
-                                <p class="user-phone">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                      d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
-                                    </path>
-                                  </svg> 01042136979
-                                </p>
-                              </div>
-                            </div>
-
-                            <small class="commtContentDate">2023.05.07. 11:53</small>
-
-                            <button type="button" class="commtInsert"
-                              data-info="{&quot;id&quot;:2,&quot;commt&quot;:&quot;gdgd&quot;}">답글쓰기
-                            </button>
-                            <button type="button" class="commtUpdate"
-                              data-info="{&quot;id&quot;:2,&quot;commt&quot;:&quot;gdgd&quot;}">수정
-                            </button>
-                            <button type="button" class="commtDelete" data-info="{&quot;id&quot;:2}">삭제
-                            </button>
-                          </div>
-                          <p class="card-text commtContent">gdgd</p>
-                          <div class="card-body" id="reply-form">
-                            <form>
-                              <textarea class="form-control" id="reply-input" placeholder="대댓글 작성..."></textarea>
-                              <div style="display: flex">
-                                <button type="button" class="btn btn-primary" id="filePopUpBtn">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
-                                    <path
-                                      d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z">
-                                    </path>
-                                    <path
-                                      d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z">
-                                    </path>
-                                  </svg>
-                                </button>
-                                <button class="btn btn-primary" id="reply-submit1"
-                                  style="margin-left: auto;">등록</button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-
-                    <div id="comment">
-                      <div class="comment-info">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -649,7 +591,18 @@
                     <input class="form-control" type="text" value="관리자 추가하기" aria-label="readonly input example"
                       readonly>
                     <i class="bi bi-person-fill-add fs-4"></i>
-                    <div class="addList" style="height: 30px"></div>
+                    <div class="addList" style="height: 30px">
+                        <strong>asdfou<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>test<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>test20221224<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>testbaek<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>testestestest<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>김태관<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>김종훈테스트2<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>김종훈테스트1<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>김종훈<i class="bi bi-x-circle-fill"></i></strong>
+                        <strong>김정식(JungSik)<i class="bi bi-x-circle-fill"></i></strong>                      
+                    </div>
                   </div>
                   <!-- 관리자 추가 박스 -->
                   <div class="defaultList scrollbox">
@@ -1010,6 +963,7 @@
 
 </html>
 
+<!-- 게시글 목록 -->
 <!-- <div class="container" id="article-list">
             <div class="container">
               <div class="row mt-4">
@@ -1200,5 +1154,335 @@
                 </ul>
               </div>
               <div id="page-numbers"></div>
+            </div>
+          </div> -->
+
+
+<!-- 게시글 상세보기 -->
+<!-- <div class="container" id="article-view">
+            <div class="container">
+              <div class="row mt-4">
+
+                <div class="col-6" id="update-delete-button" style="text-align: left; padding: 0px">
+                  <button type="button" class="btn btn-secondary" id="go-article-edit">수정</button>
+                  <button type="button" class="btn btn-secondary" id="go-article-delete"
+                    data-info="${JSON.stringify({id:articleId})}">삭제 </button>
+                </div>
+
+                <div class="col-6" style="text-align: right; padding: 0px">
+                  <button type="button" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-chevron-up" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z">
+                      </path>
+                    </svg>
+                    이전글</button>
+                  <button type="button" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-chevron-down" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                      </path>
+                    </svg>
+                    다음글</button>
+                  <button type="button" class="btn btn-secondary" id="go-article-list">목록</button>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="container" id="article-content">
+              <div class="row mt-2" id="content-frame"
+                style="border-radius: 10px; border-style: solid; border-width: 1.5px; border-color: #efefef; padding: 25px; margin-bottom: 500px">
+
+                <div class="mb-2" id="article-ttl" style="line-height: 30px">
+                  <span id="dsncItcd"
+                    style="border-right: 1px solid lightgray; padding-right: 15px; margin-right: 15px;"></span>
+                  <span style="font-size: 25px; position: absolute;"
+                    id="ttl">공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.공지입니다.</span>
+                </div>
+
+                <div class="writerInfo" style="margin-right: 10px; display: flex;">
+
+                  <div class="thumb_area" style="margin-right: 10px; margin-top: 4px">
+                    <a href="#" class="thumb">
+                      <img src="https://placeimg.com/45/45/animals/sepia" alt="프로필 사진" width="45" height="45"
+                        style="border-radius: 50%">
+                    </a>
+                  </div>
+
+                  <div class="profile_area">
+                    <div class="profile_info" style="margin-bottom: 5px">
+                      <button id="rgsrNm"
+                        style="background: none; border: none; text-align: left; font-weight: bold;">심관리자s</button>
+                      <span>(</span>
+                      <span id="rgsrDvsnNm">개발부</span>
+                      <span>)</span>
+                    </div>
+                    <div class="article_info" style="font-size: 14px; color: gray; margin-left: 7px;">
+                      <span class="data" id="rgsnDttm" style="margin-right: 5px;">2023.05.06. 10:33</span>
+                      <span>조회</span>
+                      <span class="count" id="iqcnt">1</span>
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="vertical-line mt-4 mb-4" style="color: lightgray">
+
+                <div class="article_container">
+
+                  <div class="article_viewer" id="cntn">
+                    <p>공지입니다.</p>
+                  </div>
+                  <div class="commentBox"> 
+                    <div id="commentCount">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        style="position: relative; top: -2px;" fill="currentColor" class="bi bi-chat-dots"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
+                        </path>
+                        <path
+                          d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z">
+                        </path>
+                      </svg>
+                      댓글 <span style="font-weight: bold">0</span>
+                    </div> 
+                    <hr class="vertical-line mt-2 mb-4" style="color: lightgray">
+                    <section class="mb-4">
+                      <div class="card bg-light">
+                        <div class="card-body">
+                          <form id="commentForm">
+                            <textarea class="form-control" id="commentInput" placeholder="댓글을 남겨보세요."
+                              rows="3"></textarea>
+                            <div style="display: flex">
+                              <button type="button" class="btn btn-primary" id="filePopUpBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                  class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+                                  <path
+                                    d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z">
+                                  </path>
+                                  <path
+                                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z">
+                                  </path>
+                                </svg>
+                              </button>
+                              <button type="submit" class="btn btn-primary" id="addComment"
+                                style="margin-left: auto;">등록</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section id="commentList" class="mb-4">
+                      <div class="commentContent" data-comment-id="3">
+                        <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
+                            alt="..."></div>
+                        <div class="ms-3">
+                          <div class="commtContentWriter">
+                            <a class="user-info" data-user-id="3">왕인서</a>
+
+                            <div class="user-info-wrapper" style="display: none;">
+                              <div class="user-info-content">
+                                <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
+                                <span class="user-name" style="font-weight: bold">왕인서</span>
+                                <span class="user-department" style="font-size: 13px; color: gray">null</span>
+                                <p class="user-email">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path
+                                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                    </path>
+                                  </svg> openboard@gmail.com
+                                </p>
+                                <p class="user-phone">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                      d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                    </path>
+                                  </svg> 01042136979
+                                </p>
+                              </div>
+                            </div>
+
+                            <small class="commtContentDate">2023.05.07. 11:53</small>
+
+                            <button type="button" class="commtInsert"
+                              data-info="{&quot;id&quot;:3,&quot;commt&quot;:&quot;gdgd&quot;}">답글쓰기
+                            </button>
+                            <button type="button" class="commtUpdate"
+                              data-info="{&quot;id&quot;:3,&quot;commt&quot;:&quot;gdgd&quot;}">수정
+                            </button>
+                            <button type="button" class="commtDelete" data-info="{&quot;id&quot;:3}">삭제
+                            </button>
+                          </div>
+                          <p class="card-text commtContent" style="">gdgd</p>
+
+                          <div class="d-flex" data-comment-id="5"
+                            style="border-top: whitesmoke solid 1px; padding-top: 10px; padding-bottom: 10px;">
+                            <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
+                                alt="..."></div>
+                            <div class="ms-3">
+                              <div class="commtContentWriter">
+                                <a class="user-info" data-user-id="5">왕인서</a>
+
+                                <div class="user-info-wrapper" style="display: none;">
+                                  <div class="user-info-content">
+                                    <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
+                                    <span class="user-name">왕인서</span>
+                                    <span class="user-department"
+                                      style="font-size: 13px; font-weight: normal; color: gray">null</span>
+                                    <p class="user-email">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                        <path
+                                          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                        </path>
+                                      </svg> openboard@gmail.com
+                                    </p>
+                                    <p class="user-phone">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                        </path>
+                                      </svg> 01042136979
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <small class="commtContentDate">2023.05.07. 11:53</small>
+                                <button type="button" class="replyUpdate"
+                                  data-info="{&quot;id&quot;:5,&quot;commt&quot;:&quot;대댓글&quot;}">수정</button>
+                                <button type="button" class="replyDelete" data-info="{&quot;id&quot;:5}">삭제</button>
+
+                              </div>
+                              <p class="card-text replyContent" style="">대댓글</p>
+
+                            </div>
+                          </div>
+
+                          <div class="d-flex" data-comment-id="4"
+                            style="border-top: whitesmoke solid 1px; padding-top: 10px; padding-bottom: 10px;">
+                            <div class="flex-shrink-0"><img width="50" height="50" class="rounded-circle" src="null"
+                                alt="..."></div>
+                            <div class="ms-3">
+                              <div class="commtContentWriter">
+                                <a class="user-info" data-user-id="4">왕인서</a>
+
+                                <div class="user-info-wrapper" style="display: none;">
+                                  <div class="user-info-content">
+                                    <img class="user-photo rounded-circle mb-2" alt="User Photo" width="50" height="50">
+                                    <span class="user-name">왕인서</span>
+                                    <span class="user-department"
+                                      style="font-size: 13px; font-weight: normal; color: gray">null</span>
+                                    <p class="user-email">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                        <path
+                                          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                        </path>
+                                      </svg> openboard@gmail.com
+                                    </p>
+                                    <p class="user-phone">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                        </path>
+                                      </svg> 01042136979
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <small class="commtContentDate">2023.05.07. 11:53</small>
+                                <button type="button" class="replyUpdate"
+                                  data-info="{&quot;id&quot;:4,&quot;commt&quot;:&quot;g2g2&quot;}">수정</button>
+                                <button type="button" class="replyDelete" data-info="{&quot;id&quot;:4}">삭제</button>
+
+                              </div>
+                              <p class="card-text replyContent">g2g2</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="commentContent" data-comment-id="2">
+                        <div class="flex-shrink-0">
+                          <img width="50" height="50" class="rounded-circle" src="null" alt="...">
+                        </div>
+                        <div class="ms-3">
+                          <div class="commtContentWriter">
+                            <a class="user-info" data-user-id="2">왕인서</a>
+
+                            <div class="user-info-wrapper" style="display: none;">
+                              <div class="user-info-content">
+                                <img class="user-photo rounded-circle mb-2" alt="" width="50" height="50">
+                                <span class="user-name" style="font-weight: bold">왕인서</span>
+                                <span class="user-department" style="font-size: 13px; color: gray">null</span>
+                                <p class="user-email">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path
+                                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                                    </path>
+                                  </svg> openboard@gmail.com
+                                </p>
+                                <p class="user-phone">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                      d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
+                                    </path>
+                                  </svg> 01042136979
+                                </p>
+                              </div>
+                            </div>
+
+                            <small class="commtContentDate">2023.05.07. 11:53</small>
+
+                            <button type="button" class="commtInsert"
+                              data-info="{&quot;id&quot;:2,&quot;commt&quot;:&quot;gdgd&quot;}">답글쓰기
+                            </button>
+                            <button type="button" class="commtUpdate"
+                              data-info="{&quot;id&quot;:2,&quot;commt&quot;:&quot;gdgd&quot;}">수정
+                            </button>
+                            <button type="button" class="commtDelete" data-info="{&quot;id&quot;:2}">삭제
+                            </button>
+                          </div>
+                          <p class="card-text commtContent">gdgd</p>
+                          <div class="card-body" id="reply-form">
+                            <form>
+                              <textarea class="form-control" id="reply-input" placeholder="대댓글 작성..."></textarea>
+                              <div style="display: flex">
+                                <button type="button" class="btn btn-primary" id="filePopUpBtn">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+                                    <path
+                                      d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z">
+                                    </path>
+                                    <path
+                                      d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z">
+                                    </path>
+                                  </svg>
+                                </button>
+                                <button class="btn btn-primary" id="reply-submit1"
+                                  style="margin-left: auto;">등록</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <div id="comment">
+                      <div class="comment-info">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div> -->
