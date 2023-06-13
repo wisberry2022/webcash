@@ -1,4 +1,4 @@
-package animal;
+package factories.animal;
 
 public interface Animal {
 

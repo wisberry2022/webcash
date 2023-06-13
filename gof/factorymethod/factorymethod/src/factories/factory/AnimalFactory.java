@@ -1,8 +1,8 @@
-package factory;
+package factories.factory;
 
-import animal.Animal;
-import animal.Cat;
-import animal.Dog;
+import factories.animal.Animal;
+import factories.animal.Cat;
+import factories.animal.Dog;
 
 public class AnimalFactory {
 
