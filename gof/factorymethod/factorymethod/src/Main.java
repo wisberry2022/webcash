@@ -12,7 +12,7 @@ public class Main {
         Animal cat2 = catManager.creator();
 
         int num = catManager.getCreateNum();
-        
+
         cat.eat();
         cat.sound();
         System.out.println("고양이가 생성된 수 " + num);
