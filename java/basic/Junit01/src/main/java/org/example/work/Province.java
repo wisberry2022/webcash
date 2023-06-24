@@ -25,6 +25,31 @@ public class Province {
         totalProduction += arg.getProduction();
     }
 
+    public int getDemandCost() {
+        int remainingDemand = demand;
+        int result = 0;
+
+        List<Producer> pList = producers.stream()
+                .sorted(Comparator.comparingInt(Producer::getCost))
+                .collect(Collectors.toList());
+
+        for(Producer p:pList) {
+            int contribution = Math.min(remainingDemand, p.getProduction());
+            remainingDemand -= contribution;
+            result += contribution * p.getCost();
+        }
+
+        return result;
+    }
+
+    public void setTotalProduction(int num) {
+        totalProduction += num;
+    }
+
+    public void setDemand(int num) {
+        demand = num;
+    }
+
     public String getName() {
         return name;
     }
@@ -45,10 +70,6 @@ public class Province {
         return price;
     }
 
-    public void setTotalProduction(int num) {
-        totalProduction = num;
-    }
-
     public int getShortFall() {
         return demand - totalProduction;
     }
@@ -63,23 +84,6 @@ public class Province {
 
     public int getSatisfiedDemand() {
         return Math.min(demand, totalProduction);
-    }
-
-    public int getDemandCost() {
-        int remainingDemand = demand;
-        int result = 0;
-
-        List<Producer> pList = producers.stream()
-                .sorted(Comparator.comparingInt(Producer::getCost))
-                .collect(Collectors.toList());
-
-        for(Producer p:pList) {
-            int contribution = Math.min(remainingDemand, p.getProduction());
-            remainingDemand -= contribution;
-            result += contribution * p.getCost();
-        }
-
-        return result;
     }
 
     @Override

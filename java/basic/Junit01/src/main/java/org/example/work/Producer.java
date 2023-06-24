@@ -16,6 +16,17 @@ public class Producer {
         this.production = Integer.parseInt(data.get("production"));
     }
 
+    public void setProduction(String amountStr) {
+        int amount = Integer.parseInt(amountStr);
+        int newProduction = amount;
+        province.setTotalProduction(newProduction - production);
+        production = newProduction;
+    }
+
+    public void setCost(String arg) {
+        cost = Integer.parseInt(arg);
+    }
+
     public String getName() {
         return name;
     }
@@ -24,20 +35,11 @@ public class Producer {
         return cost;
     }
 
-    public void setCost(String arg) {
-        cost = Integer.parseInt(arg);
-    }
-
     public int getProduction() {
         return production;
     }
 
-    public void setProduction(String amountStr) {
-        int amount = Integer.parseInt(amountStr);
-        int newProduction = amount;
-        province.setTotalProduction(newProduction - production);
-        production = newProduction;
-    }
+
 
 //    @Override
 //    public String toString() {
