@@ -8,18 +8,28 @@ public abstract class Duck {
     FlyBehavior flyBehavior;
     QuackBehavior quackBehavior;
 
+    public Duck() {}
+
+    public abstract void display();
+
+    public void setFlyBehavior(FlyBehavior flyBehavior) {
+        this.flyBehavior = flyBehavior;
+    }
+
+    public void setQuackBehavior(QuackBehavior quackBehavior) {
+        this.quackBehavior = quackBehavior;
+    }
+
+    public void performFly() {
+        flyBehavior.fly();
+    }
+
     public void performQuack() {
-        System.out.println("꽥꽥!");
+        quackBehavior.quack();
     }
 
     public void swim() {
         System.out.println("헤엄칩니다!");
     }
-
-    public void performFly() {
-        System.out.println("오리 날다");
-    }
-
-    public abstract void display();
 
 }

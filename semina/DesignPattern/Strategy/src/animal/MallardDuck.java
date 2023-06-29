@@ -1,8 +1,17 @@
 package animal;
 
+import behavior.FlyWithWings;
+import behavior.Quack;
+
 public class MallardDuck extends Duck{
+
+    public MallardDuck() {
+        quackBehavior = new Quack();
+        flyBehavior = new FlyWithWings();
+    }
+
     @Override
     public void display() {
-        System.out.println("A 모양의 오리");
+        System.out.println("나는 물오리");
     }
 }
